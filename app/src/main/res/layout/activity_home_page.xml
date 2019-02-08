@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.b6015413.usbtourteam6.HomePage"
+    android:background="@drawable/backgroundlightgrey">
+
+    <!-- Horizontal constraints -->
+    <android.support.constraint.Guideline
+        android:id="@+id/hGuideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.25"
+        android:orientation="horizontal"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/hGuideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.43"
+        android:orientation="horizontal"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/hGuideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.61"
+        android:orientation="horizontal"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/hGuideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.79"
+        android:orientation="horizontal"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/hGuideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.97"
+        android:orientation="horizontal"/>
+
+    <!-- End of horizontal constraints -->
+
+    <!-- Vertical constraints -->
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline5"
+        app:layout_constraintGuide_begin="20dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline6"
+        app:layout_constraintGuide_begin="20dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.0"/>
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline7"
+        app:layout_constraintGuide_begin="20dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1.0"/>
+    <!-- End of vertical constraints -->
+
+    <!-- Buttons -->
+    <Button
+        android:id="@+id/welcomeBtn"
+        android:text="Welcome To the Urban Sciences Building"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/test"
+        app:layout_constraintBottom_toTopOf="@+id/hGuideline1"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline6"
+        app:layout_constraintRight_toLeftOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.466" />
+
+    <Button
+        android:id="@+id/groundFloor"
+        android:text="Ground Floor"
+        android:background="@drawable/groundfloortest"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/hGuideline2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/hGuideline1"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <Button
+        android:id="@+id/firstFloor"
+        android:text="First Floor"
+        android:background="@drawable/firstfloortest"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/hGuideline2"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline5"
+        app:layout_constraintRight_toLeftOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="@+id/hGuideline1" />
+
+    <Button
+        android:id="@+id/secondFloor"
+        android:text="Second Floor"
+        android:background="@drawable/secondfloortest"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/hGuideline3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/hGuideline2"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <Button
+        android:id="@+id/thirdFloor"
+        android:text="Third Floor"
+        android:background="@drawable/thirdfloortest"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/hGuideline3"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline5"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/hGuideline2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/fourthFloor"
+        android:text="Fourth Floor"
+        android:background="@drawable/fourthfloortest"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/hGuideline4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/hGuideline3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/fifthFloor"
+        android:text="Fifth Floor"
+        android:background="@drawable/fifithfloortest"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/hGuideline4"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline5"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/hGuideline3" />
+
+    <Button
+        android:id="@+id/sixthFloor"
+        android:text="Sixth Floor"
+        android:background="@drawable/sixthfloortest"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/hGuideline5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/hGuideline4" />
+
+    <Button
+        android:id="@+id/findARoom"
+        android:text="Find A Room"
+        android:background="@drawable/findaroomtest"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/hGuideline5"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline5"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/hGuideline4"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!-- End of buttons -->
+
+</android.support.constraint.ConstraintLayout>
