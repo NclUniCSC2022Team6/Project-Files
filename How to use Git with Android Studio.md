@@ -15,4 +15,4 @@ Step by step guide:
 8. Enter URL of Project Files (https://github.com/NclUniCSC2022Team6/Project-Files)
 9. Press OK
 10. Enter Username and Password for GitHub
-Done.
+11. Done.
