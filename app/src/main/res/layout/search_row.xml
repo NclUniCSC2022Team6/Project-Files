@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:background="@color/lightBlue">
+
+    <!--This is what each row of the recycler view will look like-->
+    <!--This is a test layout for the search results-->
+
+    <TextView
+        android:id="@+id/searchText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search result goes here"
+        android:textSize="24sp"
+        android:textAlignment="center"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/directionsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:text="@string/get_directions"
+            android:textStyle=""
+            android:textColor="@android:color/holo_orange_light" />
+
+    </RelativeLayout>
+
+</LinearLayout>

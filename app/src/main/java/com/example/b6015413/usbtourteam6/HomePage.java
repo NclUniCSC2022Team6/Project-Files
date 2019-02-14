@@ -3,6 +3,8 @@ package com.example.b6015413.usbtourteam6;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,15 +14,22 @@ import android.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 
+import java.util.Locale;
+
 public class HomePage extends AppCompatActivity {
 
     Button welcomeButton, groundFloor, firstFloor, secondFloor, thirdFloor,
             fourthFloor, fifthFloor, sixthFloor, findARoom;
 
+    Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        AssetManager am = this.getApplicationContext().getAssets();
+        Typeface robotoBlack = Typeface.createFromAsset(am,String.format(Locale.UK,"fonts/%s","Roboto-Black.ttf"));
 
         //region set IDs
         welcomeButton = (Button)findViewById(R.id.welcomeBtn);
@@ -34,6 +43,20 @@ public class HomePage extends AppCompatActivity {
         findARoom = (Button)findViewById(R.id.findARoom);
         //endregion
 
+        //region setting Typeface
+        welcomeButton.setTypeface(robotoBlack);
+        groundFloor.setTypeface(robotoBlack);
+        firstFloor.setTypeface(robotoBlack);
+        secondFloor.setTypeface(robotoBlack);
+        thirdFloor.setTypeface(robotoBlack);
+        fourthFloor.setTypeface(robotoBlack);
+        fifthFloor.setTypeface(robotoBlack);
+        sixthFloor.setTypeface(robotoBlack);
+        findARoom.setTypeface(robotoBlack);
+        //endregion
+
+        //region button clicks
+
         //test button click to make sure SearchResults page loads properly
         welcomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,10 +69,68 @@ public class HomePage extends AppCompatActivity {
         groundFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, LevelX.class);
+                startActivity(intent);
+            }
+        });
+
+        firstFloor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, LevelX.class);
+                startActivity(intent);
+            }
+        });
+
+        secondFloor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, LevelX.class);
+                startActivity(intent);
+            }
+        });
+
+        thirdFloor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, LevelX.class);
+                startActivity(intent);
+            }
+        });
+
+        fourthFloor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, LevelX.class);
+                startActivity(intent);
+            }
+        });
+
+        fifthFloor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, LevelX.class);
+                startActivity(intent);
+            }
+        });
+
+        sixthFloor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, LevelX.class);
+                startActivity(intent);
+            }
+        });
+
+        findARoom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, FindARoom.class);
                 startActivity(intent);
             }
         });
+
+        //endregion
 
     }
 

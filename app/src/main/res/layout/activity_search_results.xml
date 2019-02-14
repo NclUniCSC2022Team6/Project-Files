@@ -7,13 +7,23 @@
     android:background="@drawable/backgroundlightgrey"
     tools:context="com.example.b6015413.usbtourteam6.SearchResults">
 
+    <!-- Guidelines -->
     <android.support.constraint.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/horizontal1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="20dp"
         app:layout_constraintGuide_percent="0.1" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/horizontal2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.99" />
+    <!-- End of guidelines -->
 
     <TextView
         android:id="@+id/textView"
@@ -25,9 +35,27 @@
         android:layout_marginBottom="8dp"
         android:text="Showing results for ..."
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintBottom_toTopOf="@+id/horizontal1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- This RecyclerView will contain the search results -->
+    <!-- Need to create a layout resource that search results will populate -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/searchResultsRV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/horizontal1"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
 
 </android.support.constraint.ConstraintLayout>
