@@ -39,9 +39,6 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity
-            android:name=".NavigationDrawer"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".FindARoom">
             <meta-data
                 android:name="android.app.searchable"

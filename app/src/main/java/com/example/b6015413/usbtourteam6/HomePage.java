@@ -51,14 +51,6 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        firstFloor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, NavigationDrawer.class);
-                startActivity(intent);
-            }
-        });
-
     }
 
     @Override
