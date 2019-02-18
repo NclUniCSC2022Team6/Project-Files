@@ -9,8 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.View;
-import android.widget.Button;
 import android.widget.SearchView;
 
 public class SearchResults extends AppCompatActivity {
@@ -22,7 +20,7 @@ public class SearchResults extends AppCompatActivity {
     //https://www.youtube.com/watch?v=aqJ6AQdjKOU
     RecyclerView recyclerView;
     //perhaps change this string[] to be a List populated from a text file?
-    //would require changing the constructor in Adapter class
+    //would require changing the constructor in SearchRowAdapter class
     //the idea is that Items is filled with the search results - a string[] is probably not the best type to use
     String[] Items = {"Tutor 1 - Room - Floor","Tutor 2 - Room - Floor",
             "Tutor 3 - Room - Floor","Tutor 4 - Room - Floor",
@@ -41,7 +39,7 @@ public class SearchResults extends AppCompatActivity {
         //set the layout of the recycler view as the
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //populate the recycler view with this class as context and string[] Items as data
-        recyclerView.setAdapter(new Adapter(this,Items));
+        recyclerView.setAdapter(new SearchRowAdapter(this,Items));
 
     }
 

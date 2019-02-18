@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:background="@color/lightBlue">
+
+    <TextView
+        android:id="@+id/roomText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Tutor room info should go here"
+        android:textSize="24sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/getDirectionsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/get_directions"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/holo_orange_light"/>
+
+        <Button
+            android:id="@+id/showOnMapBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show on Map"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/holo_orange_light"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
