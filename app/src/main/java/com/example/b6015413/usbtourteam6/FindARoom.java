@@ -3,13 +3,18 @@ package com.example.b6015413.usbtourteam6;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.Button;
 import android.widget.SearchView;
+
+import java.util.Locale;
 
 public class FindARoom extends AppCompatActivity {
 
@@ -18,10 +23,19 @@ public class FindARoom extends AppCompatActivity {
             "Tutor 3 - Room - Floor","Tutor 4 - Room - Floor",
             "Tutor 5 - Room - Floor", "Tutor 6 - Room - Floor", "Tutor 7 - Room - Floor"};
 
+    Button findARoomBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_aroom);
+
+        AssetManager am = this.getApplicationContext().getAssets();
+        Typeface robotoLight = Typeface.createFromAsset(am,String.format(Locale.UK,"fonts/%s","Roboto-Light.ttf"));
+
+        findARoomBtn = findViewById(R.id.findARoomBtn);
+
+        findARoomBtn.setTypeface(robotoLight);
 
         handleIntent(getIntent());
 
