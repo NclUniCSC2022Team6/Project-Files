@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.01" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineRight"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.99" />
 
     <!--End of constraints-->
 
@@ -50,7 +50,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/lightBlue"
+        android:background="@drawable/roundedbutton"
         android:text="Find A Room In The USB"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/guidelineTop"

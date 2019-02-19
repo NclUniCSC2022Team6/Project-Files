@@ -6,14 +6,14 @@ import android.widget.TextView;
 
 public class LevelX extends AppCompatActivity {
 
-    TextView textView;
+    TextView levelX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_x);
 
-        textView = (TextView) findViewById(R.id.textView3);
+        levelX = (TextView) findViewById(R.id.levelXTxt);
 
     }
 }

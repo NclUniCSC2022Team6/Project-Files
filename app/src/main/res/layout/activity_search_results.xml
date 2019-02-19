@@ -33,7 +33,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Showing results for ..."
+        android:text="Showing results for (search string)"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/horizontal1"
         app:layout_constraintLeft_toLeftOf="parent"

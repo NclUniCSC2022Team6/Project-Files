@@ -29,7 +29,7 @@ public class FindARoom extends AppCompatActivity {
         //set the layout of the recycler view as the
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //populate the recycler view with this class as context and string[] Items as data
-        recyclerView.setAdapter(new SearchRowAdapter(this,Items));
+        recyclerView.setAdapter(new FindARoomAdapter(this,Items));
 
     }
 

@@ -76,6 +76,7 @@ public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             //Find A Room
             roomTextFARR.setTypeface(robotoLight);
             getDirectionsFARR.setTypeface(robotoLight);
+            showOnMapFARR.setTypeface(robotoLight);
 
 
         }

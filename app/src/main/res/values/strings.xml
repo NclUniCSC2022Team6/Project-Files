@@ -3,5 +3,6 @@
     <string name="search_title">Search...</string>
     <string name="search_hint">Search...</string>
     <string name="home_page_title">Welcome to the USB</string>
-    <string name="get_directions"><u>Get Directions</u></string>
+    <string name="get_directions">Get Directions</string>
+    <string name="show_on_map">Show on Map</string>
 </resources>
