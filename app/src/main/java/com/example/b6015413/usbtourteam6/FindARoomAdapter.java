@@ -1,9 +1,3 @@
-/**
- * THIS CLASS IS AN ADAPTER CLASS FOR RECYCLER VIEWS
- * LEGIT COPIED STRIAGHT FROM THIS VIDEO:
- * https://www.youtube.com/watch?v=aqJ6AQdjKOU
- */
-
 package com.example.b6015413.usbtourteam6;
 
 import android.content.Context;
@@ -20,12 +14,12 @@ import android.widget.TextView;
 
 import java.util.Locale;
 
-public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context;
-    String[] items; //this is what will populate the recycler view - currently a string[] in SearchResults
+    String[] items;
 
-    public Adapter(Context context, String[] items) {
+    public FindARoomAdapter(Context context, String[] items) {
         this.context = context;
         this.items = items;
     }
@@ -35,23 +29,25 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View row = inflater.inflate(R.layout.search_row, viewGroup, false);
-        Item item = new Item(row);
+        View findARoomRow = inflater.inflate(R.layout.find_a_room_row, viewGroup, false);
 
-        return item;
+        Item findARoomRowItem = new Item(findARoomRow);
+
+        return findARoomRowItem;
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        //sets the text of the TextView in search_row to be i (the position of the string[] in SearchResults)
-        ((Item)viewHolder).searchTextSR.setText(items[i]);
-        ((Item)viewHolder).getDirectionsSR.setOnClickListener(new View.OnClickListener() {
+        ((Item)viewHolder).roomTextFARR.setText(items[i]);
+        ((Item)viewHolder).getDirectionsFARR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, GetDirections.class);
                 context.startActivity(intent);
             }
         });
+        //another button press for show on map - to be implemented later
     }
 
     @Override
@@ -60,9 +56,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public class Item extends RecyclerView.ViewHolder {
-        //defining objects in custom row layouts
-        TextView searchTextSR;
-        Button getDirectionsSR;
+        //defining objects in the custom row xml files
+        TextView roomTextFARR;
+        Button getDirectionsFARR, showOnMapFARR;
 
         //adding font for recycler view to use
         AssetManager am = context.getApplicationContext().getAssets();
@@ -71,12 +67,17 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public Item(View itemView) {
             super(itemView);
             //findViewById for all objects defined above
-            searchTextSR = itemView.findViewById(R.id.searchText);
-            getDirectionsSR = itemView.findViewById(R.id.directionsBtn);
+            //Find A Room
+            roomTextFARR = itemView.findViewById(R.id.roomText);
+            getDirectionsFARR = itemView.findViewById(R.id.getDirectionsBtn);
+            showOnMapFARR = itemView.findViewById(R.id.showOnMapBtn);
 
             //setting font for objects
-            searchTextSR.setTypeface(robotoLight);
-            getDirectionsSR.setTypeface(robotoLight);
+            //Find A Room
+            roomTextFARR.setTypeface(robotoLight);
+            getDirectionsFARR.setTypeface(robotoLight);
+            showOnMapFARR.setTypeface(robotoLight);
+
 
         }
     }

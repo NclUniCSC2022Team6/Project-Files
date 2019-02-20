@@ -4,21 +4,183 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.b6015413.usbtourteam6.LevelX"
-    android:background="@drawable/backgroundlightgrey">
+    android:background="@drawable/backgroundlightgrey"
+    android:paddingTop="5dp"
+    tools:context="com.example.b6015413.usbtourteam6.LevelX">
 
+
+    <!--Guidelines-->
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.01" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.99" />
+    <!--End of guidelines-->
+
+    <!--Need to change background to map preview-->
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/levelXTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:text="Level X"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/floorPlanBtn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Level x"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/floor_plan_preview"
+        android:text="Floor Plan - background needs changing"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <!--Have a recycler view within another view?-->
+    <RelativeLayout
+        android:id="@+id/tutorRoomsRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/roundedbutton"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/floorPlanBtn">
+
+        <TextView
+            android:id="@+id/tutorRoomTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Tutor Rooms"
+            android:textSize="24sp" />
+
+        <!--Not sure if a recyclerview can go here instead of hardcoded text-->
+        <TextView
+            android:id="@+id/firstRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tutorRoomTitle"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="First row"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/secondRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/firstRow"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Second row"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/expandBtn"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_below="@+id/secondRow"
+            android:background="@android:color/transparent"
+            android:padding="0dp"
+            android:text="..."
+            android:textSize="10sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/studySpacesRL"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="8dp"
+        android:padding="5dp"
+        android:background="@drawable/roundedbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tutorRoomsRL">
+
+        <TextView
+            android:id="@+id/studySpaceTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Study Spaces"
+            android:textSize="24sp" />
+
+        <!--Again, not sure if a RV can go in here-->
+        <TextView
+            android:id="@+id/firstRowSS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/studySpaceTitle"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="First row"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/secondRowSS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/firstRowSS"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Second row"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/expandBtnSS"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_below="@+id/secondRowSS"
+            android:background="@android:color/transparent"
+            android:text="..."
+            android:textSize="10sp"/>
+
+    </RelativeLayout>
+
 
 </android.support.constraint.ConstraintLayout>
