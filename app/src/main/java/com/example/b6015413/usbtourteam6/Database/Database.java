@@ -64,7 +64,7 @@ public class Database extends SQLiteAssetHelper {
         return result;
     }
 
-    // Function get tutor by name
+    // Function get tutor by name and surname
     public List<Tutor> getTutorByName(String name)
     {
         SQLiteDatabase db = getReadableDatabase();
@@ -75,7 +75,7 @@ public class Database extends SQLiteAssetHelper {
 
         qb.setTables(tableName);
         //Query select from the tutor where Name LIKE %pattern% so not exact
-        Cursor cursor = qb.query(db, sqlSelect, "Name LIKE ?", new String[]{"%"+name+"%"}, null, null, null);
+        Cursor cursor = qb.query(db, sqlSelect, "Name LIKE ? OR Surname LIKE ?", new String[]{"%"+name+"%","%"+name+"%"}, null, null, null);
         List<Tutor> result = new ArrayList<>();
         if(cursor.moveToFirst())
         {
