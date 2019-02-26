@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/elevator_rounded"
             android:padding="5dp"
-            android:text="First location"
+            android:hint="First location"
             android:textAlignment="center"
             android:textColor="@color/darkGrey" />
 
@@ -54,7 +54,7 @@
             android:layout_below="@+id/separater"
             android:background="@drawable/elevator_rounded"
             android:padding="5dp"
-            android:text="Second location"
+            android:hint="Second location"
             android:textAlignment="center"
             android:textColor="@color/darkGrey" />
 

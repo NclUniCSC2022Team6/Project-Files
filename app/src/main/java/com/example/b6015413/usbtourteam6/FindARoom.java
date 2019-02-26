@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.Database.DatabaseHelper;
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
@@ -26,7 +27,7 @@ public class FindARoom extends AppCompatActivity {
     RecyclerView recyclerView;
     List<Room> items;
 
-    Button findARoomBtn;
+    TextView findARoomTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +37,9 @@ public class FindARoom extends AppCompatActivity {
         AssetManager am = this.getApplicationContext().getAssets();
         Typeface robotoLight = Typeface.createFromAsset(am,String.format(Locale.UK,"fonts/%s","Roboto-Light.ttf"));
 
-        findARoomBtn = findViewById(R.id.findARoomBtn);
+        findARoomTxt = findViewById(R.id.findARoomTitle);
 
-        findARoomBtn.setTypeface(robotoLight);
+        findARoomTxt.setTypeface(robotoLight);
 
         handleIntent(getIntent());
 

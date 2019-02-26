@@ -64,7 +64,6 @@ public class StudySpaceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             //Find A Room
             studySpaceTxt.setTypeface(robotoLight);
 
-
         }
     }
 

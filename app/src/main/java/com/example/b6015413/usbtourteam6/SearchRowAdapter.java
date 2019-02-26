@@ -71,6 +71,7 @@ public class SearchRowAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         //adding font for recycler view to use
         AssetManager am = context.getApplicationContext().getAssets();
         Typeface robotoLight = Typeface.createFromAsset(am,String.format(Locale.UK,"fonts/%s","Roboto-Light.ttf"));
+        Typeface robotoBlack = Typeface.createFromAsset(am,String.format(Locale.UK,"fonts/%s","Roboto-Black.ttf"));
 
         public Item(View itemView) {
             super(itemView);
@@ -82,7 +83,7 @@ public class SearchRowAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             //setting font for objects
             //Search Row
             searchTextSR.setTypeface(robotoLight);
-            getDirectionsSR.setTypeface(robotoLight);
+            getDirectionsSR.setTypeface(robotoBlack);
 
         }
     }
