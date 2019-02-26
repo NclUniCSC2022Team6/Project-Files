@@ -59,7 +59,7 @@ public class HomePage extends AppCompatActivity {
         welcomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, SearchResults.class);
+                Intent intent = new Intent(HomePage.this, SearchTutor.class);
                 startActivity(intent);
             }
         });

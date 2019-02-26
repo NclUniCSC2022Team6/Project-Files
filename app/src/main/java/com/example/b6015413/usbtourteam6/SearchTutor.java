@@ -8,7 +8,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 
 import com.example.b6015413.usbtourteam6.Adapter.SearchAdapter;
-import com.example.b6015413.usbtourteam6.Database.Database;
 import com.example.b6015413.usbtourteam6.Database.DatabaseHelper;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 

@@ -26,7 +26,7 @@ import java.util.Locale;
 public class SearchRowAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context;
-    List<Tutor> items; //this is what will populate the recycler view - currently a string[] in SearchResults
+    List<Tutor> items; //this is what will populate the recycler view
 
     public SearchRowAdapter(Context context, List<Tutor> items) {
         this.context = context;
