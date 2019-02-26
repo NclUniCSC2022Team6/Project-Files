@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,14 +15,16 @@ import android.view.MenuInflater;
 import android.widget.Button;
 import android.widget.SearchView;
 
+import com.example.b6015413.usbtourteam6.Database.DatabaseHelper;
+import com.example.b6015413.usbtourteam6.Table_Models.Room;
+
+import java.util.List;
 import java.util.Locale;
 
 public class FindARoom extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    String[] Items = {"Tutor 1 - Room - Floor","Tutor 2 - Room - Floor",
-            "Tutor 3 - Room - Floor","Tutor 4 - Room - Floor",
-            "Tutor 5 - Room - Floor", "Tutor 6 - Room - Floor", "Tutor 7 - Room - Floor"};
+    List<Room> items;
 
     Button findARoomBtn;
 
@@ -42,8 +45,11 @@ public class FindARoom extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.findARoomRV);
         //set the layout of the recycler view as the
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //populate the recycler view with this class as context and string[] Items as data
-        recyclerView.setAdapter(new FindARoomAdapter(this,Items));
+        //populate the recycler view with this class as context and items as data
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        items = dbHelper.getAllRooms();
+        recyclerView.setAdapter(new FindARoomAdapter(this,items));
 
     }
 

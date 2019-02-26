@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 
-import com.example.b6015413.usbtourteam6.Model.Tutor;
+import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class Database extends SQLiteAssetHelper {
                 Tutor tutor = new Tutor();
                 tutor.setId(cursor.getInt(cursor.getColumnIndex("Id")));
                 tutor.setSurname(cursor.getString(cursor.getColumnIndex("Surname")));
-                tutor.setName(cursor.getString(cursor.getColumnIndex("Name")));
+                //tutor.setName(cursor.getString(cursor.getColumnIndex("Name")));
                 tutor.setRoom(cursor.getString(cursor.getColumnIndex("Room")));
                 result.add(tutor);
             } while (cursor.moveToNext());
@@ -83,7 +83,7 @@ public class Database extends SQLiteAssetHelper {
                 Tutor tutor = new Tutor();
                 tutor.setId(cursor.getInt(cursor.getColumnIndex("Id")));
                 tutor.setSurname(cursor.getString(cursor.getColumnIndex("Surname")));
-                tutor.setName(cursor.getString(cursor.getColumnIndex("Name")));
+                //tutor.setName(cursor.getString(cursor.getColumnIndex("Name")));
                 tutor.setRoom(cursor.getString(cursor.getColumnIndex("Room")));
                 result.add(tutor);
             } while (cursor.moveToNext());

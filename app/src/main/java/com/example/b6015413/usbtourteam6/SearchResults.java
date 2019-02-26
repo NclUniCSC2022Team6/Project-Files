@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,10 @@ import android.view.MenuInflater;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.example.b6015413.usbtourteam6.Database.DatabaseHelper;
+import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
+
+import java.util.List;
 import java.util.Locale;
 
 public class SearchResults extends AppCompatActivity {
@@ -27,9 +32,7 @@ public class SearchResults extends AppCompatActivity {
     //perhaps change this string[] to be a List populated from a text file?
     //would require changing the constructor in SearchRowAdapter class
     //the idea is that Items is filled with the search results - a string[] is probably not the best type to use
-    String[] Items = {"Tutor 1 - Room - Floor","Tutor 2 - Room - Floor",
-            "Tutor 3 - Room - Floor","Tutor 4 - Room - Floor",
-            "Tutor 5 - Room - Floor", "Tutor 6 - Room - Floor", "Tutor 7 - Room - Floor"};
+    List<Tutor> items;
 
     TextView showingResultsTitle;
 
@@ -41,19 +44,22 @@ public class SearchResults extends AppCompatActivity {
         setContentView(R.layout.activity_search_results);
 
         AssetManager am = this.getApplicationContext().getAssets();
-        Typeface robotoLight = Typeface.createFromAsset(am,String.format(Locale.UK,"fonts/%s","Roboto-Light.ttf"));
+        Typeface robotoLight = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Light.ttf"));
 
         showingResultsTitle = findViewById(R.id.showingResultsTitle);
 
         showingResultsTitle.setTypeface(robotoLight);
 
         handleIntent(getIntent());
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        items = dbHelper.getTutors();
 
         recyclerView = (RecyclerView) findViewById(R.id.searchResultsRV);
         //set the layout of the recycler view as the
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //populate the recycler view with this class as context and string[] Items as data
-        recyclerView.setAdapter(new SearchRowAdapter(this,Items));
+        recyclerView.setAdapter(new SearchRowAdapter(this, items));
 
     }
 

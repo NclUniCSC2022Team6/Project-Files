@@ -18,14 +18,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
+
+import java.util.List;
 import java.util.Locale;
 
 public class SearchRowAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context;
-    String[] items; //this is what will populate the recycler view - currently a string[] in SearchResults
+    List<Tutor> items; //this is what will populate the recycler view - currently a string[] in SearchResults
 
-    public SearchRowAdapter(Context context, String[] items) {
+    public SearchRowAdapter(Context context, List<Tutor> items) {
         this.context = context;
         this.items = items;
     }
@@ -45,7 +48,7 @@ public class SearchRowAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         //sets the text of the TextView in search_row to be i (the position of the string[] in SearchResults)
-        ((Item)viewHolder).searchTextSR.setText(items[i]);
+        ((Item)viewHolder).searchTextSR.setText(items.get(i).getFirstname() +" "+ items.get(i).getSurname());
         ((Item)viewHolder).getDirectionsSR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,7 +60,7 @@ public class SearchRowAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public int getItemCount() {
-        return items.length;
+        return items.size();
     }
 
     public class Item extends RecyclerView.ViewHolder {

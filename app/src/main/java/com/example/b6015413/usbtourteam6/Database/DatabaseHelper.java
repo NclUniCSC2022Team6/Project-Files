@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQueryBuilder;
 
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
 import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
@@ -18,8 +19,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
 
+
     private static final String DB_NAME = "TourSys.db";
-//
+
 //    "Staff(staffId, firstName, lastName, room)",
 //    "Room(rName, level, prevRoom, coords, description)",
 //    "Route(from, to, route)"
@@ -32,7 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE `Staff`(`staffID` INTEGER, `firstName` TEXT, `lastName` TEXT, `rName` TEXT, " +
+        db.execSQL("CREATE TABLE `Staff`(`staffID` INTEGER, `lastName` TEXT, `firstName` TEXT, `rName` TEXT, " +
                 "PRIMARY KEY(`staffID`));");
 
         db.execSQL("CREATE TABLE `Room`(`rName` TEXT, `level` INTEGER, `prevRoom` TEXT, `coords` TEXT, `description` TEXT, " +
@@ -52,6 +54,76 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS `Route`;");
         onCreate(db);
     }
+
+    // Function get all tutors
+    public List<Tutor> getTutors() {
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect = {"staffID", "firstName", "lastName", "rName"};
+        String tableName = "Staff";
+
+        qb.setTables(tableName);
+        Cursor cursor = qb.query(db, sqlSelect, null, null, null, null, null);
+        List<Tutor> result = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                Tutor tutor = new Tutor();
+                tutor.setId(cursor.getInt(cursor.getColumnIndex("staffID")));
+                tutor.setFirstname(cursor.getString(cursor.getColumnIndex("firstName")));
+                tutor.setSurname(cursor.getString(cursor.getColumnIndex("lastName")));
+                tutor.setRoom(cursor.getString(cursor.getColumnIndex("rName")));
+                result.add(tutor);
+            } while (cursor.moveToNext());
+        }
+        return result;
+    }
+
+    // Function get all tutor's name
+    public List<String> getNames() {
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect = {"firstName", "lastName"}; // col
+        String tableName = "Staff"; //Table name
+
+        qb.setTables(tableName);
+        Cursor cursor = qb.query(db, sqlSelect, null, null, null, null, null);
+        List<String> result = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                result.add(cursor.getString(cursor.getColumnIndex("firstName")) + " " +
+                        cursor.getString(cursor.getColumnIndex("lastName")));
+            } while (cursor.moveToNext());
+        }
+        return result;
+    }
+
+    // Function get tutor by name and surname
+    public List<Tutor> getTutorByName(String name) {
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect = {"staffID", "firstName", "lastName", "rName"};
+        String tableName = "Staff";
+
+        qb.setTables(tableName);
+        //Query select from the tutor where Name LIKE %pattern% so not exact
+        Cursor cursor = qb.query(db, sqlSelect, "Name LIKE ? OR Surname LIKE ?", new String[]{"%" + name + "%", "%" + name + "%"}, null, null, null);
+        List<Tutor> result = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                Tutor tutor = new Tutor();
+                tutor.setId(cursor.getInt(cursor.getColumnIndex("staffID")));
+                tutor.setFirstname(cursor.getString(cursor.getColumnIndex("firstName")));
+                tutor.setSurname(cursor.getString(cursor.getColumnIndex("lastName")));
+                tutor.setRoom(cursor.getString(cursor.getColumnIndex("rName")));
+                result.add(tutor);
+            } while (cursor.moveToNext());
+        }
+        return result;
+    }
+
 
     private void insertData(SQLiteDatabase db) {
         BufferedReader reader = null;
@@ -86,26 +158,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public List<Tutor> getAllTutors(SQLiteDatabase db) {
-        Cursor cursor = db.rawQuery("SELECT * FROM Staff", null);
-        Tutor tutor;
-        List<Tutor> tutorList = new ArrayList<>();
-
-        cursor.moveToFirst();
-
-        while (!cursor.isAfterLast()) {
-            tutor = new Tutor(cursor.getInt(0),
-                    cursor.getString(3),
-                    cursor.getString(2) + " " + cursor.getString(1));
-            tutorList.add(tutor);
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return tutorList;
-    }
-
-    public List<Room> getAllRooms(SQLiteDatabase db) {
-        Cursor cursor = db.rawQuery("SELECT * FROM Room", null);
+    public List<Room> getAllRooms() {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE rName NOT LIKE ? OR rName NOT LIKE ?", new String[]{"'%lift'", "'%stair'"});
         Room room;
         List<Room> roomList = new ArrayList<>();
 

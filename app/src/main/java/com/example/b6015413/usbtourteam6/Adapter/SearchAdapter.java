@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.b6015413.usbtourteam6.Model.Tutor;
+import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 import com.example.b6015413.usbtourteam6.R;
 
 import java.util.List;
@@ -44,7 +44,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
 
     @Override
     public void onBindViewHolder(SearchViewHolder holder, int position) {
-        holder.name.setText(tutors.get(position).getName());
+        holder.name.setText(tutors.get(position).getFirstname());
         holder.surname.setText(tutors.get(position).getSurname());
         holder.room.setText(tutors.get(position).getRoom());
 

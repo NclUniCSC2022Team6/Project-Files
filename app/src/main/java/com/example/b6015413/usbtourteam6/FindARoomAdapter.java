@@ -12,14 +12,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.b6015413.usbtourteam6.Table_Models.Room;
+
+import java.util.List;
 import java.util.Locale;
 
 public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context;
-    String[] items;
+    List<Room> items;
 
-    public FindARoomAdapter(Context context, String[] items) {
+    public FindARoomAdapter(Context context, List<Room> items) {
         this.context = context;
         this.items = items;
     }
@@ -39,7 +42,7 @@ public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        ((Item)viewHolder).roomTextFARR.setText(items[i]);
+        ((Item)viewHolder).roomTextFARR.setText(items.get(i).getName());
         ((Item)viewHolder).getDirectionsFARR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,7 +55,7 @@ public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public int getItemCount() {
-        return items.length;
+        return items.size();
     }
 
     public class Item extends RecyclerView.ViewHolder {

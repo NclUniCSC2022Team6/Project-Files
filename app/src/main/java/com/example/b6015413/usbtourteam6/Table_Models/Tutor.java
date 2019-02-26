@@ -2,14 +2,17 @@ package com.example.b6015413.usbtourteam6.Table_Models;
 
 public class Tutor {
 
-    private int id;
-    private String room;
-    private String name;
+    public int id;
+    public String surname,firstname, room;
 
-    public Tutor(int id, String room, String name) {
+    public Tutor(int id, String surname, String firstName, String room) {
         this.id = id;
+        this.surname = surname;
+        this.firstname = firstName;
         this.room = room;
-        this.name = name;
+    }
+
+    public Tutor() {
     }
 
     public int getId() {
@@ -20,6 +23,14 @@ public class Tutor {
         this.id = id;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     public String getRoom() {
         return room;
     }
@@ -28,31 +39,11 @@ public class Tutor {
         this.room = room;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Tutor tutor = (Tutor) o;
-
-        if (id != tutor.id) return false;
-        if (room != null ? !room.equals(tutor.room) : tutor.room != null) return false;
-        return name != null ? name.equals(tutor.name) : tutor.name == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (room != null ? room.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 }

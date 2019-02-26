@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 
 import com.example.b6015413.usbtourteam6.Adapter.SearchAdapter;
 import com.example.b6015413.usbtourteam6.Database.Database;
+import com.example.b6015413.usbtourteam6.Database.DatabaseHelper;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 
@@ -24,7 +25,7 @@ public class SearchTutor extends AppCompatActivity {
     MaterialSearchBar materialSearchBar;
     List<String> suggestList = new ArrayList<>();
 
-    Database database;
+    DatabaseHelper database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class SearchTutor extends AppCompatActivity {
         materialSearchBar = (MaterialSearchBar) findViewById(R.id.search_bar);
 
         //init database
-        database = new Database(this);
+        database = new DatabaseHelper(this);
 
         //setup search bar
         materialSearchBar.setHint("Search");
