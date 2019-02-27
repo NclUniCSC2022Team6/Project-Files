@@ -50,7 +50,7 @@ public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 context.startActivity(intent);
             }
         });
-        //another button press for show on map - to be implemented later
+        //TODO: another button press for show on map - to be implemented later
     }
 
     @Override

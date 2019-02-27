@@ -69,6 +69,7 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, LevelX.class);
                 intent.putExtra("floor value", "Ground Floor");
+                intent.putExtra("level", 0);
                 startActivity(intent);
             }
         });
@@ -78,6 +79,7 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, LevelX.class);
                 intent.putExtra("floor value", "First Floor");
+                intent.putExtra("level", 1);
                 startActivity(intent);
             }
         });
@@ -87,6 +89,7 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, LevelX.class);
                 intent.putExtra("floor value", "Second Floor");
+                intent.putExtra("level", 2);
                 startActivity(intent);
             }
         });
@@ -96,6 +99,7 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, LevelX.class);
                 intent.putExtra("floor value", "Third Floor");
+                intent.putExtra("level", 3);
                 startActivity(intent);
             }
         });
@@ -105,6 +109,7 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, LevelX.class);
                 intent.putExtra("floor value", "Fourth Floor");
+                intent.putExtra("level", 4);
                 startActivity(intent);
             }
         });
@@ -114,6 +119,7 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, LevelX.class);
                 intent.putExtra("floor value", "Fifth Floor");
+                intent.putExtra("level", 5);
                 startActivity(intent);
             }
         });
@@ -123,6 +129,7 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, LevelX.class);
                 intent.putExtra("floor value", "Sixth Floor");
+                intent.putExtra("level", 6);
                 startActivity(intent);
             }
         });

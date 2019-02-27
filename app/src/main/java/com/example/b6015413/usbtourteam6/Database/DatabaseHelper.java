@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "TourSys.db";
 
-//    "Staff(staffId, firstName, lastName, room)",
+//    "Staff(staffId, firstName, lastName, rName)",
 //    "Room(rName, level, prevRoom, coords, description)",
 //    "Route(from, to, route)"
 
@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, 1);
         this.context = context;
         // uncomment to re-read data in
-        onUpgrade(getWritableDatabase(), 1, 1);
+        //onUpgrade(getWritableDatabase(), 1, 1);
     }
 
     public void onCreate(SQLiteDatabase db) {
@@ -53,6 +53,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS `Room`;");
         db.execSQL("DROP TABLE IF EXISTS `Route`;");
         onCreate(db);
+    }
+
+    private void insertData(SQLiteDatabase db) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(
+                    new InputStreamReader(context.getAssets().open("Tutors.txt")));
+
+            // read the file
+            String mLine;
+            while ((mLine = reader.readLine()) != null) {
+                db.execSQL("INSERT INTO `Staff` VALUES (" + mLine + ");");
+            }
+
+            reader = new BufferedReader(
+                    new InputStreamReader(context.getAssets().open("Room.txt")));
+
+            // read the file
+            while ((mLine = reader.readLine()) != null) {
+                db.execSQL("INSERT INTO `Room` VALUES (" + mLine + ");");
+            }
+
+        } catch (IOException e) {
+            // fail quietly
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    // fail quietly
+                }
+            }
+        }
     }
 
     // Function get all tutors
@@ -109,7 +142,104 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         qb.setTables(tableName);
         //Query select from the tutor where Name LIKE %pattern% so not exact
-        Cursor cursor = qb.query(db, sqlSelect, "Name LIKE ? OR Surname LIKE ?", new String[]{"%" + name + "%", "%" + name + "%"}, null, null, null);
+        Cursor cursor = qb.query(db, sqlSelect, "firstName LIKE ? OR lastName LIKE ?", new String[]{"%" + name + "%", "%" + name + "%"}, null, null, null);
+        List<Tutor> result = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                Tutor tutor = new Tutor();
+                tutor.setId(cursor.getInt(cursor.getColumnIndex("staffID")));
+                tutor.setFirstname(cursor.getString(cursor.getColumnIndex("firstName")));
+                tutor.setSurname(cursor.getString(cursor.getColumnIndex("lastName")));
+                tutor.setRoom(cursor.getString(cursor.getColumnIndex("rName")));
+                result.add(tutor);
+            } while (cursor.moveToNext());
+        }
+        return result;
+    }
+
+    public List<Room> getAllRooms() {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Room", null);
+        Room room;
+        List<Room> roomList = new ArrayList<>();
+
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            room = new Room(
+                    cursor.getString(cursor.getColumnIndex("rName")),
+                    cursor.getInt(cursor.getColumnIndex("level")),
+                    cursor.getString(cursor.getColumnIndex("prevRoom")),
+                    cursor.getString(cursor.getColumnIndex("coords")),
+                    cursor.getString(cursor.getColumnIndex("description"))
+            );
+            if (!(room.getName().contains("stair") || room.getName().contains("lift"))) {
+                roomList.add(room);
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return roomList;
+    }
+
+    public List<Room> getRoomsOnLevel(int level) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE level = ?", new String[]{"" + level});
+        Room room;
+        List<Room> roomList = new ArrayList<>();
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            room = new Room(
+                    cursor.getString(cursor.getColumnIndex("rName")),
+                    cursor.getInt(cursor.getColumnIndex("level")),
+                    cursor.getString(cursor.getColumnIndex("prevRoom")),
+                    cursor.getString(cursor.getColumnIndex("coords")),
+                    cursor.getString(cursor.getColumnIndex("description"))
+            );
+            if (!(room.getName().contains("stair") || room.getName().contains("lift"))) {
+                roomList.add(room);
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return roomList;
+    }
+
+    public List<Room> getOtherRoomsOnLevel(int level){
+        List<Room> roomList = getRoomsOnLevel(level);
+        roomList.removeAll(getStudySpacesOnLevel(level));
+        roomList.removeAll(getTutorRoomsOnLevel(level));
+        return roomList;
+    }
+
+    public List<Room> getTutorRoomsOnLevel(int level){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT Room.* FROM Room, Staff WHERE  Staff.rName = room.rName AND level = ?", new String[]{"" + level});
+        Room room;
+        List<Room> roomList = new ArrayList<>();
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            room = new Room(
+                    cursor.getString(cursor.getColumnIndex("rName")),
+                    cursor.getInt(cursor.getColumnIndex("level")),
+                    cursor.getString(cursor.getColumnIndex("prevRoom")),
+                    cursor.getString(cursor.getColumnIndex("coords")),
+                    cursor.getString(cursor.getColumnIndex("description"))
+            );
+            if (!(room.getName().contains("stair") || room.getName().contains("lift"))) {
+                roomList.add(room);
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return roomList;
+    }
+
+    public List<Tutor> getTutorOnLevel(int level){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT  Staff.* FROM Staff, Room WHERE Staff.rName = room.rName AND room.level = ?", new String[]{"" +level});
         List<Tutor> result = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
@@ -125,61 +255,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    private void insertData(SQLiteDatabase db) {
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(
-                    new InputStreamReader(context.getAssets().open("Tutors.txt")));
-
-            // read the file
-            String mLine;
-            while ((mLine = reader.readLine()) != null) {
-                db.execSQL("INSERT INTO `Staff` VALUES (" + mLine + ");");
-            }
-
-            reader = new BufferedReader(
-                    new InputStreamReader(context.getAssets().open("Room.txt")));
-
-            // read the file
-            while ((mLine = reader.readLine()) != null) {
-                db.execSQL("INSERT INTO `Room` VALUES (" + mLine + ");");
-            }
-
-        } catch (IOException e) {
-            // fail quietly
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    // fail quietly
-                }
-            }
-        }
-    }
-
-    public List<Room> getAllRooms() {
+    public List<Room> getStudySpacesOnLevel(int level){
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE rName NOT LIKE ? OR rName NOT LIKE ?", new String[]{"'%lift'", "'%stair'"});
+        Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE level = ? AND description LIKE ?", new String[]{"" + level, "'%study space%'"});
         Room room;
         List<Room> roomList = new ArrayList<>();
 
         cursor.moveToFirst();
-
         while (!cursor.isAfterLast()) {
-            room = new Room(cursor.getString(0), cursor.getInt(1), cursor.getString(2)
-                    , cursor.getString(3), cursor.getString(4));
-            roomList.add(room);
+            room = new Room(
+                    cursor.getString(cursor.getColumnIndex("rName")),
+                    cursor.getInt(cursor.getColumnIndex("level")),
+                    cursor.getString(cursor.getColumnIndex("prevRoom")),
+                    cursor.getString(cursor.getColumnIndex("coords")),
+                    cursor.getString(cursor.getColumnIndex("description"))
+            );
+            if (!(room.getName().contains("stair") || room.getName().contains("lift"))) {
+                roomList.add(room);
+            }
             cursor.moveToNext();
         }
         cursor.close();
         return roomList;
     }
 
-
     public String getRoute(String routeFrom, String routeTo, boolean sfa, SQLiteDatabase db) {
-//        not yet implemented
+//        TODO: implement
         return null;
     }
-
+//TODO check for cusor and database being closed in all methods
 }

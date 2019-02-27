@@ -62,7 +62,7 @@ public class FindARoom extends AppCompatActivity {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            //use the query to search your data somehow
+            //TODO use the query to search your data somehow
         }
     }
 

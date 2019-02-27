@@ -25,13 +25,10 @@ public class SearchResults extends AppCompatActivity {
 
     //region recycler view stuff
 
-    //this recycler view works on a string array - tweak it to work on either text file or db
     //straight up copied this video:
     //https://www.youtube.com/watch?v=aqJ6AQdjKOU
     RecyclerView recyclerView;
-    //perhaps change this string[] to be a List populated from a text file?
-    //would require changing the constructor in SearchRowAdapter class
-    //the idea is that Items is filled with the search results - a string[] is probably not the best type to use
+
     List<Tutor> items;
 
     TextView showingResultsTitle;

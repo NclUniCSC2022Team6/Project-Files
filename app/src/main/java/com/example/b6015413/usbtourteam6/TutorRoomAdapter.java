@@ -10,14 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.b6015413.usbtourteam6.Table_Models.Room;
+import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
+
+import java.util.List;
 import java.util.Locale;
 
 public class TutorRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context;
-    String[] items;
+    List<Tutor> items;
+    int maxItems = 5; // TODO will be passed in, so can be expanded
 
-    public TutorRoomAdapter(Context context, String[] items) {
+    public TutorRoomAdapter(Context context, List<Tutor> items) {
         this.context = context;
         this.items = items;
     }
@@ -37,13 +42,15 @@ public class TutorRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        ((Item)viewHolder).tutorInfoTxt.setText(items[i]);
+        ((Item) viewHolder).tutorInfoTxt.setText(items.get(i).getFirstname() + " " + items.get(i).getSurname() + ": " + items.get(i).getRoom());
 
     }
 
     @Override
     public int getItemCount() {
-        return items.length;
+        //limits number of items to maxItems (global var). -1 always returns items.size()
+        if (maxItems == -1) return items.size();
+        return (items.size() >= maxItems ? maxItems : items.size());
     }
 
     public class Item extends RecyclerView.ViewHolder {
@@ -52,7 +59,7 @@ public class TutorRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         //adding font for recycler view to use
         AssetManager am = context.getApplicationContext().getAssets();
-        Typeface robotoLight = Typeface.createFromAsset(am,String.format(Locale.UK,"fonts/%s","Roboto-Light.ttf"));
+        Typeface robotoLight = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Light.ttf"));
 
         public Item(View itemView) {
             super(itemView);

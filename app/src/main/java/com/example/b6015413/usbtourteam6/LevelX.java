@@ -12,6 +12,11 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.b6015413.usbtourteam6.Database.DatabaseHelper;
+import com.example.b6015413.usbtourteam6.Table_Models.Room;
+import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
+
+import java.util.List;
 import java.util.Locale;
 
 public class LevelX extends AppCompatActivity {
@@ -19,20 +24,20 @@ public class LevelX extends AppCompatActivity {
     TextView levelX, tutorRoomsTitle, row1TR, row2TR, studySpacesTitle, row1SS, row2SS;
     RecyclerView tutorRoomRV, studySpaceRV;
     Button floorPlan;
-    String[] Items = {"Tutor x - Room y - Floor z","Tutor x - Room y - Floor z","Tutor x - Room y - Floor z",
-    "Tutor x - Room y - Floor z", "Tutor x - Room y - Floor z"};
-    String[] studySpaceItems = {"Space x - Room y - Floor z","Space x - Room y - Floor z","Space x - Room y - Floor z",
-            "Space x - Room y - Floor z", "Space x - Room y - Floor z"};
+    List<Tutor> tutorRoomItems;
+    List<Room> studySpaceItems;
     String floorValue;
     RelativeLayout tutorRoomsRL, studySpacesRL;
+    int level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_x);
 
-        //to find out which level was clicked on
+        //to find out which level was clicked on and set globals
         floorValue = getIntent().getStringExtra("floor value");
+        level = getIntent().getIntExtra("level",0);
 
         //region importing fonts
         AssetManager am = this.getApplicationContext().getAssets();
@@ -64,13 +69,18 @@ public class LevelX extends AppCompatActivity {
         floorPlan.setTypeface(robotoLight);
         //endregion
 
+        // get items from database
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        tutorRoomItems = dbHelper.getTutorOnLevel(level);
+        studySpaceItems = dbHelper.getStudySpacesOnLevel(level);
+
         //region RecyclerViews
         //Tutor Rooms RV
         tutorRoomRV = findViewById(R.id.tutorRV);
         //set the layout of the recycler view as the
         tutorRoomRV.setLayoutManager(new LinearLayoutManager(this));
         //populate the recycler view with this class as context and string[] Items as data
-        tutorRoomRV.setAdapter(new TutorRoomAdapter(this,Items));
+        tutorRoomRV.setAdapter(new TutorRoomAdapter(this, tutorRoomItems));
 
         //Study Spaces RV
         studySpaceRV = findViewById(R.id.studySpaceRV);
@@ -89,10 +99,9 @@ public class LevelX extends AppCompatActivity {
     }
 
     private void handleIntent(Intent intent) {
-
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            //use the query to search your data somehow
+            //TODO use the query to search your data somehow
         }
     }
 
