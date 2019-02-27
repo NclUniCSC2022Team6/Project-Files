@@ -19,8 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="20dp"
-            app:layout_constraintGuide_percent="0.2" />
+            app:layout_constraintGuide_begin="150dp"
+            app:layout_constraintGuide_percent="0.3" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline1"
@@ -69,8 +69,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/detailed_map"
-            android:text="Floor Plan"
+            android:background="@drawable/floorplanblue"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -80,7 +79,7 @@
         <RelativeLayout
             android:id="@+id/tutorRoomsRL"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
@@ -125,9 +124,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tutorRoomTitle"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="5dp">
-            </android.support.v7.widget.RecyclerView>
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"></android.support.v7.widget.RecyclerView>
 
             <Button
                 android:id="@+id/expandBtn"
@@ -137,7 +135,7 @@
                 android:background="@android:color/transparent"
                 android:padding="0dp"
                 android:text="..."
-                android:textSize="10sp"/>
+                android:textSize="10sp" />
 
         </RelativeLayout>
 

@@ -79,14 +79,13 @@
     <!-- Buttons -->
     <Button
         android:id="@+id/welcomeBtn"
-        android:text="Welcome To the Urban Sciences Building"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/test"
+        android:background="@drawable/welcome"
         app:layout_constraintBottom_toTopOf="@+id/hGuideline1"
         app:layout_constraintLeft_toLeftOf="@+id/guideline6"
         app:layout_constraintRight_toLeftOf="@+id/guideline7"
@@ -95,8 +94,7 @@
 
     <Button
         android:id="@+id/groundFloor"
-        android:text="Ground Floor"
-        android:background="@drawable/groundfloortest"
+        android:background="@drawable/ground"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -113,8 +111,7 @@
 
     <Button
         android:id="@+id/firstFloor"
-        android:text="First Floor"
-        android:background="@drawable/firstfloortest"
+        android:background="@drawable/first"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -128,8 +125,7 @@
 
     <Button
         android:id="@+id/secondFloor"
-        android:text="Second Floor"
-        android:background="@drawable/secondfloortest"
+        android:background="@drawable/second"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -144,8 +140,7 @@
 
     <Button
         android:id="@+id/thirdFloor"
-        android:text="Third Floor"
-        android:background="@drawable/thirdfloortest"
+        android:background="@drawable/third"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -161,8 +156,7 @@
 
     <Button
         android:id="@+id/fourthFloor"
-        android:text="Fourth Floor"
-        android:background="@drawable/fourthfloortest"
+        android:background="@drawable/fourth"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -178,8 +172,7 @@
 
     <Button
         android:id="@+id/fifthFloor"
-        android:text="Fifth Floor"
-        android:background="@drawable/fifithfloortest"
+        android:background="@drawable/fifth"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -194,8 +187,7 @@
 
     <Button
         android:id="@+id/sixthFloor"
-        android:text="Sixth Floor"
-        android:background="@drawable/sixthfloortest"
+        android:background="@drawable/sixth"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -209,8 +201,7 @@
 
     <Button
         android:id="@+id/findARoom"
-        android:text="Find A Room"
-        android:background="@drawable/findaroomtest"
+        android:background="@drawable/findaroom"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"

@@ -115,26 +115,32 @@ public class LevelX extends AppCompatActivity {
             case "First Floor":
                 tutorRoomsRL.setBackground(getDrawable(R.drawable.orange_rounded));
                 studySpacesRL.setBackground(getDrawable(R.drawable.orange_rounded));
+                floorPlan.setBackground(getDrawable(R.drawable.floorplanorange));
                 break;
             case "Second Floor":
                 tutorRoomsRL.setBackground(getDrawable(R.drawable.yellow_rounded));
                 studySpacesRL.setBackground(getDrawable(R.drawable.yellow_rounded));
+                floorPlan.setBackground(getDrawable(R.drawable.floorplanyellow));
                 break;
             case "Third Floor":
                 tutorRoomsRL.setBackground(getDrawable(R.drawable.yellow_rounded));
                 studySpacesRL.setBackground(getDrawable(R.drawable.yellow_rounded));
+                floorPlan.setBackground(getDrawable(R.drawable.floorplanyellow));
                 break;
             case "Fourth Floor":
                 tutorRoomsRL.setBackground(getDrawable(R.drawable.green_rounded));
                 studySpacesRL.setBackground(getDrawable(R.drawable.green_rounded));
+                floorPlan.setBackground(getDrawable(R.drawable.floorplangreen));
                 break;
             case "Fifth Floor":
                 tutorRoomsRL.setBackground(getDrawable(R.drawable.green_rounded));
                 studySpacesRL.setBackground(getDrawable(R.drawable.green_rounded));
+                floorPlan.setBackground(getDrawable(R.drawable.floorplangreen));
                 break;
             case "Sixth Floor":
                 tutorRoomsRL.setBackground(getDrawable(R.drawable.green_rounded));
                 studySpacesRL.setBackground(getDrawable(R.drawable.green_rounded));
+                floorPlan.setBackground(getDrawable(R.drawable.floorplangreen));
                 break;
         }
 
