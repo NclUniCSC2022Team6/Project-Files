@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
 import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
+import com.example.b6015413.usbtourteam6.Table_Models.Route;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -347,4 +348,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return btcFrom.get(fromPoint + 1);
     }
+
+    private List<Route> RouteNav(List<Room> backtrack, Room ecn, String direction){
+        int pointer, change;
+        if(direction == "LR"){
+           pointer = 0;
+           change = 1;
+        }
+        else{
+            pointer = backtrack.size() - 1;
+            change = 1;
+        }
+
+        boolean isNavigating = backtrack.get(pointer) != ecn && pointer >=0 && pointer < backtrack.size();
+        List<Route> routes = new ArrayList<Route>();
+
+        while(isNavigating){
+            //TODO getRouteString
+            //routes +=  getRoute(pointer, change);
+        }
+
+        return routes;
+    }
+
+
+
+
+
 }
