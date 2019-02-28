@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, 1);
         this.context = context;
         // uncomment to re-read data in
-        //onUpgrade(getWritableDatabase(), 1, 1);
+        onUpgrade(getWritableDatabase(), 1, 1);
     }
 
     public void onCreate(SQLiteDatabase db) {
@@ -109,6 +109,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 result.add(tutor);
             } while (cursor.moveToNext());
         }
+        cursor.close();
+        db.close();
         return result;
     }
 
@@ -129,6 +131,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         cursor.getString(cursor.getColumnIndex("lastName")));
             } while (cursor.moveToNext());
         }
+        cursor.close();
+        db.close();
         return result;
     }
 
@@ -154,9 +158,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 result.add(tutor);
             } while (cursor.moveToNext());
         }
+        cursor.close();
+        db.close();
         return result;
     }
 
+    // Funtion returns list of all rooms that are not stairs or lifts
     public List<Room> getAllRooms() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM Room", null);
@@ -173,12 +180,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     cursor.getString(cursor.getColumnIndex("coords")),
                     cursor.getString(cursor.getColumnIndex("description"))
             );
+
+            // find a way to do this with the query
             if (!(room.getName().contains("stair") || room.getName().contains("lift"))) {
                 roomList.add(room);
             }
             cursor.moveToNext();
         }
         cursor.close();
+        db.close();
         return roomList;
     }
 
@@ -203,17 +213,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.moveToNext();
         }
         cursor.close();
+        db.close();
         return roomList;
     }
 
-    public List<Room> getOtherRoomsOnLevel(int level){
+    public List<Room> getOtherRoomsOnLevel(int level) {
         List<Room> roomList = getRoomsOnLevel(level);
         roomList.removeAll(getStudySpacesOnLevel(level));
         roomList.removeAll(getTutorRoomsOnLevel(level));
         return roomList;
     }
 
-    public List<Room> getTutorRoomsOnLevel(int level){
+    public List<Room> getTutorRoomsOnLevel(int level) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT Room.* FROM Room, Staff WHERE  Staff.rName = room.rName AND level = ?", new String[]{"" + level});
         Room room;
@@ -234,12 +245,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.moveToNext();
         }
         cursor.close();
+        db.close();
         return roomList;
     }
 
-    public List<Tutor> getTutorOnLevel(int level){
+    public List<Tutor> getTutorOnLevel(int level) {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT  Staff.* FROM Staff, Room WHERE Staff.rName = room.rName AND room.level = ?", new String[]{"" +level});
+        Cursor cursor = db.rawQuery("SELECT  Staff.* FROM Staff, Room WHERE Staff.rName = room.rName AND room.level = ?", new String[]{"" + level});
         List<Tutor> result = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
@@ -251,13 +263,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 result.add(tutor);
             } while (cursor.moveToNext());
         }
+        cursor.close();
+        db.close();
         return result;
     }
 
-
-    public List<Room> getStudySpacesOnLevel(int level){
+    public List<Room> getStudySpacesOnLevel(int level) {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE level = ? AND description LIKE ?", new String[]{"" + level, "'%study space%'"});
+        Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE level = ? AND description LIKE ?", new String[]{"" + level, "%study space%"});
         Room room;
         List<Room> roomList = new ArrayList<>();
 
@@ -276,12 +289,62 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.moveToNext();
         }
         cursor.close();
+        db.close();
         return roomList;
     }
 
-    public String getRoute(String routeFrom, String routeTo, boolean sfa, SQLiteDatabase db) {
-//        TODO: implement
+    public String getRoute(Room routeFrom, Room routeTo, boolean sfa) {
+        SQLiteDatabase db = getReadableDatabase();
+        List<Room> btcFrom = backtrack(routeFrom, db);
+        List<Room> btcTo = backtrack(routeTo, db);
+
+        if (routeFrom.getLevel() == routeTo.getLevel()) {
+            Room ecn = ECN(btcFrom, btcTo);
+            //return routeNav(btcFrom, ecn, "LR") + " " + routeNav(btcTo, ecn, "RL");
+        } else if (sfa) {
+            btcFrom.add(getRoomByName(routeFrom.getLevel() + ".lift", db));
+            btcTo.add(getRoomByName(routeTo.getLevel() + ".lift", db));
+        } else {
+            btcFrom.add(getRoomByName(routeFrom.getLevel() + ".stairs", db));
+            btcTo.add(getRoomByName(routeTo.getLevel() + ".stairs", db));
+        }
+        //return routeNav(btcFrom, null, "LR") + " travel to level " + routeTo.getLevel() + " " + routeNav(btcTo, null, "RL");
         return null;
     }
-//TODO check for cusor and database being closed in all methods
+
+    public Room getRoomByName(String rName, SQLiteDatabase db) {
+        Cursor cursor = db.rawQuery("SELECT  * FROM Room WHERE rName = ?", new String[]{rName});
+        cursor.moveToFirst();
+        Room room = new Room(
+                cursor.getString(cursor.getColumnIndex("rName")),
+                cursor.getInt(cursor.getColumnIndex("level")),
+                cursor.getString(cursor.getColumnIndex("prevRoom")),
+                cursor.getString(cursor.getColumnIndex("coords")),
+                cursor.getString(cursor.getColumnIndex("description"))
+        );
+        cursor.close();
+        return room;
+    }
+
+    private List<Room> backtrack(Room from, SQLiteDatabase db) {
+        List<Room> btc = new ArrayList<Room>();
+        btc.add(from);
+        Room prevRoom;
+        while ((prevRoom = getRoomByName(from.getPrevRoom(), db)) != null) {
+            btc.add(prevRoom);
+            from = prevRoom;
+        }
+        return btc;
+    }
+
+    private Room ECN(List<Room> btcFrom, List<Room> btcTo) {
+        int fromPoint = btcFrom.size() - 1;
+        int toPoint = btcTo.size() - 1;
+
+        while (btcFrom.get(fromPoint).equals(btcTo.get(toPoint))) {
+            fromPoint--;
+            toPoint--;
+        }
+        return btcFrom.get(fromPoint + 1);
+    }
 }
