@@ -37,6 +37,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public void onBindViewHolder(SearchViewHolder holder, int position) {
+        final int j = position;
         holder.name.setText(tutors.get(position).getFirstname());
         holder.surname.setText(tutors.get(position).getSurname());
         holder.room.setText(tutors.get(position).getRoom());
@@ -44,6 +45,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, GetDirections.class);
+                intent.putExtra("directionsTo", tutors.get(j).getRoom());
                 context.startActivity(intent);
             }
         });
@@ -72,7 +74,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             name = itemView.findViewById(R.id.name);
             surname = itemView.findViewById(R.id.surname);
             room = itemView.findViewById(R.id.room);
-            roomTxt= itemView.findViewById(R.id.roomTxt);
+            roomTxt = itemView.findViewById(R.id.roomTxt);
             getDirections = itemView.findViewById(R.id.getDirectionsBtn);
 
             name.setTypeface(robotoLight);

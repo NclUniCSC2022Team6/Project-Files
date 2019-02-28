@@ -44,11 +44,13 @@ public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        ((Item)viewHolder).roomTextFARR.setText(items.get(i).getName());
+        final int j = i; // the activity handler is stupid so the variable has to be final
+        ((Item)viewHolder).roomTextFARR.setText(items.get(i).getDescription()+": "+items.get(i).getName());
         ((Item)viewHolder).getDirectionsFARR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, GetDirections.class);
+                intent.putExtra("directionsTo", items.get(j).getName());
                 context.startActivity(intent);
             }
         });

@@ -38,8 +38,8 @@ public class GetDirections extends AppCompatActivity {
         stairsBtn.setTypeface(robotoLight);
         elevatorBtn.setTypeface(robotoLight);
 
-
-
+        // set destination as value that has been selected
+        secondLocation.setText(getIntent().getStringExtra("directionsTo"));
     }
 
     @Override
