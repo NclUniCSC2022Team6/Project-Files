@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.b6015413.usbtourteam6.HomePage"
+    tools:context="com.example.b6015413.usbtourteam6.Activities.HomePage"
     android:background="@drawable/backgroundlightgrey">
 
     <!-- Horizontal constraints -->

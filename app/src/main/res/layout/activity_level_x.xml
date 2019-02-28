@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgroundlightgrey"
     android:paddingTop="5dp"
-    tools:context="com.example.b6015413.usbtourteam6.LevelX">
+    tools:context="com.example.b6015413.usbtourteam6.Activities.LevelX">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

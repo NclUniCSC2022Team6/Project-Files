@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgroundlightgrey"
     android:padding="10dp"
-    tools:context="com.example.b6015413.usbtourteam6.GetDirections">
+    tools:context="com.example.b6015413.usbtourteam6.Activities.GetDirections">
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline4"

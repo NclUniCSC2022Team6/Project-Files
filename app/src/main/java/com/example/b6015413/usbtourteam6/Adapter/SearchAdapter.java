@@ -1,6 +1,7 @@
 package com.example.b6015413.usbtourteam6.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.b6015413.usbtourteam6.Activities.GetDirections;
 import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 import com.example.b6015413.usbtourteam6.R;
 
@@ -38,6 +40,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         holder.name.setText(tutors.get(position).getFirstname());
         holder.surname.setText(tutors.get(position).getSurname());
         holder.room.setText(tutors.get(position).getRoom());
+        holder.getDirections.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, GetDirections.class);
+                context.startActivity(intent);
+            }
+        });
 
     }
 
