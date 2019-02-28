@@ -79,6 +79,8 @@ public class LevelX extends AppCompatActivity {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         tutorRoomItems = dbHelper.getTutorOnLevel(level);
         studySpaceItems = dbHelper.getStudySpacesOnLevel(level);
+        // TODO add in otherroom recycler view
+        //        OtherRoomItems = dbHelper.getOtherRoomsOnLevel(level);
 
         //region RecyclerViews
         //Tutor Rooms RV

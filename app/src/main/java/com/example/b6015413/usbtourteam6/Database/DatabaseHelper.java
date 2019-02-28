@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
-import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 import com.example.b6015413.usbtourteam6.Table_Models.Route;
+import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 //    "Staff(staffId, firstName, lastName, rName)",
 //    "Room(rName, level, prevRoom, coords, description)",
-//    "Route(from, to, route)"
+//    "Route(rFrom, rTo, route)"
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
@@ -41,8 +41,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE `Room`(`rName` TEXT, `level` INTEGER, `prevRoom` TEXT, `coords` TEXT, `description` TEXT, " +
                 "PRIMARY KEY(rName));");
 
-        db.execSQL("CREATE TABLE `Route`(`from` TEXT, `to` TEXT, route TEXT, " +
-                "PRIMARY KEY(`from`, `to`));");
+        db.execSQL("CREATE TABLE `Route`(`rFrom` TEXT, `rTo` TEXT, route TEXT, " +
+                "PRIMARY KEY(`rFrom`, `rTo`));");
 
         // helper class to get data from text files
         insertData(db);
@@ -294,14 +294,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return roomList;
     }
 
-    public String getRoute(Room routeFrom, Room routeTo, boolean sfa) {
+    public List<Route> getRoute(Room routeFrom, Room routeTo, boolean sfa) {
         SQLiteDatabase db = getReadableDatabase();
         List<Room> btcFrom = backtrack(routeFrom, db);
         List<Room> btcTo = backtrack(routeTo, db);
+        List<Route> route;
 
         if (routeFrom.getLevel() == routeTo.getLevel()) {
             Room ecn = ECN(btcFrom, btcTo);
-            //return routeNav(btcFrom, ecn, "LR") + " " + routeNav(btcTo, ecn, "RL");
+            route = routeNav(btcFrom, ecn, "LR", db);
+            route.addAll(routeNav(btcTo, ecn, "RL", db));
+            return route;
         } else if (sfa) {
             btcFrom.add(getRoomByName(routeFrom.getLevel() + ".lift", db));
             btcTo.add(getRoomByName(routeTo.getLevel() + ".lift", db));
@@ -309,8 +312,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             btcFrom.add(getRoomByName(routeFrom.getLevel() + ".stairs", db));
             btcTo.add(getRoomByName(routeTo.getLevel() + ".stairs", db));
         }
-        //return routeNav(btcFrom, null, "LR") + " travel to level " + routeTo.getLevel() + " " + routeNav(btcTo, null, "RL");
-        return null;
+        route = routeNav(btcFrom, null, "LR",db);
+        route.add(new Route(routeTo.getLevel() + ".stairs", routeFrom.getLevel() + ".stairs", " travel to level " + routeTo.getLevel()));
+        route.addAll(routeNav(btcTo, null, "RL", db));
+        return route;
     }
 
     public Room getRoomByName(String rName, SQLiteDatabase db) {
@@ -349,30 +354,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return btcFrom.get(fromPoint + 1);
     }
 
-    private List<Route> RouteNav(List<Room> backtrack, Room ecn, String direction){
+    private Route getRoute(Route route, SQLiteDatabase db) {
+        Cursor cursor = db.rawQuery("SELECT * FROM Route WHERE rFrom = ? AND rTo = ?", new String[]{route.getFrom(), route.getTo()});
+        cursor.moveToFirst();
+        route.setRoute(cursor.getColumnName(cursor.getColumnIndex("")));
+        return route;
+    }
+
+    private List<Route> routeNav(List<Room> backtrack, Room ecn, String direction, SQLiteDatabase db) {
         int pointer, change;
-        if(direction == "LR"){
-           pointer = 0;
-           change = 1;
-        }
-        else{
-            pointer = backtrack.size() - 1;
+        if (direction == "LR") {
+            pointer = 0;
             change = 1;
+        } else {
+            pointer = backtrack.size() - 1;
+            change = -1;
         }
 
-        boolean isNavigating = backtrack.get(pointer) != ecn && pointer >=0 && pointer < backtrack.size();
+        boolean isNavigating = backtrack.get(pointer) != ecn && pointer >= 0 && pointer < backtrack.size();
         List<Route> routes = new ArrayList<Route>();
 
-        while(isNavigating){
-            //TODO getRouteString
-            //routes +=  getRoute(pointer, change);
+        while (isNavigating) {
+            routes.add(getRoute(new Route(backtrack.get(pointer + change).getName(), backtrack.get(pointer).getName(), null), db));
         }
 
         return routes;
     }
-
-
-
-
 
 }

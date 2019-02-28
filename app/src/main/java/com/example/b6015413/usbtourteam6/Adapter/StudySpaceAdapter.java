@@ -42,7 +42,7 @@ public class StudySpaceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        ((Item) viewHolder).studySpaceTxt.setText(items.get(i).getName());
+        ((Item) viewHolder).studySpaceTxt.setText(items.get(i).getDescription() +": " +items.get(i).getName());
 
     }
 
