@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, 1);
         this.context = context;
         // uncomment to re-read data in
-        // onUpgrade(getWritableDatabase(), 1, 1);
+        onUpgrade(getWritableDatabase(), 1, 1);
     }
 
     // sets up tables
@@ -55,6 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS `Tutor`;");
         db.execSQL("DROP TABLE IF EXISTS `Room`;");
         db.execSQL("DROP TABLE IF EXISTS `Route`;");
+        db.execSQL("DROP TABLE IF EXISTS `Staff`;");
         onCreate(db);
     }
 
