@@ -5,20 +5,29 @@ import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.b6015413.usbtourteam6.Adapter.GetDirectionsAdapter;
+import com.example.b6015413.usbtourteam6.Adapter.TutorRoomAdapter;
 import com.example.b6015413.usbtourteam6.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class GetDirections extends AppCompatActivity {
 
     EditText firstLocation, secondLocation;
     Button stairsBtn, elevatorBtn;
+    RecyclerView directionsRV;
+    //Temp List to populate recycer view - need to remove additions in OnCreate
+    List<String> getDirectionsItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +46,18 @@ public class GetDirections extends AppCompatActivity {
         secondLocation.setTypeface(robotoLight);
         stairsBtn.setTypeface(robotoLight);
         elevatorBtn.setTypeface(robotoLight);
+
+        //temp values for List for testing
+        getDirectionsItems.add("First line");
+        getDirectionsItems.add("Second line");
+        getDirectionsItems.add("Third line");
+
+        //Tutor Rooms RV
+        directionsRV = findViewById(R.id.getDirectionsRV);
+        //set the layout of the recycler view as the
+        directionsRV.setLayoutManager(new LinearLayoutManager(this));
+        //populate the recycler view with this class as context and string[] Items as data
+        directionsRV.setAdapter(new GetDirectionsAdapter(this, getDirectionsItems));
 
         // set destination as value that has been selected
         secondLocation.setText(getIntent().getStringExtra("directionsTo"));

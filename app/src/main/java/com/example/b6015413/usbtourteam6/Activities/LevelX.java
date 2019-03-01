@@ -27,7 +27,7 @@ import java.util.Locale;
 
 public class LevelX extends AppCompatActivity {
 
-    TextView levelX, tutorRoomsTitle, row1TR, row2TR, studySpacesTitle, row1SS, row2SS;
+    TextView levelX, tutorRoomsTitle, studySpacesTitle;
     RecyclerView tutorRoomRV, studySpaceRV;
     Button floorPlan;
     List<Tutor> tutorRoomItems;
@@ -53,11 +53,7 @@ public class LevelX extends AppCompatActivity {
         //region findViewByIDs
         levelX = findViewById(R.id.levelXTxt);
         tutorRoomsTitle = findViewById(R.id.tutorRoomTitle);
-//        row1TR = findViewById(R.id.firstRow);
-//        row2TR = findViewById(R.id.secondRow);
         studySpacesTitle = findViewById(R.id.studySpaceTitle);
-//        row1SS = findViewById(R.id.firstRowSS);
-//        row2SS = findViewById(R.id.secondRowSS);
         floorPlan = findViewById(R.id.floorPlanBtn);
         tutorRoomsRL = findViewById(R.id.tutorRoomsRL);
         studySpacesRL = findViewById(R.id.studySpacesRL);
@@ -67,11 +63,7 @@ public class LevelX extends AppCompatActivity {
         levelX.setTypeface(robotoLight);
         tutorRoomsTitle.setTypeface(robotoLight);
         studySpacesTitle.setTypeface(robotoLight);
-//        row1TR.setTypeface(robotoLight);
         levelX.setTypeface(robotoLight);
-//        row2TR.setTypeface(robotoLight);
-//        row1SS.setTypeface(robotoLight);
-//        row2SS.setTypeface(robotoLight);
         floorPlan.setTypeface(robotoLight);
         //endregion
 
