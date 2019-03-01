@@ -12,10 +12,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.b6015413.usbtourteam6.Adapter.GetDirectionsAdapter;
 import com.example.b6015413.usbtourteam6.Adapter.TutorRoomAdapter;
+import com.example.b6015413.usbtourteam6.Database.DatabaseHelper;
 import com.example.b6015413.usbtourteam6.R;
+import com.example.b6015413.usbtourteam6.Table_Models.Room;
+import com.example.b6015413.usbtourteam6.Table_Models.Route;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +31,8 @@ public class GetDirections extends AppCompatActivity {
     Button stairsBtn, elevatorBtn;
     RecyclerView directionsRV;
     //Temp List to populate recycer view - need to remove additions in OnCreate
-    List<String> getDirectionsItems = new ArrayList<>();
+    List<Route> getDirectionsItems;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +40,7 @@ public class GetDirections extends AppCompatActivity {
         setContentView(R.layout.activity_get_directions);
 
         AssetManager am = this.getApplicationContext().getAssets();
-        Typeface robotoLight = Typeface.createFromAsset(am,String.format(Locale.UK,"fonts/%s","Roboto-Light.ttf"));
+        Typeface robotoLight = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Light.ttf"));
 
         firstLocation = findViewById(R.id.firstLocation);
         secondLocation = findViewById(R.id.secondLocation);
@@ -47,10 +52,13 @@ public class GetDirections extends AppCompatActivity {
         stairsBtn.setTypeface(robotoLight);
         elevatorBtn.setTypeface(robotoLight);
 
-        //temp values for List for testing
-        getDirectionsItems.add("First line");
-        getDirectionsItems.add("Second line");
-        getDirectionsItems.add("Third line");
+        databaseHelper = new DatabaseHelper(this);
+
+        // set destination as value that has been selected
+        secondLocation.setText(getIntent().getStringExtra("directionsTo"));
+
+        // populate list of routes
+        updateRoute();
 
         //Tutor Rooms RV
         directionsRV = findViewById(R.id.getDirectionsRV);
@@ -59,9 +67,22 @@ public class GetDirections extends AppCompatActivity {
         //populate the recycler view with this class as context and string[] Items as data
         directionsRV.setAdapter(new GetDirectionsAdapter(this, getDirectionsItems));
 
-        // set destination as value that has been selected
-        secondLocation.setText(getIntent().getStringExtra("directionsTo"));
+
     }
+
+    private void updateRoute() {
+        try {
+            getDirectionsItems = new ArrayList<>();
+            getDirectionsItems.add(new Route("", "", "go left"));
+            //getDirectionsItems = databaseHelper.getRoute(firstLocation.getText().toString(), secondLocation.getText().toString(),
+              //      false); // TODO sfa needs to be based on button selection
+        } catch (IllegalArgumentException e) {
+            Toast.makeText(this, "Check the start and end are valid rooms!",
+                    Toast.LENGTH_LONG).show();
+        }
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

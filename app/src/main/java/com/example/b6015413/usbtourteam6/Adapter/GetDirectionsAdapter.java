@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.b6015413.usbtourteam6.Activities.GetDirections;
 import com.example.b6015413.usbtourteam6.R;
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
+import com.example.b6015413.usbtourteam6.Table_Models.Route;
 
 import java.util.List;
 import java.util.Locale;
@@ -22,9 +23,9 @@ import java.util.Locale;
 public class GetDirectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context;
-    List<String> items;
+    List<Route> items;
 
-    public GetDirectionsAdapter(Context context, List<String> items) {
+    public GetDirectionsAdapter(Context context, List<Route> items) {
         this.context = context;
         this.items = items;
     }
@@ -44,7 +45,7 @@ public class GetDirectionsAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        ((GetDirectionsAdapter.Item)viewHolder).directionsTxt.setText(items.get(i));
+        ((GetDirectionsAdapter.Item)viewHolder).directionsTxt.setText(items.get(i).getRoute());
     }
 
     @Override

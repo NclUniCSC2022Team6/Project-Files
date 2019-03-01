@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, 1);
         this.context = context;
         // uncomment to re-read data in
-        onUpgrade(getWritableDatabase(), 1, 1);
+        //onUpgrade(getWritableDatabase(), 1, 1);
     }
 
     // sets up tables
@@ -55,6 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS `Tutor`;");
         db.execSQL("DROP TABLE IF EXISTS `Room`;");
         db.execSQL("DROP TABLE IF EXISTS `Route`;");
+        // TODO this next line needs to be deleted when everyone has updated
         db.execSQL("DROP TABLE IF EXISTS `Staff`;");
         onCreate(db);
     }
@@ -335,7 +336,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // method to return list of route objects for a given route between room names
     public List<Route> getRoute(String routeFrom, String routeTo, boolean sfa) {
-        return getRoute(getRoomByName(routeFrom), getRoomByName(routeTo), sfa);
+        Room from = getRoomByName(routeFrom),
+                to = getRoomByName(routeTo);
+
+        if (from == null || to == null) throw new IllegalArgumentException("Room is not valid");
+        return getRoute(from, to, sfa);
     }
 
     // method to return list of route objects for a given route of route objects
@@ -367,7 +372,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Room getRoomByName(String rName) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT  * FROM Room WHERE rName = ?", new String[]{rName});
-        cursor.moveToFirst();
+        if (!cursor.moveToFirst()) {
+            cursor.close();
+            return null;
+        }
         Room room = new Room(
                 cursor.getString(cursor.getColumnIndex("rName")),
                 cursor.getInt(cursor.getColumnIndex("level")),
@@ -391,12 +399,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return btc;
     }
 
-    // private helper method for getRoute return ealiest common route of two backtracked routes
+    // private helper method for getRoute return earliest common route of two backtracked routes
     private Room ECN(List<Room> btcFrom, List<Room> btcTo) {
         int fromPoint = btcFrom.size() - 1;
         int toPoint = btcTo.size() - 1;
 
-        while (btcFrom.get(fromPoint).equals(btcTo.get(toPoint))) {
+        while (fromPoint >= 0 && toPoint >= 0 && (btcFrom.get(fromPoint).equals(btcTo.get(toPoint)))) {
             fromPoint--;
             toPoint--;
         }
@@ -406,8 +414,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // private helper method for routeNav
     private Route getRouteHelper(Route route, SQLiteDatabase db) {
         Cursor cursor = db.rawQuery("SELECT * FROM Route WHERE rFrom = ? AND rTo = ?", new String[]{route.getFrom(), route.getTo()});
-        cursor.moveToFirst();
+        if (!cursor.moveToFirst()) {
+            cursor.close();
+            return null;
+        }
         route.setRoute(cursor.getColumnName(cursor.getColumnIndex("")));
+        cursor.close();
         return route;
     }
 
