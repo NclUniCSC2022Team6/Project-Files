@@ -4,6 +4,9 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -160,6 +163,16 @@ public class LevelX extends AppCompatActivity {
         //change colour of views on page
 
         switch (floorValue) {
+            case "Ground Floor":
+                //replace top RecyclerView with Other Rooms recycler view
+                //tutor rooms aren't needed
+                tutorRoomsTitle.setText("Rooms");
+                otherRoomAdapter = new RoomAdapter(this, otherRoomItems, RoomAdapter.COLAPSED_MAX);
+                tutorRoomRV.setAdapter(otherRoomAdapter);
+                //hide OtherRooms view
+                otherRoomsRL.setVisibility(View.GONE);
+                otherRoomsTitle.setVisibility(View.GONE);
+                otherRoomsRV.setVisibility(View.GONE);
             case "First Floor":
                 tutorRoomsRL.setBackground(getDrawable(R.drawable.orange_rounded));
                 studySpacesRL.setBackground(getDrawable(R.drawable.orange_rounded));

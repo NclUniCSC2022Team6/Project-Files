@@ -35,7 +35,7 @@
                android:id="@+id/firstLocation"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:background="@drawable/elevator_rounded"
+               android:background="@drawable/not_clicked_button"
                android:padding="5dp"
                android:hint="First location"
                android:textAlignment="center"
@@ -56,7 +56,7 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:layout_below="@+id/separater"
-               android:background="@drawable/elevator_rounded"
+               android:background="@drawable/not_clicked_button"
                android:padding="5dp"
                android:hint="Second location"
                android:textAlignment="center"
@@ -72,9 +72,9 @@
                android:layout_alignParentLeft="true"
                android:layout_marginLeft="50dp"
                android:layout_marginTop="10dp"
-               android:background="@drawable/stairs_rounded"
+               android:background="@drawable/not_clicked_button"
                android:text="Stairs"
-               android:textColor="@color/lightBlue" />
+               android:textColor="@color/darkGrey" />
 
            <Button
                android:id="@+id/elevatorBtn"
@@ -85,7 +85,7 @@
                android:layout_marginTop="10dp"
                android:layout_marginRight="50dp"
                android:layout_marginBottom="5dp"
-               android:background="@drawable/elevator_rounded"
+               android:background="@drawable/not_clicked_button"
                android:text="Elevator"
                android:textColor="@color/darkGrey" />
 

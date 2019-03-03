@@ -2,6 +2,7 @@ package com.example.b6015413.usbtourteam6.Activities;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,15 +11,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.b6015413.usbtourteam6.Adapter.GetDirectionsAdapter;
-import com.example.b6015413.usbtourteam6.Adapter.TutorRoomAdapter;
 import com.example.b6015413.usbtourteam6.Database.DatabaseHelper;
 import com.example.b6015413.usbtourteam6.R;
-import com.example.b6015413.usbtourteam6.Table_Models.Room;
 import com.example.b6015413.usbtourteam6.Table_Models.Route;
 
 import java.util.ArrayList;
@@ -31,6 +31,7 @@ public class GetDirections extends AppCompatActivity {
     Button stairsBtn, elevatorBtn;
     RecyclerView directionsRV;
     List<Route> getDirectionsItems;
+    Boolean StairsClicked, elevatorClicked;
     private DatabaseHelper databaseHelper;
 
     @Override
@@ -65,6 +66,38 @@ public class GetDirections extends AppCompatActivity {
         directionsRV.setLayoutManager(new LinearLayoutManager(this));
         //populate the recycler view with this class as context and string[] Items as data
         directionsRV.setAdapter(new GetDirectionsAdapter(this, getDirectionsItems));
+
+        //region button presses
+        stairsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //change stairs button colour and text colour
+                stairsBtn.setBackground(getDrawable(R.drawable.clicked_button));
+                stairsBtn.setTextColor(getResources().getColor(R.color.lightBlue));
+                //change elevator button colour and text colour
+                elevatorBtn.setBackground(getDrawable(R.drawable.not_clicked_button));
+                elevatorBtn.setTextColor(getResources().getColor(R.color.darkGrey));
+
+                //TODO implement route via stairs
+                //might be an idea to reverse this when the user changes the search queries
+            }
+        });
+        elevatorBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //change elevator button colour and text colour
+                elevatorBtn.setBackground(getDrawable(R.drawable.clicked_button));
+                elevatorBtn.setTextColor(getResources().getColor(R.color.lightBlue));
+                //change stairs button colour and text colour
+                stairsBtn.setBackground(getDrawable(R.drawable.not_clicked_button));
+                stairsBtn.setTextColor(getResources().getColor(R.color.darkGrey));
+
+                //TODO implement route via elevator
+                //might be an idea to reverse this when the user changes the search queries
+
+            }
+        });
+        //endregion
 
 
     }

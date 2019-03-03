@@ -70,11 +70,11 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/floorplanblue"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline14"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline29"
-        android:background="@drawable/floorplanblue"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline29" />
 
     <ScrollView
         android:layout_width="0dp"
