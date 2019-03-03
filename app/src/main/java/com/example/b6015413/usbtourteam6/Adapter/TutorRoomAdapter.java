@@ -21,11 +21,17 @@ public class TutorRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     Context context;
     List<Tutor> items;
-    int maxItems = 5; // TODO will be passed in, so can be expanded
+    private int maxItems;
+    public static final int COLAPSED_MAX = 2;
 
-    public TutorRoomAdapter(Context context, List<Tutor> items) {
+    public TutorRoomAdapter(Context context, List<Tutor> items, int maxItems) {
         this.context = context;
         this.items = items;
+        this.maxItems = maxItems;
+    }
+
+    public int getMaxItems() {
+        return maxItems;
     }
 
     @NonNull

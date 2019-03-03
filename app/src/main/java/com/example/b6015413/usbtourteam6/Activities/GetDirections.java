@@ -30,7 +30,6 @@ public class GetDirections extends AppCompatActivity {
     EditText firstLocation, secondLocation;
     Button stairsBtn, elevatorBtn;
     RecyclerView directionsRV;
-    //Temp List to populate recycer view - need to remove additions in OnCreate
     List<Route> getDirectionsItems;
     private DatabaseHelper databaseHelper;
 
@@ -70,7 +69,7 @@ public class GetDirections extends AppCompatActivity {
 
     }
 
-    private void updateRoute() {
+    private void updateRoute() { // TODO make this work not sample data
         try {
             getDirectionsItems = new ArrayList<>();
             getDirectionsItems.add(new Route("", "", "go left"));

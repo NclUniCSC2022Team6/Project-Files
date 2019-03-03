@@ -27,11 +27,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //    "Room(rName, level, prevRoom, coords, description)",
 //    "Route(rFrom, rTo, route)"
 
+    /**
+     * methods to set up the database
+     */
+
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
         this.context = context;
         // uncomment to re-read data in
-        //onUpgrade(getWritableDatabase(), 1, 1);
+        onUpgrade(getWritableDatabase(), 1, 1);
     }
 
     // sets up tables
@@ -94,6 +98,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * methods to return results from the database
+     */
+
     // returns list of get all tutors
     public List<Tutor> getTutors() {
         SQLiteDatabase db = getReadableDatabase();
@@ -152,6 +160,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         qb.setTables(tableName);
         //Query select from the tutor where Name LIKE %pattern% so not exact
+        name = removeSpace(name);
         Cursor cursor = qb.query(db, sqlSelect, "firstName LIKE ? OR lastName LIKE ?", new String[]{"%" + name + "%", "%" + name + "%"}, null, null, null);
         List<Tutor> result = new ArrayList<>();
         if (cursor.moveToFirst()) {
@@ -171,8 +180,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // splits name into parts based on space location then searches for a match on firstname AND lastname
-    // tutors MUST have no spaces in last name, middle names must be part of firstname
+    // tutors MUST have no spaces in last name, middle names must be part of firstname (in database)
     private List<Tutor> getTutorByFullName(String name, SQLiteDatabase db) {
+        name = removeSpace(name);
         List<Tutor> result = new ArrayList<>();
         String[] split = name.split(" ");
         String[] firstLast = new String[]{"", ""};
@@ -371,6 +381,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // method to return instance of room class for a given room name
     public Room getRoomByName(String rName) {
         SQLiteDatabase db = getReadableDatabase();
+        rName = removeSpace(rName);
         Cursor cursor = db.rawQuery("SELECT  * FROM Room WHERE rName = ?", new String[]{rName});
         if (!cursor.moveToFirst()) {
             cursor.close();
@@ -386,6 +397,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return room;
     }
+
+    /**
+     * helper methods
+     */
 
     // private helper method to return the list of previous rooms for a given room
     private List<Room> backtrack(Room from, SQLiteDatabase db) {
@@ -442,5 +457,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return routes;
+    }
+
+    // method removes leading or trailing spaces
+    private String removeSpace(String input) {
+//        throw new IllegalArgumentException("'" + input +"'");
+        if (input.length() == 0) return input;
+
+        if (input.matches("[\\s]+")) return ""; // if just 1 or more spaces
+
+        if (input.charAt(0) == ' ') input = input.substring(1);
+
+        if (input.charAt(input.length() -1) == ' ') input = input.substring(0, input.length() - 1);
+
+        return input;
+
     }
 }

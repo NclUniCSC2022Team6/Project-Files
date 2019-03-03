@@ -16,15 +16,25 @@ import com.example.b6015413.usbtourteam6.Table_Models.Room;
 import java.util.List;
 import java.util.Locale;
 
-public class StudySpaceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context;
     List<Room> items;
-    int maxItems = 5; // TODO will be passed in, so can be expanded
+    int maxItems;
+    public static final int COLAPSED_MAX = 2;
 
-    public StudySpaceAdapter(Context context, List<Room> items) {
+    public RoomAdapter(Context context, List<Room> items, int maxItems) {
         this.context = context;
         this.items = items;
+        this.maxItems = maxItems;
+    }
+
+    public int getMaxItems() {
+        return maxItems;
+    }
+
+    public void setMaxItems(int maxItems){
+        this.maxItems = maxItems;
     }
 
     @NonNull

@@ -78,10 +78,12 @@
 
     <ScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline14"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline2">
@@ -89,6 +91,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="end"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -134,7 +137,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/roundedbutton">
 
-                    <TextView
+                <TextView
                     android:id="@+id/studySpaceTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -143,22 +146,57 @@
                     android:text="Study Spaces"
                     android:textSize="24sp" />
 
-                    <android.support.v7.widget.RecyclerView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/studySpaceRV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/studySpaceTitle"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="5dp"></android.support.v7.widget.RecyclerView>
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"></android.support.v7.widget.RecyclerView>
 
-                    <Button
+                <Button
                     android:id="@+id/expandBtnSS"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_below="@+id/studySpaceRV"
                     android:background="@android:color/transparent"
                     android:text="..."
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/otherRoomsRL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/roundedbutton">
+
+                <TextView
+                    android:id="@+id/otherRoomsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Other rooms"
+                    android:textSize="24sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/otherRoomsRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/otherRoomsTitle"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"></android.support.v7.widget.RecyclerView>
+
+                <Button
+                    android:id="@+id/expandBtnOR"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@+id/otherRoomsRV"
+                    android:background="@android:color/transparent"
+                    android:text="..."
+                    android:textSize="10sp" />
 
             </RelativeLayout>
 
