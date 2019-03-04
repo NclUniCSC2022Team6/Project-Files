@@ -33,6 +33,7 @@ public class GetDirections extends AppCompatActivity {
     List<Route> getDirectionsItems;
     Boolean StairsClicked, elevatorClicked;
     private DatabaseHelper databaseHelper;
+    boolean sfa = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +58,15 @@ public class GetDirections extends AppCompatActivity {
         // set destination as value that has been selected
         secondLocation.setText(getIntent().getStringExtra("directionsTo"));
 
-        // populate list of routes
-        updateRoute();
-
         //Tutor Rooms RV
         directionsRV = findViewById(R.id.getDirectionsRV);
         //set the layout of the recycler view as the
         directionsRV.setLayoutManager(new LinearLayoutManager(this));
-        //populate the recycler view with this class as context and string[] Items as data
+
+        // populate list of routes
+        updateRoute();
+
+        //populate the recycler view with this class as context and list of routes as data
         directionsRV.setAdapter(new GetDirectionsAdapter(this, getDirectionsItems));
 
         //region button presses
@@ -78,8 +80,9 @@ public class GetDirections extends AppCompatActivity {
                 elevatorBtn.setBackground(getDrawable(R.drawable.not_clicked_button));
                 elevatorBtn.setTextColor(getResources().getColor(R.color.darkGrey));
 
-                //TODO implement route via stairs
                 //might be an idea to reverse this when the user changes the search queries
+                sfa = false;
+                updateRoute();
             }
         });
         elevatorBtn.setOnClickListener(new View.OnClickListener() {
@@ -92,8 +95,9 @@ public class GetDirections extends AppCompatActivity {
                 stairsBtn.setBackground(getDrawable(R.drawable.not_clicked_button));
                 stairsBtn.setTextColor(getResources().getColor(R.color.darkGrey));
 
-                //TODO implement route via elevator
                 //might be an idea to reverse this when the user changes the search queries
+                sfa = true;
+                updateRoute();
 
             }
         });
@@ -105,9 +109,10 @@ public class GetDirections extends AppCompatActivity {
     private void updateRoute() { // TODO make this work not sample data
         try {
             getDirectionsItems = new ArrayList<>();
-            getDirectionsItems.add(new Route("", "", "go left"));
-            //getDirectionsItems = databaseHelper.getRoute(firstLocation.getText().toString(), secondLocation.getText().toString(),
-              //      false); // TODO sfa needs to be based on button selection
+            getDirectionsItems.add(new Route("", "", "go left " + sfa));
+//            getDirectionsItems = databaseHelper.getRoute(firstLocation.getText().toString(), secondLocation.getText().toString(),
+//                    sfa);
+            directionsRV.setAdapter(new GetDirectionsAdapter(this, getDirectionsItems));
         } catch (IllegalArgumentException e) {
             Toast.makeText(this, "Check the start and end are valid rooms!",
                     Toast.LENGTH_LONG).show();

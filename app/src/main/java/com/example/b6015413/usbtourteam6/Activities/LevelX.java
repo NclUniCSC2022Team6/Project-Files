@@ -1,13 +1,14 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
+import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,9 +17,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.b6015413.usbtourteam6.Adapter.RoomAdapter;
 import com.example.b6015413.usbtourteam6.Adapter.TutorRoomAdapter;
@@ -142,6 +147,70 @@ public class LevelX extends AppCompatActivity {
                 otherRoomsRV.setAdapter(otherRoomAdapter);
             }
         });
+
+        final Button buttonOpenFP = findViewById(R.id.floorPlanBtn);
+        buttonOpenFP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFloorPlan();
+            }
+        });
+
+    }
+
+    public void openFloorPlan() {
+//        Intent intent = new Intent(LevelX.this, ShowImage.class);
+//        intent.putExtra("level", level);
+//        startActivity(intent);
+
+        Dialog builder = new Dialog(this);
+        builder.getWindow().setBackgroundDrawable(
+                new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                //nothing;
+            }
+        });
+
+        ImageView imageView = new ImageView(this);
+        int id = 0;
+        switch (level) {
+            case 0:
+                Toast.makeText(this, "No floor plan exists for ground floor", Toast.LENGTH_LONG).show();
+                return;
+            case 1:
+                id = R.drawable.floor_1_room_numbers;
+                break;
+            case 2:
+                id = R.drawable.floor_2_room_numbers;
+                break;
+            case 3:
+                id = R.drawable.floor_3_room_numbers;
+                break;
+            case 4:
+                id = R.drawable.floor_4_room_numbers;
+                break;
+            case 5:
+                id = R.drawable.floor_5_room_numbers;
+                break;
+            case 6:
+                id = R.drawable.floor_6_room_numbers;
+                break;
+        }
+        builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        imageView.setImageDrawable(getDrawable(id));
+        imageView.setScaleType(ImageView.ScaleType.MATRIX);
+        imageView.setOnTouchListener(new ShowImage());
+
+        float scale = 0.09f;
+        Matrix matrix = new Matrix();
+        matrix.postScale(scale, scale,0, 0);
+        imageView.setImageMatrix(matrix);
+        builder.addContentView(imageView, new RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+        builder.show();
     }
 
     @Override

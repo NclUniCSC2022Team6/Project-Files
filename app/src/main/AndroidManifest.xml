@@ -65,6 +65,9 @@
         <activity
             android:name=".Activities.LevelX"
             android:label="Floor Information"></activity>
+        <activity
+            android:name=".Activities.ShowImage"
+            android:label="View image"></activity>
     </application>
 
 </manifest>
