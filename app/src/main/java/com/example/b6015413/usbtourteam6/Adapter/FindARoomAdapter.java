@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.b6015413.usbtourteam6.Activities.FindARoom;
 import com.example.b6015413.usbtourteam6.Activities.GetDirections;
 import com.example.b6015413.usbtourteam6.R;
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
@@ -45,8 +46,8 @@ public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         final int j = i; // the activity handler is stupid so the variable has to be final
-        ((Item)viewHolder).roomTextFARR.setText(items.get(i).getDescription()+": "+items.get(i).getName());
-        ((Item)viewHolder).getDirectionsFARR.setOnClickListener(new View.OnClickListener() {
+        ((Item) viewHolder).roomTextFARR.setText(items.get(i).getDescription() + ": " + items.get(i).getName());
+        ((Item) viewHolder).getDirectionsFARR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, GetDirections.class);
@@ -54,7 +55,12 @@ public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 context.startActivity(intent);
             }
         });
-        //TODO: another button press for show on map - to be implemented later
+        ((Item) viewHolder).showOnMapFARR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((FindARoom) context).openFloorPlan(items.get(j));
+            }
+        });
     }
 
     @Override
@@ -69,8 +75,8 @@ public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         //adding font for recycler view to use
         AssetManager am = context.getApplicationContext().getAssets();
-        Typeface robotoLight = Typeface.createFromAsset(am,String.format(Locale.UK,"fonts/%s","Roboto-Light.ttf"));
-        Typeface robotoBlack = Typeface.createFromAsset(am,String.format(Locale.UK,"fonts/%s","Roboto-Black.ttf"));
+        Typeface robotoLight = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Light.ttf"));
+        Typeface robotoBlack = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Black.ttf"));
 
         public Item(View itemView) {
             super(itemView);

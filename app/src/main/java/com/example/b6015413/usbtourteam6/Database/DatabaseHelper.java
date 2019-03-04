@@ -20,16 +20,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
 
-
     private static final String DB_NAME = "TourSys.db";
 
 //    "Tutor(tutorId, firstName, lastName, rName)",
 //    "Room(rName, level, prevRoom, coords, description)",
 //    "Route(rFrom, rTo, route)"
 
-    /**
-     * methods to set up the database
-     */
+    // region set up database
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
@@ -97,10 +94,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
     }
+    // endregion
 
-    /**
-     * methods to return results from the database
-     */
+    // region methods to return results from the database
 
     // returns list of get all tutors
     public List<Tutor> getTutors() {
@@ -398,9 +394,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return room;
     }
 
-    /**
-     * helper methods
-     */
+    public int[] getRoomCoords(String rName) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT coords FROM Room WHERE rName = ?", new String[]{rName});
+        int[] result;
+
+
+        if (cursor.moveToFirst()) {
+            String[] rawCoords = cursor.getString(cursor.getColumnIndex("coords")).split(",");
+            result = new int[]{Integer.valueOf(rawCoords[0]), Integer.valueOf(rawCoords[1])};
+        } else {
+            result = new int[]{0, 0};
+        }
+        cursor.close();
+        db.close();
+        return result;
+
+    }
+//endregion
+
+    // region helper methods
 
     // private helper method to return the list of previous rooms for a given room
     private List<Room> backtrack(Room from, SQLiteDatabase db) {
@@ -468,9 +481,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (input.charAt(0) == ' ') input = input.substring(1);
 
-        if (input.charAt(input.length() -1) == ' ') input = input.substring(0, input.length() - 1);
+        if (input.charAt(input.length() - 1) == ' ') input = input.substring(0, input.length() - 1);
 
         return input;
 
     }
+    // endregion
 }

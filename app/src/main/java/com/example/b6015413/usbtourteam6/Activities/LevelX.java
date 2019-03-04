@@ -6,7 +6,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -159,20 +164,12 @@ public class LevelX extends AppCompatActivity {
     }
 
     public void openFloorPlan() {
-//        Intent intent = new Intent(LevelX.this, ShowImage.class);
-//        intent.putExtra("level", level);
-//        startActivity(intent);
-
         Dialog builder = new Dialog(this);
         builder.getWindow().setBackgroundDrawable(
                 new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                //nothing;
-            }
-        });
 
+
+        // region get id of level floor plan
         ImageView imageView = new ImageView(this);
         int id = 0;
         switch (level) {
@@ -198,14 +195,20 @@ public class LevelX extends AppCompatActivity {
                 id = R.drawable.floor_6_room_numbers;
                 break;
         }
+        // endregion
+
+        // variables to zoom out and move floor plan to centre
+        float scale = 0.09f;
+        int py = this.getWindow().getDecorView().getHeight() / 4;
+
         builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
         imageView.setImageDrawable(getDrawable(id));
-        imageView.setScaleType(ImageView.ScaleType.MATRIX);
-        imageView.setOnTouchListener(new ShowImage());
 
-        float scale = 0.09f;
+        imageView.setScaleType(ImageView.ScaleType.MATRIX);
+        imageView.setOnTouchListener(new ShowImage(scale, scale, 0, py));
+
         Matrix matrix = new Matrix();
-        matrix.postScale(scale, scale,0, 500);
+        matrix.postScale(scale, scale, 0, py);
         imageView.setImageMatrix(matrix);
         builder.addContentView(imageView, new RelativeLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,

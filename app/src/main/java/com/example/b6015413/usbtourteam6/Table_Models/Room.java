@@ -5,14 +5,19 @@ public class Room {
     private String name;
     private int level;
     private String prevRoom;
-    private String coords;
+    private int[] coords;
     private String description;
 
     public Room(String name, int level, String prevRoom, String coords, String description) {
         this.name = name;
         this.level = level;
         this.prevRoom = prevRoom;
-        this.coords = coords;
+
+        // todo change this when coords exist in table for all rooms
+//        String[] rawCoords = coords.split(",");
+//        this.coords = new int[]{Integer.valueOf(rawCoords[0]), Integer.valueOf(rawCoords[1])};
+
+        this.coords = new int[]{800,800};
         this.description = description;
     }
 
@@ -40,12 +45,13 @@ public class Room {
         this.prevRoom = prevRoom;
     }
 
-    public String getCoords() {
+    public int[] getCoords() {
         return coords;
     }
 
     public void setCoords(String coords) {
-        this.coords = coords;
+        String[] rawCoords = coords.split(",");
+        this.coords = new int[]{Integer.valueOf(rawCoords[0]), Integer.valueOf(rawCoords[1])};
     }
 
     public String getDescription() {

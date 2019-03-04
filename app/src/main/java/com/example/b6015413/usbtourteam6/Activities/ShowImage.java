@@ -27,9 +27,10 @@ public class ShowImage implements OnTouchListener {
     float oldDist = 0.09f;
 
 
-    public ShowImage() {
-        matrix.postScale(0.09f, 0.09f, 0, 500);
+    public ShowImage(float sx, float sy, int px, int py) {
+        matrix.postScale(sx,sy, px, py);
     }
+
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
