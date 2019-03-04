@@ -16,8 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.BuildingInfo"></activity>
-        <activity android:name=".Activities.Settings"
-            android:label="Settings"/>
+        <activity
+            android:name=".Activities.Settings"
+            android:label="Settings" />
         <activity android:name=".Activities.GetDirections" />
         <activity
             android:name=".Activities.HomePage"
@@ -65,9 +66,5 @@
         <activity
             android:name=".Activities.LevelX"
             android:label="Floor Information"></activity>
-        <activity
-            android:name=".Activities.ShowImage"
-            android:label="View image"></activity>
     </application>
-
 </manifest>

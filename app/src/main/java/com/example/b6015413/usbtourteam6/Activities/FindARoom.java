@@ -27,7 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.b6015413.usbtourteam6.Adapter.FindARoomAdapter;
-import com.example.b6015413.usbtourteam6.Database.DatabaseHelper;
+import com.example.b6015413.usbtourteam6.Helper_Classes.DatabaseHelper;
+import com.example.b6015413.usbtourteam6.Helper_Classes.ShowImage;
 import com.example.b6015413.usbtourteam6.R;
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
 
@@ -162,11 +163,8 @@ public class FindARoom extends AppCompatActivity {
         imageView.setImageBitmap(mutableBitmap);
 
         imageView.setScaleType(ImageView.ScaleType.MATRIX);
-        imageView.setOnTouchListener(new ShowImage(scale, scale, 0, py));
+        imageView.setOnTouchListener(new ShowImage(scale, scale, 0, py, imageView));
 
-        Matrix matrix = new Matrix();
-        matrix.postScale(scale, scale, 0, py);
-        imageView.setImageMatrix(matrix);
         builder.addContentView(imageView, new RelativeLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));

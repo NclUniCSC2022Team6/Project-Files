@@ -1,4 +1,4 @@
-package com.example.b6015413.usbtourteam6.Database;
+package com.example.b6015413.usbtourteam6.Helper_Classes;
 
 import android.content.Context;
 import android.database.Cursor;

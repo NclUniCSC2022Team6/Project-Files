@@ -15,7 +15,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.Adapter.SearchRowAdapter;
-import com.example.b6015413.usbtourteam6.Database.DatabaseHelper;
+import com.example.b6015413.usbtourteam6.Helper_Classes.DatabaseHelper;
 import com.example.b6015413.usbtourteam6.R;
 import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 

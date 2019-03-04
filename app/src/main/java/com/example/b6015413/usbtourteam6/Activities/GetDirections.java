@@ -2,7 +2,6 @@ package com.example.b6015413.usbtourteam6.Activities;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.b6015413.usbtourteam6.Adapter.GetDirectionsAdapter;
-import com.example.b6015413.usbtourteam6.Database.DatabaseHelper;
+import com.example.b6015413.usbtourteam6.Helper_Classes.DatabaseHelper;
 import com.example.b6015413.usbtourteam6.R;
 import com.example.b6015413.usbtourteam6.Table_Models.Route;
 

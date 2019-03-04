@@ -3,15 +3,9 @@ package com.example.b6015413.usbtourteam6.Activities;
 import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -32,7 +26,8 @@ import android.widget.Toast;
 
 import com.example.b6015413.usbtourteam6.Adapter.RoomAdapter;
 import com.example.b6015413.usbtourteam6.Adapter.TutorRoomAdapter;
-import com.example.b6015413.usbtourteam6.Database.DatabaseHelper;
+import com.example.b6015413.usbtourteam6.Helper_Classes.DatabaseHelper;
+import com.example.b6015413.usbtourteam6.Helper_Classes.ShowImage;
 import com.example.b6015413.usbtourteam6.R;
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
 import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
@@ -205,11 +200,8 @@ public class LevelX extends AppCompatActivity {
         imageView.setImageDrawable(getDrawable(id));
 
         imageView.setScaleType(ImageView.ScaleType.MATRIX);
-        imageView.setOnTouchListener(new ShowImage(scale, scale, 0, py));
+        imageView.setOnTouchListener(new ShowImage(scale, scale, 0, py, imageView));
 
-        Matrix matrix = new Matrix();
-        matrix.postScale(scale, scale, 0, py);
-        imageView.setImageMatrix(matrix);
         builder.addContentView(imageView, new RelativeLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));

@@ -17,7 +17,7 @@ public class Room {
 //        String[] rawCoords = coords.split(",");
 //        this.coords = new int[]{Integer.valueOf(rawCoords[0]), Integer.valueOf(rawCoords[1])};
 
-        this.coords = new int[]{800,800};
+        this.coords = new int[]{770,1150};
         this.description = description;
     }
 

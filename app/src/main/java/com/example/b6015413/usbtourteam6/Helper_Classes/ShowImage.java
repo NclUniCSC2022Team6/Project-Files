@@ -1,4 +1,4 @@
-package com.example.b6015413.usbtourteam6.Activities;
+package com.example.b6015413.usbtourteam6.Helper_Classes;
 
 import android.graphics.Matrix;
 import android.graphics.PointF;
@@ -27,8 +27,9 @@ public class ShowImage implements OnTouchListener {
     float oldDist = 0.09f;
 
 
-    public ShowImage(float sx, float sy, int px, int py) {
+    public ShowImage(float sx, float sy, int px, int py, ImageView imageView) {
         matrix.postScale(sx,sy, px, py);
+        imageView.setImageMatrix(matrix);
     }
 
 
