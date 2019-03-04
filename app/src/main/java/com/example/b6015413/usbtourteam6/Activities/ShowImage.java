@@ -28,7 +28,7 @@ public class ShowImage implements OnTouchListener {
 
 
     public ShowImage() {
-        matrix.postScale(0.09f, 0.09f, 0, 0);
+        matrix.postScale(0.09f, 0.09f, 0, 500);
     }
 
     @Override

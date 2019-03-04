@@ -205,7 +205,7 @@ public class LevelX extends AppCompatActivity {
 
         float scale = 0.09f;
         Matrix matrix = new Matrix();
-        matrix.postScale(scale, scale,0, 0);
+        matrix.postScale(scale, scale,0, 500);
         imageView.setImageMatrix(matrix);
         builder.addContentView(imageView, new RelativeLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
