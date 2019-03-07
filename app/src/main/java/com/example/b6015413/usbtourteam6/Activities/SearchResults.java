@@ -1,7 +1,6 @@
-package com.example.b6015413.usbtourteam6;
+package com.example.b6015413.usbtourteam6.Activities;
 
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,10 +11,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.widget.SearchView;
+import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.b6015413.usbtourteam6.Database.DatabaseHelper;
+import com.example.b6015413.usbtourteam6.Adapter.SearchRowAdapter;
+import com.example.b6015413.usbtourteam6.Helper_Classes.DatabaseHelper;
+import com.example.b6015413.usbtourteam6.R;
 import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 
 import java.util.List;
@@ -76,16 +77,19 @@ public class SearchResults extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-
-        // Associate searchable configuration with the SearchView
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
+        inflater.inflate(R.menu.search_menu, menu);
 
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.search_btn:
+                startActivity(new Intent(this, SearchTutor.class));
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

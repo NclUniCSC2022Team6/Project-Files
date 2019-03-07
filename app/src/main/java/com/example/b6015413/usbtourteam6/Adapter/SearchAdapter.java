@@ -1,6 +1,7 @@
 package com.example.b6015413.usbtourteam6.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.b6015413.usbtourteam6.Activities.GetDirections;
 import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 import com.example.b6015413.usbtourteam6.R;
 
@@ -35,9 +37,18 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public void onBindViewHolder(SearchViewHolder holder, int position) {
+        final int j = position;
         holder.name.setText(tutors.get(position).getFirstname());
         holder.surname.setText(tutors.get(position).getSurname());
         holder.room.setText(tutors.get(position).getRoom());
+        holder.getDirections.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, GetDirections.class);
+                intent.putExtra("directionsTo", tutors.get(j).getRoom());
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -63,7 +74,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             name = itemView.findViewById(R.id.name);
             surname = itemView.findViewById(R.id.surname);
             room = itemView.findViewById(R.id.room);
-            roomTxt= itemView.findViewById(R.id.roomTxt);
+            roomTxt = itemView.findViewById(R.id.roomTxt);
             getDirections = itemView.findViewById(R.id.getDirectionsBtn);
 
             name.setTypeface(robotoLight);

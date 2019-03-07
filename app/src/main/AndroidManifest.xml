@@ -15,11 +15,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LevelX"></activity>
-        <activity android:name=".GetDirections" />
+        <activity android:name=".Activities.BuildingInfo"></activity>
         <activity
-            android:name=".HomePage"
-            android:label="@string/home_page_title">
+            android:name=".Activities.Settings"
+            android:label="Settings" />
+        <activity android:name=".Activities.GetDirections" />
+        <activity
+            android:name=".Activities.HomePage"
+            android:label="@string/home_page_title"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +35,7 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".SearchResults"
+            android:name=".Activities.SearchResults"
             android:label="Search Results">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -41,20 +45,26 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".FindARoom">
+        <activity
+            android:name=".Activities.FindARoom"
+            android:label="Find A Room">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".SearchTutor"
+        <activity
+            android:name=".Activities.SearchTutor"
             android:label="Search Tutor">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
+        <activity
+            android:name=".Activities.LevelX"
+            android:label="Floor Information"></activity>
     </application>
-
 </manifest>

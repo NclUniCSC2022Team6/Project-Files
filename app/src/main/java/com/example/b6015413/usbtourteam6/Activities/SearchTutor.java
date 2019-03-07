@@ -1,4 +1,4 @@
-package com.example.b6015413.usbtourteam6;
+package com.example.b6015413.usbtourteam6.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +8,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 
 import com.example.b6015413.usbtourteam6.Adapter.SearchAdapter;
-import com.example.b6015413.usbtourteam6.Database.DatabaseHelper;
+import com.example.b6015413.usbtourteam6.Helper_Classes.DatabaseHelper;
+import com.example.b6015413.usbtourteam6.R;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 
@@ -96,7 +97,6 @@ public class SearchTutor extends AppCompatActivity {
     }
 
     private void startSearch(String text) {
-
         adapter = new SearchAdapter(this,database.getTutorByName(text));
         recyclerView.setAdapter(adapter);
 
