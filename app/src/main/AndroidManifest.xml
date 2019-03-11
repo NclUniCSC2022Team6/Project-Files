@@ -73,7 +73,7 @@
         </activity>
         <activity
             android:name=".Activities.LevelX"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
             android:label="Floor Information"></activity>
     </application>
 </manifest>
