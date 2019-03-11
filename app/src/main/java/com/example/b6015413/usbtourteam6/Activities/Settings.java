@@ -20,9 +20,15 @@ import java.util.Locale;
 
 public class Settings extends AppCompatActivity {
 
+    public static int fontSize = 10;
+
     TextView settings, lookAndFeel, darkModeTxt, fontSizeTxt, about, appInfo, developerInfo;
     View line1, line2;
     ToggleButton darkModeBtn;
+
+    public static void setFontSize(int fontSize) {
+        Settings.fontSize = fontSize;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

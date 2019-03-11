@@ -39,7 +39,7 @@ public class FindARoom extends AppCompatActivity {
 
     RecyclerView recyclerView;
     List<Room> items;
-    public static final int RADIUS = 300;
+    public static final int RADIUS = 300; // todo maybe this should be an int[] to vary based on the level
 
     TextView findARoomTxt;
 

@@ -99,7 +99,6 @@ public class SearchTutor extends AppCompatActivity {
     private void startSearch(String text) {
         adapter = new SearchAdapter(this,database.getTutorByName(text));
         recyclerView.setAdapter(adapter);
-
     }
 
     private void loadSuggestList() {
