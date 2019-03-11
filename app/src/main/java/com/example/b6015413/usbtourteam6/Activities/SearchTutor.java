@@ -104,7 +104,5 @@ public class SearchTutor extends AppCompatActivity {
     private void loadSuggestList() {
         suggestList = database.getNames();
         materialSearchBar.setLastSuggestions(suggestList);
-
-
     }
 }

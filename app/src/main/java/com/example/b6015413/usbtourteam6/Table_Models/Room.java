@@ -8,6 +8,14 @@ public class Room {
     private int[] coords;
     private String description;
 
+    /**
+     *
+     * @param name
+     * @param level
+     * @param prevRoom
+     * @param coords
+     * @param description
+     */
     public Room(String name, int level, String prevRoom, String coords, String description) {
         this.name = name;
         this.level = level;

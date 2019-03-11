@@ -92,6 +92,10 @@ public class LevelX extends AppCompatActivity {
         studySpaceItems = dbHelper.getStudySpacesOnLevel(level);
         otherRoomItems = dbHelper.getOtherRoomsOnLevel(level);
 
+        if(tutorRoomItems.isEmpty()) tutorRoomItems.add(new Tutor(0, "None", "", "no tutor rooms on this floor"));
+        if(studySpaceItems.isEmpty()) studySpaceItems.add(new Room("no study spaces on this floor", 0, "", "", "None"));
+        if(otherRoomItems.isEmpty()) otherRoomItems.add(new Room("no other rooms on this floor", 0, "", "", "None"));
+
         //region RecyclerViews
         //Tutor Rooms RV
         tutorRoomRV = findViewById(R.id.tutorRV);

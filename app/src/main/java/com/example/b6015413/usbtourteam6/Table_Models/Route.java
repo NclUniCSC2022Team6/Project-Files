@@ -6,6 +6,12 @@ public class Route {
     private String from;
     private String route;
 
+    /**
+     *
+     * @param to
+     * @param from
+     * @param route
+     */
     public Route(String to, String from, String route) {
         this.to = to;
         this.from = from;
