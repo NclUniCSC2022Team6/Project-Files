@@ -9,21 +9,6 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.b6015413.usbtourteam6.Activities.HomePage">
 
-    <include
-        android:id="@+id/test1234"
-        layout="@layout/app_bar_home"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu" />
-
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -240,5 +225,20 @@
         <!-- End of buttons -->
 
     </android.support.constraint.ConstraintLayout>
+
+    <include
+        android:id="@+id/test1234"
+        layout="@layout/app_bar_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu" />
 
 </android.support.v4.widget.DrawerLayout>

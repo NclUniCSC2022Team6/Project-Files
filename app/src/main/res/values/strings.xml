@@ -6,6 +6,11 @@
     <string name="get_directions">Get Directions</string>
     <string name="show_on_map">Show on Map</string>
 
+    <!--Fixing warnings-->
+    <string name="Find_Room_USB">Find A Room in the USB</string>
+    <string name="Other_Rooms">Other rooms</string>
+    <string name="Study_Spaces">Study Spaces</string>
+
     <!--Not sure about these-->
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>

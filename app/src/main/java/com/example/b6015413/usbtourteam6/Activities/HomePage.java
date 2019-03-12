@@ -51,15 +51,15 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         toggle.syncState();
 
         //region set IDs
-        welcomeButton = (Button)findViewById(R.id.welcomeBtn);
-        groundFloor = (Button)findViewById(R.id.groundFloor);
-        firstFloor = (Button)findViewById(R.id.firstFloor);
-        secondFloor = (Button)findViewById(R.id.secondFloor);
-        thirdFloor = (Button)findViewById(R.id.thirdFloor);
-        fourthFloor = (Button)findViewById(R.id.fourthFloor);
-        fifthFloor = (Button)findViewById(R.id.fifthFloor);
-        sixthFloor = (Button)findViewById(R.id.sixthFloor);
-        findARoom = (Button)findViewById(R.id.findARoom);
+        welcomeButton = findViewById(R.id.welcomeBtn);
+        groundFloor = findViewById(R.id.groundFloor);
+        firstFloor = findViewById(R.id.firstFloor);
+        secondFloor = findViewById(R.id.secondFloor);
+        thirdFloor = findViewById(R.id.thirdFloor);
+        fourthFloor = findViewById(R.id.fourthFloor);
+        fifthFloor = findViewById(R.id.fifthFloor);
+        sixthFloor = findViewById(R.id.sixthFloor);
+        findARoom = findViewById(R.id.findARoom);
         //endregion
 
         //region setting Typeface
@@ -168,71 +168,6 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     }
 
     // Provides intents to correct pages
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_home:
-                Intent h= new Intent(HomePage.this,HomePage.class);
-                startActivity(h);
-            case R.id.nav_ground_floor:
-                Intent groundF= new Intent(HomePage.this,LevelX.class);
-                groundF.putExtra("floor value", "Ground Floor");
-                groundF.putExtra("level", 0);
-                startActivity(groundF);
-                break;
-            case R.id.nav_first_floor:
-                Intent firstF= new Intent(HomePage.this,LevelX.class);
-                firstF.putExtra("floor value", "First Floor");
-                firstF.putExtra("level", 1);
-                startActivity(firstF);
-                break;
-            case R.id.nav_second_floor:
-                Intent secondF= new Intent(HomePage.this,LevelX.class);
-                secondF.putExtra("floor value", "Second Floor");
-                secondF.putExtra("level", 2);
-                startActivity(secondF);
-                break;
-            case R.id.nav_third_floor:
-                Intent thirdF= new Intent(HomePage.this,LevelX.class);
-                thirdF.putExtra("floor value", "Third Floor");
-                thirdF.putExtra("level", 3);
-                startActivity(thirdF);
-                break;
-            case R.id.nav_fourth_floor:
-                Intent fourthF= new Intent(HomePage.this,LevelX.class);
-                fourthF.putExtra("floor value", "Fourth Floor");
-                fourthF.putExtra("level", 4);
-                startActivity(fourthF);
-                break;
-            case R.id.nav_fifth_floor:
-                Intent fifthF= new Intent(HomePage.this,LevelX.class);
-                fifthF.putExtra("floor value", "Fifth Floor");
-                fifthF.putExtra("level", 5);
-                startActivity(fifthF);
-                break;
-            case R.id.nav_sixth_floor:
-                Intent sixthF= new Intent(HomePage.this,LevelX.class);
-                sixthF.putExtra("floor value", "Sixth Floor");
-                sixthF.putExtra("level", 6);
-                startActivity(sixthF);
-                break;
-            case R.id.nav_find_room:
-                Intent i= new Intent(HomePage.this,FindARoom.class);
-                startActivity(i);
-                break;
-            case R.id.nav_building_info:
-                Intent b= new Intent(HomePage.this,BuildingInfo.class);
-                startActivity(b);
-                break;
-            case R.id.nav_settings:
-                Intent g= new Intent(HomePage.this,Settings.class);
-                startActivity(g);
-                break;
-        }
-        // Closes nav drawer once a new activity has been opened.
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
     // Used to close/open the navigation drawer
     @Override
@@ -270,4 +205,72 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    Intent h= new Intent(HomePage.this,HomePage.class);
+                    startActivity(h);
+                case R.id.nav_ground_floor:
+                    Intent groundF= new Intent(HomePage.this,LevelX.class);
+                    groundF.putExtra("floor value", "Ground Floor");
+                    groundF.putExtra("level", 0);
+                    startActivity(groundF);
+                    break;
+                case R.id.nav_first_floor:
+                    Intent firstF= new Intent(HomePage.this,LevelX.class);
+                    firstF.putExtra("floor value", "First Floor");
+                    firstF.putExtra("level", 1);
+                    startActivity(firstF);
+                    break;
+                case R.id.nav_second_floor:
+                    Intent secondF= new Intent(HomePage.this,LevelX.class);
+                    secondF.putExtra("floor value", "Second Floor");
+                    secondF.putExtra("level", 2);
+                    startActivity(secondF);
+                    break;
+                case R.id.nav_third_floor:
+                    Intent thirdF= new Intent(HomePage.this,LevelX.class);
+                    thirdF.putExtra("floor value", "Third Floor");
+                    thirdF.putExtra("level", 3);
+                    startActivity(thirdF);
+                    break;
+                case R.id.nav_fourth_floor:
+                    Intent fourthF= new Intent(HomePage.this,LevelX.class);
+                    fourthF.putExtra("floor value", "Fourth Floor");
+                    fourthF.putExtra("level", 4);
+                    startActivity(fourthF);
+                    break;
+                case R.id.nav_fifth_floor:
+                    Intent fifthF= new Intent(HomePage.this,LevelX.class);
+                    fifthF.putExtra("floor value", "Fifth Floor");
+                    fifthF.putExtra("level", 5);
+                    startActivity(fifthF);
+                    break;
+                case R.id.nav_sixth_floor:
+                    Intent sixthF= new Intent(HomePage.this,LevelX.class);
+                    sixthF.putExtra("floor value", "Sixth Floor");
+                    sixthF.putExtra("level", 6);
+                    startActivity(sixthF);
+                    break;
+                case R.id.nav_find_room:
+                    Intent i= new Intent(HomePage.this,FindARoom.class);
+                    startActivity(i);
+                    break;
+                case R.id.nav_building_info:
+                    Intent b= new Intent(HomePage.this,BuildingInfo.class);
+                    startActivity(b);
+                    break;
+                case R.id.nav_settings:
+                    Intent g= new Intent(HomePage.this,Settings.class);
+                    startActivity(g);
+                    break;
+            }
+            // Closes nav drawer once a new activity has been opened.
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }
+
+
 }

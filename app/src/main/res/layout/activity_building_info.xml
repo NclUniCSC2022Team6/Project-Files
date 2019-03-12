@@ -9,21 +9,6 @@
     tools:context="com.example.b6015413.usbtourteam6.Activities.BuildingInfo"
     android:background="@drawable/backgroundlightgrey">
 
-    <include
-        layout="@layout/app_bar_home"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu" />
-
-
     <android.support.constraint.ConstraintLayout
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
@@ -64,7 +49,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Building Information"
+        android:text="@string/BuildingInformation"
         android:textColor="@color/darkGrey"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline11"
@@ -73,5 +58,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
+
+    <include
+        layout="@layout/app_bar_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu" />
 
 </android.support.v4.widget.DrawerLayout>

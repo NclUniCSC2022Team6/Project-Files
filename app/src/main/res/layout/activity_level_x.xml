@@ -8,20 +8,6 @@
     android:background="@drawable/backgroundlightgrey"
     tools:context="com.example.b6015413.usbtourteam6.Activities.LevelX">
 
-    <include
-        layout="@layout/app_bar_home"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu" />
-
     <android.support.constraint.ConstraintLayout
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
@@ -135,7 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tutorRoomTitle"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"></android.support.v7.widget.RecyclerView>
 
                 <Button
@@ -161,9 +147,9 @@
                     android:id="@+id/studySpaceTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="Study Spaces"
+                    android:text="@string/Study_Spaces"
                     android:textSize="24sp" />
 
                 <android.support.v7.widget.RecyclerView
@@ -171,8 +157,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/studySpaceTitle"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"></android.support.v7.widget.RecyclerView>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"/>
 
                 <Button
                     android:id="@+id/expandBtnSS"
@@ -196,9 +182,9 @@
                     android:id="@+id/otherRoomsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="Other rooms"
+                    android:text="@string/Other_Rooms"
                     android:textSize="24sp" />
 
                 <android.support.v7.widget.RecyclerView
@@ -206,8 +192,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/otherRoomsTitle"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"></android.support.v7.widget.RecyclerView>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"/>
 
                 <Button
                     android:id="@+id/expandBtnOR"
@@ -225,5 +211,19 @@
     </ScrollView>
 
     </android.support.constraint.ConstraintLayout>
+
+    <include
+        layout="@layout/app_bar_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu" />
 
 </android.support.v4.widget.DrawerLayout>

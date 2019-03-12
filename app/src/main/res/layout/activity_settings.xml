@@ -9,20 +9,6 @@
     android:id="@+id/drawer_layout"
     tools:context="com.example.b6015413.usbtourteam6.Activities.Settings">
 
-    <include
-        layout="@layout/app_bar_home"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu"/>
-
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -61,7 +47,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Settings"
+        android:text="@string/action_settings"
         android:textColor="@color/darkGrey"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
@@ -210,5 +196,19 @@
         app:layout_constraintTop_toBottomOf="@+id/line2" />
 
     </android.support.constraint.ConstraintLayout>
+
+    <include
+        layout="@layout/app_bar_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu"/>
 
 </android.support.v4.widget.DrawerLayout>
