@@ -1,5 +1,6 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.Context;
@@ -55,6 +56,7 @@ public class LevelX extends AppCompatActivity implements NavigationView.OnNaviga
     TutorRoomAdapter tutorRoomAdapter;
     RoomAdapter studySpaceAdapter, otherRoomAdapter;
     Context context;
+    Activity activity;
     private DrawerLayout drawer;
 
     @Override
@@ -63,6 +65,7 @@ public class LevelX extends AppCompatActivity implements NavigationView.OnNaviga
         setContentView(R.layout.activity_level_x);
 
         context = this;
+        activity = this;
 
         //to find out which level was clicked on and set globals
         floorValue = getIntent().getStringExtra("floor value");
@@ -116,9 +119,12 @@ public class LevelX extends AppCompatActivity implements NavigationView.OnNaviga
         studySpaceItems = dbHelper.getStudySpacesOnLevel(level);
         otherRoomItems = dbHelper.getOtherRoomsOnLevel(level);
 
-        if(tutorRoomItems.isEmpty()) tutorRoomItems.add(new Tutor(0, "None", "", "no tutor rooms on this floor"));
-        if(studySpaceItems.isEmpty()) studySpaceItems.add(new Room("no study spaces on this floor", 0, "", "", "None"));
-        if(otherRoomItems.isEmpty()) otherRoomItems.add(new Room("no other rooms on this floor", 0, "", "", "None"));
+        if (tutorRoomItems.isEmpty())
+            tutorRoomItems.add(new Tutor(0, "None", "", "no tutor rooms on this floor"));
+        if (studySpaceItems.isEmpty())
+            studySpaceItems.add(new Room("no study spaces on this floor", 0, "", "", "None"));
+        if (otherRoomItems.isEmpty())
+            otherRoomItems.add(new Room("no other rooms on this floor", 0, "", "", "None"));
 
         //region RecyclerViews
         //Tutor Rooms RV
@@ -126,26 +132,14 @@ public class LevelX extends AppCompatActivity implements NavigationView.OnNaviga
         //set the layout of the recycler view as the
         tutorRoomRV.setLayoutManager(new LinearLayoutManager(this));
         //populate the recycler view with this class as context and items as data
-        tutorRoomAdapter = new TutorRoomAdapter(this, tutorRoomItems, TutorRoomAdapter.COLAPSED_MAX);
+        tutorRoomAdapter = new TutorRoomAdapter(this, this, tutorRoomItems, TutorRoomAdapter.COLAPSED_MAX);
         tutorRoomRV.setAdapter(tutorRoomAdapter);
-
-        //Item click event
-        tutorRoomAdapter.setOnItemClickListener(new TutorRoomAdapter.OnItemClickListener() {
-            @Override
-            public void OnItemClick(int position) {
-                //TODO item click handler
-                //currently just displays a toast of item selected
-                String roomInfoTxt = tutorRoomItems.get(position).getFirstname() + tutorRoomItems.get(position).getSurname();
-                Toast.makeText(context, roomInfoTxt, Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
         //Study Spaces RV
         studySpaceRV = findViewById(R.id.studySpaceRV);
         studySpaceRV.setLayoutManager(new LinearLayoutManager(this));
 
-        studySpaceAdapter = new RoomAdapter(this, studySpaceItems, RoomAdapter.COLAPSED_MAX);
+        studySpaceAdapter = new RoomAdapter(this, this, studySpaceItems, RoomAdapter.COLAPSED_MAX);
         studySpaceRV.setAdapter(studySpaceAdapter);
         //endregion
 
@@ -154,7 +148,7 @@ public class LevelX extends AppCompatActivity implements NavigationView.OnNaviga
         //set the layout of the recycler view as the
         otherRoomsRV.setLayoutManager(new LinearLayoutManager(this));
         //populate the recycler view with this class as context and items as data
-        otherRoomAdapter = new RoomAdapter(this, otherRoomItems, RoomAdapter.COLAPSED_MAX);
+        otherRoomAdapter = new RoomAdapter(this, this, otherRoomItems, RoomAdapter.COLAPSED_MAX);
         otherRoomsRV.setAdapter(otherRoomAdapter);
 
         //Change the layout of page based on which floor is selected
@@ -164,11 +158,11 @@ public class LevelX extends AppCompatActivity implements NavigationView.OnNaviga
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (floorValue.equals("Ground Floor")) {
-                    tutorRoomAdapter = new TutorRoomAdapter(context, tutorRoomItems,
+                    tutorRoomAdapter = new TutorRoomAdapter(activity, context, tutorRoomItems,
                             ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX));
                     tutorRoomRV.setAdapter(otherRoomAdapter);
                 } else {
-                    tutorRoomAdapter = new TutorRoomAdapter(context, tutorRoomItems,
+                    tutorRoomAdapter = new TutorRoomAdapter(activity, context, tutorRoomItems,
                             ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX));
                     tutorRoomRV.setAdapter(tutorRoomAdapter);
                 }
@@ -178,7 +172,7 @@ public class LevelX extends AppCompatActivity implements NavigationView.OnNaviga
         final Button buttonSS = findViewById(R.id.expandBtnSS);
         buttonSS.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                studySpaceAdapter = new RoomAdapter(context, studySpaceItems,
+                studySpaceAdapter = new RoomAdapter(activity, context, studySpaceItems,
                         ((studySpaceAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX));
                 studySpaceRV.setAdapter(studySpaceAdapter);
             }
@@ -187,7 +181,7 @@ public class LevelX extends AppCompatActivity implements NavigationView.OnNaviga
         final Button buttonOR = findViewById(R.id.expandBtnOR);
         buttonOR.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                otherRoomAdapter = new RoomAdapter(context, otherRoomItems,
+                otherRoomAdapter = new RoomAdapter(activity, context, otherRoomItems,
                         ((otherRoomAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX));
                 otherRoomsRV.setAdapter(otherRoomAdapter);
             }
@@ -269,60 +263,60 @@ public class LevelX extends AppCompatActivity implements NavigationView.OnNaviga
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_home:
-                Intent h= new Intent(LevelX.this,HomePage.class);
+                Intent h = new Intent(LevelX.this, HomePage.class);
                 startActivity(h);
             case R.id.nav_ground_floor:
-                Intent groundF= new Intent(LevelX.this,LevelX.class);
+                Intent groundF = new Intent(LevelX.this, LevelX.class);
                 groundF.putExtra("floor value", "Ground Floor");
                 groundF.putExtra("level", 0);
                 startActivity(groundF);
                 break;
             case R.id.nav_first_floor:
-                Intent firstF= new Intent(LevelX.this,LevelX.class);
+                Intent firstF = new Intent(LevelX.this, LevelX.class);
                 firstF.putExtra("floor value", "First Floor");
                 firstF.putExtra("level", 1);
                 startActivity(firstF);
                 break;
             case R.id.nav_second_floor:
-                Intent secondF= new Intent(LevelX.this,LevelX.class);
+                Intent secondF = new Intent(LevelX.this, LevelX.class);
                 secondF.putExtra("floor value", "Second Floor");
                 secondF.putExtra("level", 2);
                 startActivity(secondF);
                 break;
             case R.id.nav_third_floor:
-                Intent thirdF= new Intent(LevelX.this,LevelX.class);
+                Intent thirdF = new Intent(LevelX.this, LevelX.class);
                 thirdF.putExtra("floor value", "Third Floor");
                 thirdF.putExtra("level", 3);
                 startActivity(thirdF);
                 break;
             case R.id.nav_fourth_floor:
-                Intent fourthF= new Intent(LevelX.this,LevelX.class);
+                Intent fourthF = new Intent(LevelX.this, LevelX.class);
                 fourthF.putExtra("floor value", "Fourth Floor");
                 fourthF.putExtra("level", 4);
                 startActivity(fourthF);
                 break;
             case R.id.nav_fifth_floor:
-                Intent fifthF= new Intent(LevelX.this,LevelX.class);
+                Intent fifthF = new Intent(LevelX.this, LevelX.class);
                 fifthF.putExtra("floor value", "Fifth Floor");
                 fifthF.putExtra("level", 5);
                 startActivity(fifthF);
                 break;
             case R.id.nav_sixth_floor:
-                Intent sixthF= new Intent(LevelX.this,LevelX.class);
+                Intent sixthF = new Intent(LevelX.this, LevelX.class);
                 sixthF.putExtra("floor value", "Sixth Floor");
                 sixthF.putExtra("level", 6);
                 startActivity(sixthF);
                 break;
             case R.id.nav_find_room:
-                Intent i= new Intent(LevelX.this,FindARoom.class);
+                Intent i = new Intent(LevelX.this, FindARoom.class);
                 startActivity(i);
                 break;
             case R.id.nav_building_info:
-                Intent b= new Intent(LevelX.this,BuildingInfo.class);
+                Intent b = new Intent(LevelX.this, BuildingInfo.class);
                 startActivity(b);
                 break;
             case R.id.nav_settings:
-                Intent g= new Intent(LevelX.this,Settings.class);
+                Intent g = new Intent(LevelX.this, Settings.class);
                 startActivity(g);
                 break;
             // this is done, now let us go and intialise the home page.
@@ -336,7 +330,7 @@ public class LevelX extends AppCompatActivity implements NavigationView.OnNaviga
 
     @Override
     public void onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
@@ -351,15 +345,7 @@ public class LevelX extends AppCompatActivity implements NavigationView.OnNaviga
 
         switch (floorValue) {
             case "Ground Floor":
-                //replace top RecyclerView with Other Rooms recycler view
-                //tutor rooms aren't needed
-                tutorRoomsTitle.setText("Rooms");
-                otherRoomAdapter = new RoomAdapter(this, otherRoomItems, RoomAdapter.COLAPSED_MAX);
-                tutorRoomRV.setAdapter(otherRoomAdapter);
-                //hide OtherRooms view
-                otherRoomsRL.setVisibility(View.GONE);
-                otherRoomsTitle.setVisibility(View.GONE);
-                otherRoomsRV.setVisibility(View.GONE);
+                // same colour scheme as first floor
             case "First Floor":
                 tutorRoomsRL.setBackground(getDrawable(R.drawable.orange_rounded));
                 studySpacesRL.setBackground(getDrawable(R.drawable.orange_rounded));

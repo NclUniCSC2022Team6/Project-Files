@@ -1,5 +1,6 @@
 package com.example.b6015413.usbtourteam6.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.Activities.FindARoom;
 import com.example.b6015413.usbtourteam6.Activities.GetDirections;
+import com.example.b6015413.usbtourteam6.Helper_Classes.ShowRoom;
 import com.example.b6015413.usbtourteam6.R;
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
 
@@ -24,8 +26,10 @@ public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     Context context;
     List<Room> items;
+    Activity activity;
 
-    public FindARoomAdapter(Context context, List<Room> items) {
+    public FindARoomAdapter(Activity activity, Context context, List<Room> items) {
+        this.activity = activity;
         this.context = context;
         this.items = items;
     }
@@ -58,7 +62,7 @@ public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         ((Item) viewHolder).showOnMapFARR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((FindARoom) context).openFloorPlan(items.get(j));
+                new ShowRoom(activity, context, items.get(j));
             }
         });
     }
