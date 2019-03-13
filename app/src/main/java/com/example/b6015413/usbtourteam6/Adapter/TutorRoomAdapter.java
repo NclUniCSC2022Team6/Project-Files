@@ -24,10 +24,20 @@ public class TutorRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private int maxItems;
     public static final int COLAPSED_MAX = 2;
 
+    private OnItemClickListener mListener;
+
     public TutorRoomAdapter(Context context, List<Tutor> items, int maxItems) {
         this.context = context;
         this.items = items;
         this.maxItems = maxItems;
+    }
+
+    public interface OnItemClickListener {
+        void OnItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
     }
 
     public int getMaxItems() {
@@ -42,6 +52,8 @@ public class TutorRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         View levelXRow = inflater.inflate(R.layout.level_x_row, viewGroup, false);
 
         Item levelXItem = new Item(levelXRow);
+
+
 
         return levelXItem;
 
@@ -77,6 +89,20 @@ public class TutorRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             //setting font for objects
             //Find A Room
             tutorInfoTxt.setTypeface(robotoLight);
+
+            //OnClickListener for clicking on an item
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mListener != null) {
+                        int position = getAdapterPosition();
+                        //make sure the item actually exists
+                        if (position != RecyclerView.NO_POSITION) {
+                            mListener.OnItemClick(position);
+                        }
+                    }
+                }
+            });
 
 
         }

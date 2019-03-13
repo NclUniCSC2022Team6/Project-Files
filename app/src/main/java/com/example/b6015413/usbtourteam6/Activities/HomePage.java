@@ -27,7 +27,6 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
             fourthFloor, fifthFloor, sixthFloor, findARoom;
     private DrawerLayout drawer;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -45,7 +45,7 @@ public class LevelX extends AppCompatActivity implements NavigationView.OnNaviga
 
     TextView levelX, tutorRoomsTitle, studySpacesTitle, otherRoomsTitle;
     RecyclerView tutorRoomRV, studySpaceRV, otherRoomsRV;
-    Button floorPlan;
+    Button floorPlan, expandBtn;
     List<Tutor> tutorRoomItems;
     List<Room> studySpaceItems;
     List<Room> otherRoomItems;
@@ -95,6 +95,7 @@ public class LevelX extends AppCompatActivity implements NavigationView.OnNaviga
         studySpacesTitle = findViewById(R.id.studySpaceTitle);
         otherRoomsTitle = findViewById(R.id.otherRoomsTitle);
         floorPlan = findViewById(R.id.floorPlanBtn);
+        expandBtn = findViewById(R.id.expandBtn);
         tutorRoomsRL = findViewById(R.id.tutorRoomsRL);
         studySpacesRL = findViewById(R.id.studySpacesRL);
         otherRoomsRL = findViewById(R.id.otherRoomsRL);
@@ -128,6 +129,17 @@ public class LevelX extends AppCompatActivity implements NavigationView.OnNaviga
         tutorRoomAdapter = new TutorRoomAdapter(this, tutorRoomItems, TutorRoomAdapter.COLAPSED_MAX);
         tutorRoomRV.setAdapter(tutorRoomAdapter);
 
+        //Item click event
+        tutorRoomAdapter.setOnItemClickListener(new TutorRoomAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(int position) {
+                //TODO item click handler
+                //currently just displays a toast of item selected
+                String roomInfoTxt = tutorRoomItems.get(position).getFirstname() + tutorRoomItems.get(position).getSurname();
+                Toast.makeText(context, roomInfoTxt, Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         //Study Spaces RV
         studySpaceRV = findViewById(R.id.studySpaceRV);
@@ -151,9 +163,15 @@ public class LevelX extends AppCompatActivity implements NavigationView.OnNaviga
         final Button button = findViewById(R.id.expandBtn);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                tutorRoomAdapter = new TutorRoomAdapter(context, tutorRoomItems,
-                        ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX));
-                tutorRoomRV.setAdapter(tutorRoomAdapter);
+                if (floorValue.equals("Ground Floor")) {
+                    tutorRoomAdapter = new TutorRoomAdapter(context, tutorRoomItems,
+                            ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX));
+                    tutorRoomRV.setAdapter(otherRoomAdapter);
+                } else {
+                    tutorRoomAdapter = new TutorRoomAdapter(context, tutorRoomItems,
+                            ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX));
+                    tutorRoomRV.setAdapter(tutorRoomAdapter);
+                }
             }
         });
 
