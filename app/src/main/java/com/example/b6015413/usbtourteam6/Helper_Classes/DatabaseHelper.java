@@ -19,7 +19,6 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
-
     private static final String DB_NAME = "TourSys.db";
 
 //    "Tutor(tutorId, firstName, lastName, rName)",
@@ -477,15 +476,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String removeSpace(String input) {
 //        throw new IllegalArgumentException("'" + input +"'");
         if (input.length() == 0) return input;
-
         if (input.matches("[\\s]+")) return ""; // if just 1 or more spaces
-
         if (input.charAt(0) == ' ') input = input.substring(1);
-
         if (input.charAt(input.length() - 1) == ' ') input = input.substring(0, input.length() - 1);
 
         return input;
-
     }
     // endregion
 }

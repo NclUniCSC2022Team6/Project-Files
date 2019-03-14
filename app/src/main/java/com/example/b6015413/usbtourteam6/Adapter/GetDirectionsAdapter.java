@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.Activities.GetDirections;
+import com.example.b6015413.usbtourteam6.Activities.Settings;
 import com.example.b6015413.usbtourteam6.R;
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
 import com.example.b6015413.usbtourteam6.Table_Models.Route;
@@ -45,7 +46,7 @@ public class GetDirectionsAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        ((GetDirectionsAdapter.Item)viewHolder).directionsTxt.setText(items.get(i).getRoute());
+        ((GetDirectionsAdapter.Item) viewHolder).directionsTxt.setText(items.get(i).getRoute());
     }
 
     @Override
@@ -59,8 +60,8 @@ public class GetDirectionsAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         //adding font for recycler view to use
         AssetManager am = context.getApplicationContext().getAssets();
-        Typeface robotoLight = Typeface.createFromAsset(am,String.format(Locale.UK,"fonts/%s","Roboto-Light.ttf"));
-        Typeface robotoBlack = Typeface.createFromAsset(am,String.format(Locale.UK,"fonts/%s","Roboto-Black.ttf"));
+        Typeface robotoLight = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Light.ttf"));
+        Typeface robotoBlack = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Black.ttf"));
 
         public Item(View itemView) {
             super(itemView);
@@ -71,6 +72,7 @@ public class GetDirectionsAdapter extends RecyclerView.Adapter<RecyclerView.View
             //setting font for objects
             //Find A Room
             directionsTxt.setTypeface(robotoLight);
+            directionsTxt.setTextSize(Settings.fontSize);
 
         }
     }

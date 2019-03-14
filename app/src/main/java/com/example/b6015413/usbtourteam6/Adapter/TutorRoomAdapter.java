@@ -109,6 +109,7 @@ public class TutorRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
 
         public void showMessageDialog(final Tutor tutor) {
+            if (tutor.getSurname().equals("None")) return;
             String message = "Room is: " + tutor.getRoom();
             AlertDialog dialog = new AlertDialog.Builder(context)
                     .setTitle(tutor.getFirstname() + " " + tutor.getSurname())

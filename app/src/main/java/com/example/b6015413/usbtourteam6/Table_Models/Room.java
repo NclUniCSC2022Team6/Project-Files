@@ -19,12 +19,14 @@ public class Room {
         this.name = name;
         this.level = level;
         this.prevRoom = prevRoom;
+        try {
+            String[] rawCoords = coords.split(",");
+            this.coords = new int[]{Integer.valueOf(rawCoords[0]), Integer.valueOf(rawCoords[1])};
+        } catch (java.lang.NumberFormatException e) {
+            // give name of room that caused error
+            throw new IllegalArgumentException(name);
+        }
 
-        // todo change this when coords exist in table for all rooms
-//        String[] rawCoords = coords.split(",");
-//        this.coords = new int[]{Integer.valueOf(rawCoords[0]), Integer.valueOf(rawCoords[1])};
-
-        this.coords = new int[]{770, 1150};
         this.description = description;
     }
 
