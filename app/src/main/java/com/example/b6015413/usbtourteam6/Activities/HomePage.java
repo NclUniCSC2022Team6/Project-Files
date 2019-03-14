@@ -90,7 +90,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         welcomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, Settings.class);
+                Intent intent = new Intent(HomePage.this, BuildingInfo.class);
                 startActivity(intent);
             }
         });
