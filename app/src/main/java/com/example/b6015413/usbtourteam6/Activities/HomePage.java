@@ -2,6 +2,7 @@ package com.example.b6015413.usbtourteam6.Activities;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -74,6 +75,14 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         sixthFloor.setTypeface(robotoBlack);
         findARoom.setTypeface(robotoBlack);
         //endregion
+
+
+        Configuration c = getResources().getConfiguration();
+        float scale = c.fontScale;
+        if (scale > 1) {
+            Settings.setFontSize(20);
+        }
+
 
         //region button clicks
 
