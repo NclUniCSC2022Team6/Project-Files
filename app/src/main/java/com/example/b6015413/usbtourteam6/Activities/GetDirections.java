@@ -114,7 +114,7 @@ public class GetDirections extends AppCompatActivity {
             directionsRV.setAdapter(new GetDirectionsAdapter(this, getDirectionsItems));
         } catch (IllegalArgumentException e) {
             Toast.makeText(this, "Check the start and end are valid rooms!",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_LONG).show(); // error will be thrown by DatabaseHelper
         }
 
     }

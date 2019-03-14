@@ -5,4 +5,24 @@
     <string name="home_page_title">Welcome to the USB</string>
     <string name="get_directions">Get Directions</string>
     <string name="show_on_map">Show on Map</string>
+
+    <!--Fixing warnings-->
+    <string name="Find_Room_USB">Find A Room in the USB</string>
+    <string name="Other_Rooms">Other rooms</string>
+    <string name="Study_Spaces">Study Spaces</string>
+
+    <!--Not sure about these-->
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+
+    <!--Needed for nav drawer etc-->
+    <string name="title_activity_nav_bar">NavBar</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="Home">Home</string>
+    <string name="FindARoom">Find A Room</string>
+    <string name="BuildingInformation">Building Information</string>
+
 </resources>

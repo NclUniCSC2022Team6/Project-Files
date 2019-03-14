@@ -27,7 +27,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //    "Route(rFrom, rTo, route)"
 
     // region set up database
-
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
         this.context = context;

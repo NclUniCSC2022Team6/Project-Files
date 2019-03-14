@@ -1,6 +1,10 @@
 package com.example.b6015413.usbtourteam6.Adapter;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
@@ -10,8 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.b6015413.usbtourteam6.Activities.GetDirections;
+import com.example.b6015413.usbtourteam6.Helper_Classes.DatabaseHelper;
+import com.example.b6015413.usbtourteam6.Helper_Classes.ShowRoom;
 import com.example.b6015413.usbtourteam6.R;
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
+import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 
 import java.util.List;
 import java.util.Locale;
@@ -20,10 +28,12 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context;
     List<Room> items;
+    Activity activity;
     int maxItems;
     public static final int COLAPSED_MAX = 2;
 
-    public RoomAdapter(Context context, List<Room> items, int maxItems) {
+    public RoomAdapter(Activity activity, Context context, List<Room> items, int maxItems) {
+        this.activity = activity;
         this.context = context;
         this.items = items;
         this.maxItems = maxItems;
@@ -33,7 +43,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return maxItems;
     }
 
-    public void setMaxItems(int maxItems){
+    public void setMaxItems(int maxItems) {
         this.maxItems = maxItems;
     }
 
@@ -80,6 +90,42 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             //setting font for objects
             //Find A Room
             studySpaceTxt.setTypeface(robotoLight);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    //make sure the item actually exists
+                    if (position != RecyclerView.NO_POSITION) {
+                        showMessageDialog(items.get(position));
+                        //mListener.OnItemClick(position);
+                    }
+                }
+            });
+
+        }
+
+
+        public void showMessageDialog(final Room room) {
+            if (room.getDescription().equals("None")) return;
+            AlertDialog dialog = new AlertDialog.Builder(context)
+                    .setTitle(room.getDescription() + " " + room.getName())
+                    .setMessage("Level " + room.getLevel())
+                    .setPositiveButton("Get directions", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(context, GetDirections.class);
+                            intent.putExtra("directionsTo", room.getName());
+                            context.startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("Show on map", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            new ShowRoom(activity, context, room);
+                        }
+                    })
+                    .show();
 
         }
     }

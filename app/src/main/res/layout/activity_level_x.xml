@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
     android:background="@drawable/backgroundlightgrey"
     tools:context="com.example.b6015413.usbtourteam6.Activities.LevelX">
+
+    <android.support.constraint.ConstraintLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -13,7 +19,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.01" />
+        app:layout_constraintGuide_percent="0.09" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline29"
@@ -21,7 +27,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.08" />
+        app:layout_constraintGuide_percent="0.14" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"
@@ -29,7 +35,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.31" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline3"
@@ -115,7 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tutorRoomTitle"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"></android.support.v7.widget.RecyclerView>
 
                 <Button
@@ -141,9 +147,9 @@
                     android:id="@+id/studySpaceTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="Study Spaces"
+                    android:text="@string/Study_Spaces"
                     android:textSize="24sp" />
 
                 <android.support.v7.widget.RecyclerView
@@ -151,8 +157,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/studySpaceTitle"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"></android.support.v7.widget.RecyclerView>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"/>
 
                 <Button
                     android:id="@+id/expandBtnSS"
@@ -176,9 +182,9 @@
                     android:id="@+id/otherRoomsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="Other rooms"
+                    android:text="@string/Other_Rooms"
                     android:textSize="24sp" />
 
                 <android.support.v7.widget.RecyclerView
@@ -186,8 +192,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/otherRoomsTitle"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"></android.support.v7.widget.RecyclerView>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"/>
 
                 <Button
                     android:id="@+id/expandBtnOR"
@@ -204,4 +210,20 @@
 
     </ScrollView>
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+
+    <include
+        layout="@layout/app_bar_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu" />
+
+</android.support.v4.widget.DrawerLayout>

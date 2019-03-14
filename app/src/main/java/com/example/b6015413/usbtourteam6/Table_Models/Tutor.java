@@ -5,6 +5,13 @@ public class Tutor {
     public int id;
     public String surname,firstname, room;
 
+    /**
+     *
+     * @param id
+     * @param surname
+     * @param firstName
+     * @param room
+     */
     public Tutor(int id, String surname, String firstName, String room) {
         this.id = id;
         this.surname = surname;

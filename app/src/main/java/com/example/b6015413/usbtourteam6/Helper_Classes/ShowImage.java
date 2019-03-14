@@ -28,7 +28,7 @@ public class ShowImage implements OnTouchListener {
 
 
     public ShowImage(float sx, float sy, int px, int py, ImageView imageView) {
-        matrix.postScale(sx,sy, px, py);
+        matrix.postScale(sx, sy, px, py);
         imageView.setImageMatrix(matrix);
     }
 
