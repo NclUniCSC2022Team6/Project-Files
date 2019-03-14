@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.Activities.GetDirections;
+import com.example.b6015413.usbtourteam6.Activities.Settings;
 import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 import com.example.b6015413.usbtourteam6.R;
 
@@ -82,6 +83,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             room.setTypeface(robotoLight);
             roomTxt.setTypeface(robotoLight);
             getDirections.setTypeface(robotoBlack);
+
+            name.setTextSize(Settings.fontSize);
+            surname.setTextSize(Settings.fontSize);
+            room.setTextSize(Settings.fontSize);
+            roomTxt.setTextSize(Settings.fontSize);
+            getDirections.setTextSize(Settings.fontSize);
 
         }
 

@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.Activities.FindARoom;
 import com.example.b6015413.usbtourteam6.Activities.GetDirections;
+import com.example.b6015413.usbtourteam6.Activities.Settings;
 import com.example.b6015413.usbtourteam6.Helper_Classes.DatabaseHelper;
 import com.example.b6015413.usbtourteam6.Helper_Classes.ShowRoom;
 import com.example.b6015413.usbtourteam6.R;
@@ -89,6 +90,7 @@ public class TutorRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             //setting font for objects
             //Find A Room
             tutorInfoTxt.setTypeface(robotoLight);
+            tutorInfoTxt.setTextSize(Settings.fontSize);
 
             //OnClickListener for clicking on an item
             itemView.setOnClickListener(new View.OnClickListener() {

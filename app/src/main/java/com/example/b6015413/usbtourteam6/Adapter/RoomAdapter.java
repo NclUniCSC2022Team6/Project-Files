@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.Activities.GetDirections;
+import com.example.b6015413.usbtourteam6.Activities.Settings;
 import com.example.b6015413.usbtourteam6.Helper_Classes.DatabaseHelper;
 import com.example.b6015413.usbtourteam6.Helper_Classes.ShowRoom;
 import com.example.b6015413.usbtourteam6.R;
@@ -90,6 +91,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             //setting font for objects
             //Find A Room
             studySpaceTxt.setTypeface(robotoLight);
+            studySpaceTxt.setTextSize(Settings.fontSize);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

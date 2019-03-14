@@ -9,7 +9,6 @@ public class Room {
     private String description;
 
     /**
-     *
      * @param name
      * @param level
      * @param prevRoom
@@ -25,7 +24,7 @@ public class Room {
 //        String[] rawCoords = coords.split(",");
 //        this.coords = new int[]{Integer.valueOf(rawCoords[0]), Integer.valueOf(rawCoords[1])};
 
-        this.coords = new int[]{770,1150};
+        this.coords = new int[]{770, 1150};
         this.description = description;
     }
 
@@ -77,12 +76,8 @@ public class Room {
 
         Room room = (Room) o;
 
-        if (level != room.level) return false;
         if (name != null ? !name.equals(room.name) : room.name != null) return false;
-        if (prevRoom != null ? !prevRoom.equals(room.prevRoom) : room.prevRoom != null)
-            return false;
-        if (coords != null ? !coords.equals(room.coords) : room.coords != null) return false;
-        return description != null ? description.equals(room.description) : room.description == null;
+        return true;
     }
 
     @Override

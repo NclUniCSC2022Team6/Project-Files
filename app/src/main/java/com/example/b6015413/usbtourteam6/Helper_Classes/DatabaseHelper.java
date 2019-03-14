@@ -63,12 +63,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // private helper method of onUpgrade to insert data from text files into table
     private void insertData(SQLiteDatabase db) {
         BufferedReader reader = null;
+        String mLine = "";
         try {
             reader = new BufferedReader(
                     new InputStreamReader(context.getAssets().open("Tutors.txt")));
 
             // read the file
-            String mLine;
             while ((mLine = reader.readLine()) != null) {
                 db.execSQL("INSERT INTO `Tutor` VALUES (" + mLine + ");");
             }
@@ -81,8 +81,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 db.execSQL("INSERT INTO `Room` VALUES (" + mLine + ");");
             }
 
-        } catch (IOException e) {
-            // fail quietly
+        } catch (Exception e) {
+            // throw new exception with which line caused the exception and the original exception
+            throw new IllegalArgumentException("Error with line: " + mLine + "\n" + e);
         } finally {
             if (reader != null) {
                 try {
@@ -262,8 +263,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // returns list of all rooms that are not tutor rooms or study spaces on a level
     public List<Room> getOtherRoomsOnLevel(int level) {
         List<Room> roomList = getRoomsOnLevel(level);
-        roomList.removeAll(getStudySpacesOnLevel(level));
         roomList.removeAll(getTutorRoomsOnLevel(level));
+        roomList.removeAll(getStudySpacesOnLevel(level));
         return roomList;
     }
 
@@ -313,10 +314,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    // returns list of study spaces on a level. defined as containing 'study space' in the description
+    // returns list of study spaces on a level. defined as containing 'study space|room|area' in the description
     public List<Room> getStudySpacesOnLevel(int level) {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE level = ? AND description LIKE ?", new String[]{"" + level, "%study space%"});
+        Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE level = ? AND (description LIKE ? OR description LIKE ? OR description LIKE ?)"
+                , new String[]{"" + level, "%study space%", "%Study Area%", "%Study Room%"});
         Room room;
         List<Room> roomList = new ArrayList<>();
 

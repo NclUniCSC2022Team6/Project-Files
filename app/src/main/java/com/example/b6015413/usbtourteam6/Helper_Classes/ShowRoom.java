@@ -17,6 +17,9 @@ import android.widget.Toast;
 import com.example.b6015413.usbtourteam6.R;
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
 
+/**
+ * Class to take a room, activity and context and then use the show image class to display it
+ */
 public class ShowRoom {
 
     private Activity activity;

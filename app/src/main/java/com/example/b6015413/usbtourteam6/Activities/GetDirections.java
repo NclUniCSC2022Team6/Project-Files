@@ -52,6 +52,11 @@ public class GetDirections extends AppCompatActivity {
         stairsBtn.setTypeface(robotoLight);
         elevatorBtn.setTypeface(robotoLight);
 
+        firstLocation.setTextSize(Settings.fontSize);
+        secondLocation.setTextSize(Settings.fontSize);
+        stairsBtn.setTextSize(Settings.fontSize);
+        elevatorBtn.setTextSize(Settings.fontSize);
+
         databaseHelper = new DatabaseHelper(this);
 
         // set destination as value that has been selected

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.Activities.FindARoom;
 import com.example.b6015413.usbtourteam6.Activities.GetDirections;
+import com.example.b6015413.usbtourteam6.Activities.Settings;
 import com.example.b6015413.usbtourteam6.Helper_Classes.ShowRoom;
 import com.example.b6015413.usbtourteam6.R;
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
@@ -96,6 +97,9 @@ public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             getDirectionsFARR.setTypeface(robotoBlack);
             showOnMapFARR.setTypeface(robotoBlack);
 
+            roomTextFARR.setTextSize(Settings.fontSize + 2f); // needs to be slightly bigger
+            getDirectionsFARR.setTextSize(Settings.fontSize > 20f ? 20f : Settings.fontSize); // above 20 and text overlaps
+            showOnMapFARR.setTextSize(Settings.fontSize > 20f ? 20f : Settings.fontSize);
 
         }
     }

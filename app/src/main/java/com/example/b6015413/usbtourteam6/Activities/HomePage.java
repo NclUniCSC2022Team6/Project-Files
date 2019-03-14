@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
         AssetManager am = this.getApplicationContext().getAssets();
         Typeface robotoBlack = Typeface.createFromAsset(am,String.format(Locale.UK,"fonts/%s","Roboto-Black.ttf"));
+
 
         //Toolbar (replaces action bar)
         Toolbar toolbar = findViewById(R.id.toolbar);

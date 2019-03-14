@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.Activities.GetDirections;
+import com.example.b6015413.usbtourteam6.Activities.Settings;
 import com.example.b6015413.usbtourteam6.R;
 import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 
@@ -86,6 +87,9 @@ public class SearchRowAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             //Search Row
             searchTextSR.setTypeface(robotoLight);
             getDirectionsSR.setTypeface(robotoBlack);
+
+            searchTextSR.setTextSize(Settings.fontSize);
+            getDirectionsSR.setTextSize(Settings.fontSize);
 
         }
     }

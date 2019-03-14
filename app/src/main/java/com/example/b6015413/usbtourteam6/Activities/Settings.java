@@ -26,14 +26,14 @@ import java.util.Locale;
 
 public class Settings extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    public static int fontSize = 10;
+    public static float fontSize = 22f;
 
     TextView settings, lookAndFeel, darkModeTxt, fontSizeTxt, about, appInfo, developerInfo;
     View line1, line2;
     ToggleButton darkModeBtn;
     private DrawerLayout drawer;
 
-    public static void setFontSize(int fontSize) {
+    public static void setFontSize(float fontSize) {
         Settings.fontSize = fontSize;
     }
 
