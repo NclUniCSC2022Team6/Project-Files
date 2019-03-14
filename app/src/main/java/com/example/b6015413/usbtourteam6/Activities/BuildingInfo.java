@@ -3,15 +3,16 @@ package com.example.b6015413.usbtourteam6.Activities;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.R;
@@ -23,7 +24,8 @@ import java.util.Locale;
 
 public class BuildingInfo extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    TextView title;
+    TextView title, generalInfoTxt, transportTxt;
+    Button openingHours, contactInfo, metroBtn, busBtn;
     private DrawerLayout drawer;
 
     @Override
@@ -53,10 +55,22 @@ public class BuildingInfo extends AppCompatActivity implements NavigationView.On
 
         //region findViewById's
         title = findViewById(R.id.title);
+        generalInfoTxt = findViewById(R.id.generalInfoTitle);
+        transportTxt = findViewById(R.id.transportLinksTitle);
+        openingHours = findViewById(R.id.openingHoursBtn);
+        contactInfo = findViewById(R.id.contactInfoBtn);
+        metroBtn = findViewById(R.id.metroLinkBtn);
+        busBtn = findViewById(R.id.busLinkBtn);
         //endregion
 
         //region set Typefaces
         title.setTypeface(robotoLight);
+        generalInfoTxt.setTypeface(robotoLight);
+        transportTxt.setTypeface(robotoLight);
+        openingHours.setTypeface(robotoLight);
+        contactInfo.setTypeface(robotoLight);
+        metroBtn.setTypeface(robotoLight);
+        busBtn.setTypeface(robotoLight);
         //endregion
     }
 

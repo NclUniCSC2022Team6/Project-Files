@@ -26,7 +26,7 @@ import java.util.Locale;
 
 public class Settings extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    public static float fontSize = 22f;
+    public static float fontSize = 15f;
 
     TextView settings, lookAndFeel, darkModeTxt, fontSizeTxt, about, appInfo, developerInfo;
     View line1, line2;
