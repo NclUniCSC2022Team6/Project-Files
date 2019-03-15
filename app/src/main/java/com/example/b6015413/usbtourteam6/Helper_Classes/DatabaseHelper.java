@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 
+import com.example.b6015413.usbtourteam6.Activities.Settings;
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
 import com.example.b6015413.usbtourteam6.Table_Models.Route;
 import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
@@ -29,8 +30,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
         this.context = context;
-        // uncomment to re-read data in
-        onUpgrade(getWritableDatabase(), 1, 1);
+
+        if (Settings.updateDB) // use boolean in settings to choose to update or not
+            onUpgrade(getWritableDatabase(), 1, 1);
     }
 
     // sets up tables

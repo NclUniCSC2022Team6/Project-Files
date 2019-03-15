@@ -32,7 +32,6 @@ public class FindARoom extends AppCompatActivity implements NavigationView.OnNav
 
     RecyclerView recyclerView;
     List<Room> items;
-    public static final int RADIUS = 300; // todo maybe this should be an int[] to vary based on the level
     private DrawerLayout drawer;
 
     TextView findARoomTxt;
@@ -85,6 +84,7 @@ public class FindARoom extends AppCompatActivity implements NavigationView.OnNav
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             //TODO use the query to search your data somehow
+            // TODO is this now not used
         }
     }
 

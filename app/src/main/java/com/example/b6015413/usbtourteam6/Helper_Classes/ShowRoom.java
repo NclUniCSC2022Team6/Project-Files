@@ -25,7 +25,7 @@ public class ShowRoom {
     private Activity activity;
     private Context context;
     private Room room;
-    public static final int RADIUS = 300; // todo maybe this should be an int[] to vary based on the level
+    public static final int RADIUS = 300;
 
     public ShowRoom(Activity activity, Context context, Room room) {
         this.activity = activity;

@@ -27,7 +27,9 @@ import java.util.Locale;
 
 public class Settings extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    // todo these should probs be private
     public static float fontSize = 15f;
+    public static boolean updateDB = false;
 
     TextView settings, lookAndFeel, darkModeTxt, fontSizeTxt, about, appInfo, developerInfo;
     View line1, line2;
@@ -36,6 +38,10 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
 
     public static void setFontSize(float fontSize) {
         Settings.fontSize = fontSize;
+    }
+
+    public static void setUpdateDB(boolean updateDB) {
+        Settings.updateDB = updateDB;
     }
 
     @Override

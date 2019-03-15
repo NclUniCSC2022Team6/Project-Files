@@ -111,8 +111,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public void showMessageDialog(final Room room) {
             if (room.getDescription().equals("None")) return;
             AlertDialog dialog = new AlertDialog.Builder(context)
-                    .setTitle(room.getDescription() + " " + room.getName())
-                    .setMessage("Level " + room.getLevel())
+                    .setMessage(room.getDescription() + " " + room.getName() + "\nLevel " + room.getLevel())
                     .setPositiveButton("Get directions", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -128,7 +127,15 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         }
                     })
                     .show();
+            // set size of message to bigger than text in buttons
+            TextView textView = dialog.findViewById(android.R.id.message);
+            textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
+            textView.setTextSize(Settings.fontSize + 2f);
 
+            textView = dialog.findViewById(android.R.id.button1);
+            textView.setTextSize(Settings.fontSize);
+            textView = dialog.findViewById(android.R.id.button2);
+            textView.setTextSize(Settings.fontSize);
         }
     }
 

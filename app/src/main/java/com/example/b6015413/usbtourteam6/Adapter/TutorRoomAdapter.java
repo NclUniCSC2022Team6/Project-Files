@@ -110,10 +110,8 @@ public class TutorRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         public void showMessageDialog(final Tutor tutor) {
             if (tutor.getSurname().equals("None")) return;
-            String message = "Room is: " + tutor.getRoom();
             AlertDialog dialog = new AlertDialog.Builder(context)
-                    .setTitle(tutor.getFirstname() + " " + tutor.getSurname())
-                    .setMessage(message)
+                    .setMessage(tutor.getFirstname() + " " + tutor.getSurname() + ": " + tutor.getRoom())
                     .setPositiveButton("Get directions", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -129,6 +127,16 @@ public class TutorRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         }
                     })
                     .show();
+
+            // set size of message to bigger than text in buttons
+            TextView textView = dialog.findViewById(android.R.id.message);
+            textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
+            textView.setTextSize(Settings.fontSize + 2f);
+
+            textView = dialog.findViewById(android.R.id.button1);
+            textView.setTextSize(Settings.fontSize);
+            textView = dialog.findViewById(android.R.id.button2);
+            textView.setTextSize(Settings.fontSize);
 
         }
     }
