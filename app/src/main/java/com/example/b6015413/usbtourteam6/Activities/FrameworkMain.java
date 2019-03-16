@@ -43,7 +43,7 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new HomePage.PlaceholderFragment()).commit();
+                    new HomePage()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
     }
@@ -53,19 +53,19 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
         switch (item.getItemId()) {
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new HomePage.PlaceholderFragment()).commit();
+                        new HomePage()).addToBackStack(null).commit();
                 break;
             case R.id.nav_find_room:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new FindARoom()).commit();
+                        new FindARoom()).addToBackStack(null).commit();
                 break;
             case R.id.nav_building_info:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new BuildingInfo()).commit();
+                        new BuildingInfo()).addToBackStack(null).commit();
                 break;
             case R.id.nav_settings:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Settings()).commit();
+                        new Settings()).addToBackStack(null).commit();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);

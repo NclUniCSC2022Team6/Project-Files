@@ -20,29 +20,32 @@ import com.example.b6015413.usbtourteam6.R;
 
 import java.util.Locale;
 
-public class HomePage extends AppCompatActivity{
+public class HomePage extends Fragment {
 
     Button welcomeButton, groundFloor, firstFloor, secondFloor, thirdFloor,
             fourthFloor, fifthFloor, sixthFloor, findARoom;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_home_page, container, false);
 
-        AssetManager am = this.getApplicationContext().getAssets();
+        super.onCreate(savedInstanceState);
+
+        AssetManager am = getContext().getAssets();
         Typeface robotoBlack = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Black.ttf"));
 
         //region set IDs
-        welcomeButton = findViewById(R.id.welcomeBtn);
-        groundFloor = findViewById(R.id.groundFloor);
-        firstFloor = findViewById(R.id.firstFloor);
-        secondFloor = findViewById(R.id.secondFloor);
-        thirdFloor = findViewById(R.id.thirdFloor);
-        fourthFloor = findViewById(R.id.fourthFloor);
-        fifthFloor = findViewById(R.id.fifthFloor);
-        sixthFloor = findViewById(R.id.sixthFloor);
-        findARoom = findViewById(R.id.findARoom);
+        welcomeButton = view.findViewById(R.id.welcomeBtn);
+        groundFloor = view.findViewById(R.id.groundFloor);
+        firstFloor = view.findViewById(R.id.firstFloor);
+        secondFloor = view.findViewById(R.id.secondFloor);
+        thirdFloor = view.findViewById(R.id.thirdFloor);
+        fourthFloor = view.findViewById(R.id.fourthFloor);
+        fifthFloor = view.findViewById(R.id.fifthFloor);
+        sixthFloor = view.findViewById(R.id.sixthFloor);
+        findARoom = view.findViewById(R.id.findARoom);
         //endregion
 
         //region setting Typeface
@@ -64,22 +67,23 @@ public class HomePage extends AppCompatActivity{
             Settings.setFontSize(20);
         }
 
-
         //region button clicks
 
         //test button click to make sure SearchResults page loads properly
         welcomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, BuildingInfo.class);
-                startActivity(intent);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new BuildingInfo())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
         groundFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, LevelX.class);
+                Intent intent = null;//todo new Intent(HomePage.this, LevelX.class);
                 intent.putExtra("floor value", "Ground Floor");
                 intent.putExtra("level", 0);
                 startActivity(intent);
@@ -89,7 +93,7 @@ public class HomePage extends AppCompatActivity{
         firstFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, LevelX.class);
+                Intent intent = null;//todo new Intent(HomePage.this, LevelX.class);
                 intent.putExtra("floor value", "First Floor");
                 intent.putExtra("level", 1);
                 startActivity(intent);
@@ -99,7 +103,7 @@ public class HomePage extends AppCompatActivity{
         secondFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, LevelX.class);
+                Intent intent = null;//todo new Intent(HomePage.this, LevelX.class);
                 intent.putExtra("floor value", "Second Floor");
                 intent.putExtra("level", 2);
                 startActivity(intent);
@@ -109,7 +113,7 @@ public class HomePage extends AppCompatActivity{
         thirdFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, LevelX.class);
+                Intent intent = null;//todo new Intent(HomePage.this, LevelX.class);
                 intent.putExtra("floor value", "Third Floor");
                 intent.putExtra("level", 3);
                 startActivity(intent);
@@ -119,7 +123,7 @@ public class HomePage extends AppCompatActivity{
         fourthFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, LevelX.class);
+                Intent intent = null;//todo new Intent(HomePage.this, LevelX.class);
                 intent.putExtra("floor value", "Fourth Floor");
                 intent.putExtra("level", 4);
                 startActivity(intent);
@@ -129,7 +133,7 @@ public class HomePage extends AppCompatActivity{
         fifthFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, LevelX.class);
+                Intent intent = null;//todo new Intent(HomePage.this, LevelX.class);
                 intent.putExtra("floor value", "Fifth Floor");
                 intent.putExtra("level", 5);
                 startActivity(intent);
@@ -139,7 +143,7 @@ public class HomePage extends AppCompatActivity{
         sixthFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, LevelX.class);
+                Intent intent = null;//todo new Intent(HomePage.this, LevelX.class);
                 intent.putExtra("floor value", "Sixth Floor");
                 intent.putExtra("level", 6);
                 startActivity(intent);
@@ -149,27 +153,15 @@ public class HomePage extends AppCompatActivity{
         findARoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, FindARoom.class);
-                startActivity(intent);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new FindARoom())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
         //endregion
 
-    }
-
-
-
-
-    public static class PlaceholderFragment extends Fragment {
-
-        @Nullable
-        @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                                 @Nullable Bundle savedInstanceState) {
-            View inputFragmentView = inflater.inflate(R.layout.activity_home_page, container, false);
-            getActivity().setTitle("<your title>");
-            return inputFragmentView;
-        }
+        return view;
     }
 }

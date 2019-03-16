@@ -44,7 +44,7 @@ public class Settings extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View inputFragmentView = inflater.inflate(R.layout.activity_settings, container, false);
+        View view = inflater.inflate(R.layout.activity_settings, container, false);
 
         super.onCreate(savedInstanceState);
 
@@ -54,7 +54,6 @@ public class Settings extends Fragment {
         Typeface robotoBlack = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Black.ttf"));
         //endregion
 
-        View view = inputFragmentView;
 
         //region findViewById's
         settings = view.findViewById(R.id.settingsTxt);
@@ -116,7 +115,7 @@ public class Settings extends Fragment {
 
         textSizeSeek.setProgress(Math.round(Settings.fontSize));
 
-        return inputFragmentView;
+        return view;
 
     }
 
