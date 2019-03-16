@@ -29,7 +29,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
 
     // todo these should probs be private
     public static float fontSize = 15f;
-    public static boolean updateDB = false;
+    public static boolean updateDB = true;
 
     TextView settings, lookAndFeel, darkModeTxt, fontSizeTxt, about, appInfo, developerInfo;
     View line1, line2;

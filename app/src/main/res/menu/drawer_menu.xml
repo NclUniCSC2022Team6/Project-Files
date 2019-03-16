@@ -50,6 +50,11 @@
             android:icon="@drawable/ic_panorama_fish_eye_black_24dp"
             android:title="Find a Room" />
 
+    </group>
+
+
+    <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_building_info"
             android:icon="@drawable/ic_panorama_fish_eye_black_24dp"
