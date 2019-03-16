@@ -22,7 +22,7 @@ import com.example.b6015413.usbtourteam6.R;
 
 import java.util.Locale;
 
-public class Settings extends AppCompatActivity{
+public class Settings extends Fragment {
 
     // todo these should probs be private
     public static float fontSize = 15f;
@@ -40,28 +40,33 @@ public class Settings extends AppCompatActivity{
         Settings.updateDB = updateDB;
     }
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View inputFragmentView = inflater.inflate(R.layout.activity_settings, container, false);
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
 
         //region Add fonts
-        AssetManager am = this.getApplicationContext().getAssets();
+        AssetManager am = getContext().getAssets();
         Typeface robotoLight = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Light.ttf"));
         Typeface robotoBlack = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Black.ttf"));
         //endregion
 
+        View view = getView();
+
         //region findViewById's
-        settings = findViewById(R.id.settingsTxt);
-        lookAndFeel = findViewById(R.id.lookAndFeel);
-        darkModeTxt = findViewById(R.id.darkMode);
-        darkModeBtn = findViewById(R.id.darkModeBtn);
-        fontSizeTxt = findViewById(R.id.fontSize);
-        line1 = findViewById(R.id.line1);
-        about = findViewById(R.id.about);
-        appInfo = findViewById(R.id.appInfo);
-        line2 = findViewById(R.id.line2);
-        developerInfo = findViewById(R.id.developerInfo);
+        settings = view.findViewById(R.id.settingsTxt);
+        lookAndFeel = view.findViewById(R.id.lookAndFeel);
+        darkModeTxt = view.findViewById(R.id.darkMode);
+        darkModeBtn = view.findViewById(R.id.darkModeBtn);
+        fontSizeTxt = view.findViewById(R.id.fontSize);
+        line1 = view.findViewById(R.id.line1);
+        about = view.findViewById(R.id.about);
+        appInfo = view.findViewById(R.id.appInfo);
+        line2 = view.findViewById(R.id.line2);
+        developerInfo = view.findViewById(R.id.developerInfo);
         //endregion
 
         //region setting Typefaces
@@ -90,7 +95,7 @@ public class Settings extends AppCompatActivity{
             }
         });
 
-        SeekBar textSizeSeek = findViewById(R.id.fontSizeSeekBar);
+        SeekBar textSizeSeek = view.findViewById(R.id.fontSizeSeekBar);
         textSizeSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -111,6 +116,8 @@ public class Settings extends AppCompatActivity{
 
         textSizeSeek.setProgress(Math.round(Settings.fontSize));
 
+        return inputFragmentView;
+
     }
 
     private void updateTextSize() {
@@ -122,36 +129,5 @@ public class Settings extends AppCompatActivity{
         about.setTextSize(Settings.fontSize + 5f);
         appInfo.setTextSize(Settings.fontSize + 5f);
         developerInfo.setTextSize(Settings.fontSize + 5f);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_menu, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.search_btn:
-                startActivity(new Intent(this, SearchTutor.class));
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    public static class PlaceholderFragment extends Fragment {
-
-        @Nullable
-        @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                                 @Nullable Bundle savedInstanceState) {
-            View inputFragmentView = inflater.inflate(R.layout.activity_settings, container, false);
-
-            return inputFragmentView;
-        }
     }
 }
