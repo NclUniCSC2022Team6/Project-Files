@@ -41,6 +41,9 @@ public class FindARoom extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View inputFragmentView = inflater.inflate(R.layout.activity_find_aroom, container, false);
+        // Toolbar title
+        ((FrameworkMain) getActivity())
+                .setActionBarTitle("Find a Room");
 
         Context context = getContext();
         Activity activity = getActivity();
