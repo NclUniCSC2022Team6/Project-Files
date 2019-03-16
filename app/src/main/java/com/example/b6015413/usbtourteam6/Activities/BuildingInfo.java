@@ -1,5 +1,6 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -19,30 +20,36 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Locale;
 
-public class BuildingInfo extends AppCompatActivity {
+public class BuildingInfo extends Fragment {
 
     TextView title, generalInfoTxt, transportTxt;
     Button openingHours, contactInfo, metroBtn, busBtn;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View inputFragmentView = inflater.inflate(R.layout.activity_building_info, container, false);
+
+        Context context = getContext();
+        View view = getView();
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_building_info);
 
         //region Add fonts
-        AssetManager am = this.getApplicationContext().getAssets();
+        AssetManager am = context.getAssets();
         Typeface robotoLight = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Light.ttf"));
         Typeface robotoBlack = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Black.ttf"));
         //endregion
 
         //region findViewById's
-        title = findViewById(R.id.title);
-        generalInfoTxt = findViewById(R.id.generalInfoTitle);
-        transportTxt = findViewById(R.id.transportLinksTitle);
-        openingHours = findViewById(R.id.openingHoursBtn);
-        contactInfo = findViewById(R.id.contactInfoBtn);
-        metroBtn = findViewById(R.id.metroLinkBtn);
-        busBtn = findViewById(R.id.busLinkBtn);
+        title = view.findViewById(R.id.title);
+        generalInfoTxt = view.findViewById(R.id.generalInfoTitle);
+        transportTxt = view.findViewById(R.id.transportLinksTitle);
+        openingHours = view.findViewById(R.id.openingHoursBtn);
+        contactInfo = view.findViewById(R.id.contactInfoBtn);
+        metroBtn = view.findViewById(R.id.metroLinkBtn);
+        busBtn = view.findViewById(R.id.busLinkBtn);
         //endregion
 
         //region set Typefaces
@@ -54,6 +61,8 @@ public class BuildingInfo extends AppCompatActivity {
         metroBtn.setTypeface(robotoLight);
         busBtn.setTypeface(robotoLight);
         //endregion
+
+        return inputFragmentView;
     }
 
 
@@ -62,7 +71,7 @@ public class BuildingInfo extends AppCompatActivity {
         String mLine = "";
         try {
             reader = new BufferedReader(
-                    new InputStreamReader(this.getAssets().open("BuildingInformation.txt")));
+                    new InputStreamReader(getContext().getAssets().open("BuildingInformation.txt")));
             while ((mLine = reader.readLine()) != null) {
                 // todo do something with it
             }
@@ -77,17 +86,6 @@ public class BuildingInfo extends AppCompatActivity {
                     // fail quietly
                 }
             }
-        }
-    }
-    public static class PlaceholderFragment extends Fragment {
-
-        @Nullable
-        @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                                 @Nullable Bundle savedInstanceState) {
-            View inputFragmentView = inflater.inflate(R.layout.activity_building_info, container, false);
-
-            return inputFragmentView;
         }
     }
 }
