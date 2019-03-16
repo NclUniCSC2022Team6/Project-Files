@@ -67,6 +67,9 @@ public class LevelX extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.activity_level_x, container, false);
+        // Toolbar title
+        ((FrameworkMain) getActivity())
+                .setActionBarTitle("Level IX");
         super.onCreate(savedInstanceState);
 
         context = getContext();
