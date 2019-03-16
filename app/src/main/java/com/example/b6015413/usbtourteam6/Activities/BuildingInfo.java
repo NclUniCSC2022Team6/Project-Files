@@ -32,7 +32,7 @@ public class BuildingInfo extends Fragment {
         View inputFragmentView = inflater.inflate(R.layout.activity_building_info, container, false);
 
         Context context = getContext();
-        View view = getView();
+        View view = inputFragmentView;
 
         super.onCreate(savedInstanceState);
 
@@ -62,7 +62,7 @@ public class BuildingInfo extends Fragment {
         busBtn.setTypeface(robotoLight);
         //endregion
 
-        return inputFragmentView;
+        return view;
     }
 
 

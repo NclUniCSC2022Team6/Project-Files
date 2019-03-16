@@ -57,15 +57,15 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.nav_find_room:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new FindARoom.PlaceholderFragment()).commit();
+                        new FindARoom()).commit();
                 break;
             case R.id.nav_building_info:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new BuildingInfo.PlaceholderFragment()).commit();
+                        new BuildingInfo()).commit();
                 break;
             case R.id.nav_settings:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Settings.PlaceholderFragment()).commit();
+                        new Settings()).commit();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);

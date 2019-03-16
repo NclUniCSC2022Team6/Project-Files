@@ -44,7 +44,7 @@ public class FindARoom extends Fragment {
 
         Context context = getContext();
         Activity activity = getActivity();
-        View view = getView();
+        View view = inputFragmentView;
 
         super.onCreate(savedInstanceState);
 
@@ -67,17 +67,6 @@ public class FindARoom extends Fragment {
 
         return inputFragmentView;
 
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.search_btn:
-                startActivity(new Intent(getContext(), SearchTutor.class));
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
 }
