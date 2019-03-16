@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:id="@+id/grp1" android:checkableBehavior="single" >
 
         <item
             android:id="@+id/nav_home"
@@ -53,8 +53,7 @@
     </group>
 
 
-    <group android:checkableBehavior="single">
-
+    <group android:id="@+id/grp2" android:checkableBehavior="single" >
         <item
             android:id="@+id/nav_building_info"
             android:icon="@drawable/ic_panorama_fish_eye_black_24dp"
