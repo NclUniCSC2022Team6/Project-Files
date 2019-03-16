@@ -30,6 +30,9 @@ public class HomePage extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_home_page, container, false);
+        // toolbar title
+        ((FrameworkMain) getActivity())
+                .setActionBarTitle("Home Page");
 
         super.onCreate(savedInstanceState);
 

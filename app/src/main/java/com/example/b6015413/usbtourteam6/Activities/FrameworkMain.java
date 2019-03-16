@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.b6015413.usbtourteam6.R;
 
@@ -28,8 +27,8 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
 
         //Toolbar (replaces action bar)
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Home Page Test");
         setSupportActionBar(toolbar);
+
 
         // Nav drawer, slide in
         drawer = findViewById(R.id.drawer_layout);
@@ -46,6 +45,10 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
                     new HomePage()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
+    }
+
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 
     @Override
@@ -100,4 +103,5 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
             super.onBackPressed();
         }
     }
+
 }

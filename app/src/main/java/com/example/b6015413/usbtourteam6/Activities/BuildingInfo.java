@@ -29,9 +29,14 @@ public class BuildingInfo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        // toolbar title
+        ((FrameworkMain) getActivity())
+                .setActionBarTitle("Building Information");
+
         View view = inflater.inflate(R.layout.activity_building_info, container, false);
 
         Context context = getContext();
+
 
         super.onCreate(savedInstanceState);
 

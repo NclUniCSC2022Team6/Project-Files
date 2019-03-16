@@ -45,6 +45,9 @@ public class Settings extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_settings, container, false);
+        // Toolbar title
+        ((FrameworkMain) getActivity())
+                .setActionBarTitle("Settings");
 
         super.onCreate(savedInstanceState);
 
