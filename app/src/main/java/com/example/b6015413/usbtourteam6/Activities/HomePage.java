@@ -83,70 +83,92 @@ public class HomePage extends Fragment {
         groundFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = null;//todo new Intent(HomePage.this, LevelX.class);
+
+                Intent intent = getActivity().getIntent();
                 intent.putExtra("floor value", "Ground Floor");
                 intent.putExtra("level", 0);
-                startActivity(intent);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new LevelX())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
         firstFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = null;//todo new Intent(HomePage.this, LevelX.class);
+                Intent intent = getActivity().getIntent();
                 intent.putExtra("floor value", "First Floor");
                 intent.putExtra("level", 1);
-                startActivity(intent);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new LevelX())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
         secondFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = null;//todo new Intent(HomePage.this, LevelX.class);
+                Intent intent = getActivity().getIntent();
                 intent.putExtra("floor value", "Second Floor");
                 intent.putExtra("level", 2);
-                startActivity(intent);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new LevelX())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
         thirdFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = null;//todo new Intent(HomePage.this, LevelX.class);
+                Intent intent = getActivity().getIntent();
                 intent.putExtra("floor value", "Third Floor");
                 intent.putExtra("level", 3);
-                startActivity(intent);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new LevelX())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
         fourthFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = null;//todo new Intent(HomePage.this, LevelX.class);
+                Intent intent = getActivity().getIntent();
                 intent.putExtra("floor value", "Fourth Floor");
                 intent.putExtra("level", 4);
-                startActivity(intent);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new LevelX())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
         fifthFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = null;//todo new Intent(HomePage.this, LevelX.class);
+                Intent intent = getActivity().getIntent();
                 intent.putExtra("floor value", "Fifth Floor");
                 intent.putExtra("level", 5);
-                startActivity(intent);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new LevelX())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
         sixthFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = null;//todo new Intent(HomePage.this, LevelX.class);
+                Intent intent = getActivity().getIntent();
                 intent.putExtra("floor value", "Sixth Floor");
                 intent.putExtra("level", 6);
-                startActivity(intent);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new LevelX())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
