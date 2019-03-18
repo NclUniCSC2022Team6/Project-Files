@@ -6,7 +6,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +46,7 @@ public class BuildingInfo extends Fragment {
         //endregion
 
         //region findViewById's
-        title = view.findViewById(R.id.title);
+        //title = view.findViewById(R.id.title);
         generalInfoTxt = view.findViewById(R.id.generalInfoTitle);
         transportTxt = view.findViewById(R.id.transportLinksTitle);
         openingHours = view.findViewById(R.id.openingHoursBtn);
@@ -57,7 +56,7 @@ public class BuildingInfo extends Fragment {
         //endregion
 
         //region set Typefaces
-        title.setTypeface(robotoLight);
+        //title.setTypeface(robotoLight);
         generalInfoTxt.setTypeface(robotoLight);
         transportTxt.setTypeface(robotoLight);
         openingHours.setTypeface(robotoLight);

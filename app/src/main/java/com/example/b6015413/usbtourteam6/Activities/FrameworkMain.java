@@ -15,9 +15,8 @@ import android.view.MenuItem;
 
 import com.example.b6015413.usbtourteam6.R;
 
-import java.util.Locale;
 
-public class FrameworkMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class FrameworkMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
 
     @Override
@@ -97,10 +96,11 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
 
     @Override
     public void onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+
         }
     }
 

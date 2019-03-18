@@ -1,16 +1,11 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
-import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -59,7 +54,7 @@ public class Settings extends Fragment {
 
 
         //region findViewById's
-        settings = view.findViewById(R.id.settingsTxt);
+       // settings = view.findViewById(R.id.settingsTxt);
         lookAndFeel = view.findViewById(R.id.lookAndFeel);
         darkModeTxt = view.findViewById(R.id.darkMode);
         darkModeBtn = view.findViewById(R.id.darkModeBtn);
@@ -72,7 +67,7 @@ public class Settings extends Fragment {
         //endregion
 
         //region setting Typefaces
-        settings.setTypeface(robotoLight);
+        //settings.setTypeface(robotoLight);
         lookAndFeel.setTypeface(robotoBlack);
         darkModeTxt.setTypeface(robotoLight);
         darkModeBtn.setTypeface(robotoLight);
@@ -123,7 +118,7 @@ public class Settings extends Fragment {
     }
 
     private void updateTextSize() {
-        settings.setTextSize(Settings.fontSize);
+       // settings.setTextSize(Settings.fontSize);
         lookAndFeel.setTextSize(Settings.fontSize + 5f);
         darkModeTxt.setTextSize(Settings.fontSize + 5f);
         darkModeBtn.setTextSize(Settings.fontSize + 5f);

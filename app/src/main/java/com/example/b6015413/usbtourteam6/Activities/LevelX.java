@@ -2,29 +2,17 @@ package com.example.b6015413.usbtourteam6.Activities;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.AssetManager;
-import android.graphics.Matrix;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -67,9 +55,7 @@ public class LevelX extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.activity_level_x, container, false);
-        // Toolbar title
-        ((FrameworkMain) getActivity())
-                .setActionBarTitle("Level IX");
+
         super.onCreate(savedInstanceState);
 
         context = getContext();
@@ -145,6 +131,11 @@ public class LevelX extends Fragment {
 
         //Change the layout of page based on which floor is selected
         floorSelected(floorValue);
+
+        // Toolbar title
+        // Placed here to get the floorValue.
+        ((FrameworkMain) getActivity())
+                .setActionBarTitle(floorValue);
 
         final Button button = view.findViewById(R.id.expandBtn);
         button.setOnClickListener(new View.OnClickListener() {
