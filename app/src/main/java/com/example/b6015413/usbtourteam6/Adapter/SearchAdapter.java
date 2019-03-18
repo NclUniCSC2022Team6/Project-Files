@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.Activities.GetDirections;
 import com.example.b6015413.usbtourteam6.Activities.Settings;
+import com.example.b6015413.usbtourteam6.Table_Models.Room;
 import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 import com.example.b6015413.usbtourteam6.R;
 
@@ -22,11 +23,11 @@ import java.util.Locale;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
 
     private Context context;
-    private List<Tutor> tutors;
+    private List<Room> rooms;
 
-    public SearchAdapter(Context context, List<Tutor> tutors) {
+    public SearchAdapter(Context context, List<Room> rooms) {
         this.context = context;
-        this.tutors = tutors;
+        this.rooms = rooms;
     }
 
     @Override
@@ -39,14 +40,14 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     @Override
     public void onBindViewHolder(SearchViewHolder holder, int position) {
         final int j = position;
-        holder.name.setText(tutors.get(position).getFirstname());
-        holder.surname.setText(tutors.get(position).getSurname());
-        holder.room.setText(tutors.get(position).getRoom());
+        holder.description.setText(rooms.get(position).getDescription());
+        holder.name.setText(rooms.get(position).getName());
+        holder.level.setText("Level" + rooms.get(position).getLevel());
         holder.getDirections.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, GetDirections.class);
-                intent.putExtra("directionsTo", tutors.get(j).getRoom());
+                intent.putExtra("directionsTo", rooms.get(j).getName());
                 context.startActivity(intent);
             }
         });
@@ -55,13 +56,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public int getItemCount() {
-        return tutors.size();
+        return rooms.size();
     }
 
 
     class SearchViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView name, surname, room, roomTxt;
+        public TextView description, name, level, roomTxt;
         Button getDirections;
 
         //region importing fonts
@@ -73,20 +74,20 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         public SearchViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
-            surname = itemView.findViewById(R.id.surname);
-            room = itemView.findViewById(R.id.room);
+            description = itemView.findViewById(R.id.surname);
+            level = itemView.findViewById(R.id.room);
             roomTxt = itemView.findViewById(R.id.roomTxt);
             getDirections = itemView.findViewById(R.id.getDirectionsBtn);
 
+            description.setTypeface(robotoLight);
             name.setTypeface(robotoLight);
-            surname.setTypeface(robotoLight);
-            room.setTypeface(robotoLight);
+            level.setTypeface(robotoLight);
             roomTxt.setTypeface(robotoLight);
             getDirections.setTypeface(robotoBlack);
 
+            description.setTextSize(Settings.fontSize);
             name.setTextSize(Settings.fontSize);
-            surname.setTextSize(Settings.fontSize);
-            room.setTextSize(Settings.fontSize);
+            level.setTextSize(Settings.fontSize);
             roomTxt.setTextSize(Settings.fontSize);
             getDirections.setTextSize(Settings.fontSize);
 

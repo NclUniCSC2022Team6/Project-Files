@@ -140,15 +140,9 @@ public class LevelX extends Fragment {
         final Button button = view.findViewById(R.id.expandBtn);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (floorValue.equals("Ground Floor")) {
-                    tutorRoomAdapter = new TutorRoomAdapter(activity, context, tutorRoomItems,
-                            ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX));
-                    tutorRoomRV.setAdapter(otherRoomAdapter);
-                } else {
-                    tutorRoomAdapter = new TutorRoomAdapter(activity, context, tutorRoomItems,
-                            ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX));
-                    tutorRoomRV.setAdapter(tutorRoomAdapter);
-                }
+                tutorRoomAdapter = new TutorRoomAdapter(activity, context, tutorRoomItems,
+                        ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX));
+                tutorRoomRV.setAdapter(tutorRoomAdapter);
             }
         });
 

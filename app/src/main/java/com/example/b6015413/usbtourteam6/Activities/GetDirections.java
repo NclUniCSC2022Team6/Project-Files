@@ -52,10 +52,10 @@ public class GetDirections extends AppCompatActivity {
         stairsBtn.setTypeface(robotoLight);
         elevatorBtn.setTypeface(robotoLight);
 
-        firstLocation.setTextSize(Settings.fontSize);
-        secondLocation.setTextSize(Settings.fontSize);
-        stairsBtn.setTextSize(Settings.fontSize);
-        elevatorBtn.setTextSize(Settings.fontSize);
+        firstLocation.setTextSize(Settings.fontSize + 2f);
+        secondLocation.setTextSize(Settings.fontSize + 2f);
+        stairsBtn.setTextSize(Settings.fontSize + 2f);
+        elevatorBtn.setTextSize(Settings.fontSize + 2f);
 
         databaseHelper = new DatabaseHelper(this);
 

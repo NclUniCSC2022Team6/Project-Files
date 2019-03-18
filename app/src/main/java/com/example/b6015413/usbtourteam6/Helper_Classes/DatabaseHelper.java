@@ -396,6 +396,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return room;
     }
 
+    public List<Room> getAllRoomsMatching(String input){
+        Room room;
+        List<Room> result = new ArrayList<Room>();
+        SQLiteDatabase db = getReadableDatabase();
+        input = removeSpace(input);
+        Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE rName LIKE ? OR description LIKE ?", new String[]{"%" + input + "%","%" + input + "%"});
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            room = new Room(
+                    cursor.getString(cursor.getColumnIndex("rName")),
+                    cursor.getInt(cursor.getColumnIndex("level")),
+                    cursor.getString(cursor.getColumnIndex("prevRoom")),
+                    cursor.getString(cursor.getColumnIndex("coords")),
+                    cursor.getString(cursor.getColumnIndex("description"))
+            );
+            if (!(room.getName().contains("stair") || room.getName().contains("lift"))) {
+                result.add(room);
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        db.close();
+        return result;
+    }
+
     public int[] getRoomCoords(String rName) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT coords FROM Room WHERE rName = ?", new String[]{rName});

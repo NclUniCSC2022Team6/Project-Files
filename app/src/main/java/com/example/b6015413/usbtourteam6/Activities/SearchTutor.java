@@ -74,7 +74,7 @@ public class SearchTutor extends AppCompatActivity {
             @Override
             public void onSearchStateChanged(boolean enabled) {
                 if(!enabled)
-                    adapter = new SearchAdapter(getBaseContext(),database.getTutors());
+                    adapter = new SearchAdapter(getBaseContext(),database.getAllRooms());
                 recyclerView.setAdapter(adapter);
             }
 
@@ -91,13 +91,13 @@ public class SearchTutor extends AppCompatActivity {
         });
 
         //init adatper default set all result
-        adapter = new SearchAdapter(this,database.getTutors());
+        adapter = new SearchAdapter(this,database.getAllRooms());
         recyclerView.setAdapter(adapter);
 
     }
 
     private void startSearch(String text) {
-        adapter = new SearchAdapter(this,database.getTutorByName(text));
+        adapter = new SearchAdapter(this,database.getAllRoomsMatching(text));
         recyclerView.setAdapter(adapter);
     }
 
