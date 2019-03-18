@@ -57,6 +57,55 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new HomePage()).addToBackStack(null).commit();
                 break;
+            case R.id.nav_ground_floor:
+                Intent groundF = this.getIntent();
+                groundF.putExtra("floor value", "Ground Floor");
+                groundF.putExtra("level", 0);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new LevelX()).addToBackStack(null).commit();
+                break;
+            case R.id.nav_first_floor:
+                Intent firstF = this.getIntent();
+                firstF.putExtra("floor value", "First Floor");
+                firstF.putExtra("level", 1);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new LevelX()).addToBackStack(null).commit();
+                break;
+            case R.id.nav_second_floor:
+                Intent secondF = this.getIntent();
+                secondF.putExtra("floor value", "Second Floor");
+                secondF.putExtra("level", 2);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new LevelX()).addToBackStack(null).commit();
+                break;
+            case R.id.nav_third_floor:
+                Intent thirdF = this.getIntent();
+                thirdF.putExtra("floor value", "Third Floor");
+                thirdF.putExtra("level", 3);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new LevelX()).addToBackStack(null).commit();
+                break;
+            case R.id.nav_fourth_floor:
+                Intent fourthF = this.getIntent();
+                fourthF.putExtra("floor value", "Fourth Floor");
+                fourthF.putExtra("level", 4);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new LevelX()).addToBackStack(null).commit();
+                break;
+            case R.id.nav_fifth_floor:
+                Intent fifthF = this.getIntent();
+                fifthF.putExtra("floor value", "Fifth Floor");
+                fifthF.putExtra("level", 5);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new LevelX()).addToBackStack(null).commit();
+                break;
+            case R.id.nav_sixth_floor:
+                Intent sixthF = this.getIntent();
+                sixthF.putExtra("floor value", "Sixth Floor");
+                sixthF.putExtra("level", 6);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new LevelX()).addToBackStack(null).commit();
+                break;
             case R.id.nav_find_room:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new FindARoom()).addToBackStack(null).commit();
