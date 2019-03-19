@@ -18,6 +18,14 @@
             app:layout_constraintGuide_percent="0.02" />
 
         <android.support.constraint.Guideline
+            android:id="@+id/guideline69"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp"
+            app:layout_constraintGuide_percent="0.8" />
+
+        <android.support.constraint.Guideline
             android:id="@+id/guideline9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,32 +55,6 @@
             app:layout_constraintTop_toTopOf="@+id/guideline8" />
 
         <TextView
-            android:id="@+id/darkMode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Dark Mode"
-            android:textColor="@color/darkGrey"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/guideline9"
-            app:layout_constraintTop_toBottomOf="@+id/lookAndFeel" />
-
-        <View
-            android:id="@+id/line1"
-            android:layout_width="0dp"
-            android:layout_height="1dip"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/darkGrey"
-            app:layout_constraintEnd_toStartOf="@+id/guideline10"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@id/guideline9"
-            app:layout_constraintTop_toBottomOf="@+id/darkMode"
-            app:layout_goneMarginTop="8dp" />
-
-        <TextView
             android:id="@+id/fontSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,7 +64,7 @@
             android:textColor="@color/darkGrey"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/guideline9"
-            app:layout_constraintTop_toBottomOf="@+id/line1" />
+            app:layout_constraintTop_toBottomOf="@+id/lookAndFeel" />
 
         <TextView
             android:id="@+id/about"
@@ -96,17 +78,19 @@
             app:layout_constraintStart_toStartOf="@+id/guideline9"
             app:layout_constraintTop_toBottomOf="@+id/fontSize" />
 
-        <TextView
-            android:id="@+id/appInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Application Information"
-            android:textColor="@color/darkGrey"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/guideline9"
-            app:layout_constraintTop_toBottomOf="@+id/about" />
+    <TextView
+        android:id="@+id/appInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Application Information"
+        android:textColor="@color/darkGrey"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline69"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/about" />
 
         <View
             android:id="@+id/line2"
@@ -122,40 +106,26 @@
             app:layout_constraintTop_toBottomOf="@+id/appInfo"
             app:layout_goneMarginTop="8dp" />
 
-        <TextView
-            android:id="@+id/developerInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="About The Developers"
-            android:textColor="@color/darkGrey"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/guideline9"
-            app:layout_constraintTop_toBottomOf="@+id/line2" />
-
-        <ToggleButton
-            android:id="@+id/darkModeBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@android:color/transparent"
-            android:minWidth="15dp"
-            android:minHeight="15dp"
-            android:text="Off"
-            android:textAlignment="textEnd"
-            android:textColor="@color/darkGrey"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline10"
-            app:layout_constraintTop_toBottomOf="@+id/lookAndFeel" />
+    <TextView
+        android:id="@+id/developerInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="About The Developers"
+        android:textColor="@color/darkGrey"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline69"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/line2" />
 
         <SeekBar
             android:id="@+id/fontSizeSeekBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:max="30"
@@ -166,31 +136,35 @@
             android:textColor="@color/darkGrey"
             app:layout_constraintEnd_toStartOf="@+id/guideline10"
             app:layout_constraintStart_toEndOf="@+id/fontSize"
-            app:layout_constraintTop_toBottomOf="@+id/line1" />
+            app:layout_constraintTop_toBottomOf="@+id/lookAndFeel" />
 
-        <Button
-            android:id="@+id/appInfoBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@android:drawable/ic_menu_info_details"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline10"
-            app:layout_constraintTop_toBottomOf="@+id/about" />
+    <Button
+        android:id="@+id/appInfoBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:drawable/ic_menu_info_details"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline10"
+        app:layout_constraintStart_toStartOf="@+id/guideline69"
+        app:layout_constraintTop_toBottomOf="@+id/about" />
 
-        <Button
-            android:id="@+id/developerInfoBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@android:drawable/ic_menu_info_details"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline10"
-            app:layout_constraintTop_toBottomOf="@+id/line2" />
+    <Button
+        android:id="@+id/developerInfoBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:drawable/ic_menu_info_details"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline10"
+        app:layout_constraintStart_toStartOf="@+id/guideline69"
+        app:layout_constraintTop_toBottomOf="@+id/line2" />
 
 
 </android.support.constraint.ConstraintLayout>

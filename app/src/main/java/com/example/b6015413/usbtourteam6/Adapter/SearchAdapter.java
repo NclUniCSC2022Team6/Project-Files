@@ -1,5 +1,6 @@
 package com.example.b6015413.usbtourteam6.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -13,9 +14,9 @@ import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.Activities.GetDirections;
 import com.example.b6015413.usbtourteam6.Activities.Settings;
-import com.example.b6015413.usbtourteam6.Table_Models.Room;
-import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
+import com.example.b6015413.usbtourteam6.Helper_Classes.ShowRoom;
 import com.example.b6015413.usbtourteam6.R;
+import com.example.b6015413.usbtourteam6.Table_Models.Room;
 
 import java.util.List;
 import java.util.Locale;
@@ -24,6 +25,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     private Context context;
     private List<Room> rooms;
+    List<Room> items;
+    Activity activity;
 
     public SearchAdapter(Context context, List<Room> rooms) {
         this.context = context;
@@ -33,22 +36,30 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     @Override
     public SearchViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View itemView = inflater.inflate(R.layout.layout_item, parent, false);
+        View itemView = inflater.inflate(R.layout.find_a_room_row, parent, false);
         return new SearchViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(SearchViewHolder holder, int position) {
         final int j = position;
-        holder.description.setText(rooms.get(position).getDescription());
-        holder.name.setText(rooms.get(position).getName());
-        holder.level.setText("Level" + rooms.get(position).getLevel());
+//        holder.description.setText(rooms.get(position).getDescription());
+//        holder.name.setText(rooms.get(position).getName());
+//        holder.level.setText("Level" + rooms.get(position).getLevel());
+        holder.roomTxt.setText(rooms.get(position).getDescription() + ": " + rooms.get(position).getName());
         holder.getDirections.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, GetDirections.class);
                 intent.putExtra("directionsTo", rooms.get(j).getName());
                 context.startActivity(intent);
+            }
+        });
+        //TODO fix show on map
+        holder.showOnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ShowRoom(activity, context, items.get(j));
             }
         });
 
@@ -63,7 +74,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     class SearchViewHolder extends RecyclerView.ViewHolder {
 
         public TextView description, name, level, roomTxt;
-        Button getDirections;
+        Button getDirections, showOnMap;
 
         //region importing fonts
         AssetManager am = context.getApplicationContext().getAssets();
@@ -73,23 +84,26 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
         public SearchViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.name);
-            description = itemView.findViewById(R.id.surname);
-            level = itemView.findViewById(R.id.room);
-            roomTxt = itemView.findViewById(R.id.roomTxt);
+//            name = itemView.findViewById(R.id.name);
+//            description = itemView.findViewById(R.id.surname);
+//            level = itemView.findViewById(R.id.room);
+            roomTxt = itemView.findViewById(R.id.roomText);
             getDirections = itemView.findViewById(R.id.getDirectionsBtn);
+            showOnMap = itemView.findViewById(R.id.showOnMapBtn);
 
-            description.setTypeface(robotoLight);
-            name.setTypeface(robotoLight);
-            level.setTypeface(robotoLight);
+//            description.setTypeface(robotoLight);
+//            name.setTypeface(robotoLight);
+//            level.setTypeface(robotoLight);
             roomTxt.setTypeface(robotoLight);
             getDirections.setTypeface(robotoBlack);
+            showOnMap.setTypeface(robotoBlack);
 
-            description.setTextSize(Settings.fontSize);
-            name.setTextSize(Settings.fontSize);
-            level.setTextSize(Settings.fontSize);
+//            description.setTextSize(Settings.fontSize);
+//            name.setTextSize(Settings.fontSize);
+//            level.setTextSize(Settings.fontSize);
             roomTxt.setTextSize(Settings.fontSize);
             getDirections.setTextSize(Settings.fontSize);
+            showOnMap.setTextSize(Settings.fontSize);
 
         }
 
