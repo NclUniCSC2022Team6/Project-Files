@@ -102,8 +102,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 //            name.setTextSize(Settings.fontSize);
 //            level.setTextSize(Settings.fontSize);
             roomTxt.setTextSize(Settings.fontSize);
-            getDirections.setTextSize(Settings.fontSize);
-            showOnMap.setTextSize(Settings.fontSize);
+            getDirections.setTextSize(Settings.fontSize > 21f ? 21f : Settings.fontSize); // above 21 and text overlaps
+            showOnMap.setTextSize(Settings.fontSize > 21f ? 21f : Settings.fontSize);
 
         }
 

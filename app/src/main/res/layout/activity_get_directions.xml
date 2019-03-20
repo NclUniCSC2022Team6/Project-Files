@@ -43,22 +43,14 @@
                 android:textAlignment="center"
                 android:textColor="@color/darkGrey" />
 
-            <TextView
-                android:id="@+id/separater"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/firstLocation"
-                android:text="|\n|\n|"
-                android:textAlignment="center"
-                android:textSize="5sp" />
 
-
-            <!--Need to change background to give element a border-->
+            <!--todo Need to change background to give element a border-->
             <EditText
                 android:id="@+id/secondLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/separater"
+                android:layout_below="@+id/firstLocation"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/not_clicked_button"
                 android:hint="Second location"
                 android:imeOptions="actionGo"
@@ -68,7 +60,7 @@
                 android:textColor="@color/darkGrey" />
 
 
-            <!--Need to swap these colour schemes on select-->
+            <!--todo Need to swap these colour schemes on select-->
             <Button
                 android:id="@+id/stairsBtn"
                 android:layout_width="wrap_content"
@@ -106,8 +98,6 @@
             android:padding="10dp"
             app:layout_constraintTop_toBottomOf="@+id/routePlannerRL"
             tools:layout_editor_absoluteX="10dp">
-
-            <!--Maybe a recyclerview in this layout?-->
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/getDirectionsRV"

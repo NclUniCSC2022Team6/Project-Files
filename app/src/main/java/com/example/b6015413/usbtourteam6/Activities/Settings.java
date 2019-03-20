@@ -105,13 +105,13 @@ public class Settings extends Fragment {
 
         int progress;
         switch (Math.round(Settings.fontSize)) {
-            case 1:
+            case 15:
                 progress = 1;
                 break;
-            case 2:
+            case 22:
                 progress = 2;
                 break;
-            default: // can only be 3 but default to stop compiler complaining
+            default: // can only be 30 but default to stop compiler complaining
                 progress = 3;
                 break;
         }
