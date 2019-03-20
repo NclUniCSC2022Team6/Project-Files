@@ -1,6 +1,7 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,21 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.view.View.OnClickListener;
 
 import com.example.b6015413.usbtourteam6.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 public class BuildingInfo extends Fragment {
 
     TextView title, generalInfoTxt, transportTxt;
     Button openingHours, contactInfo, metroBtn, busBtn;
-    Map<String, String> info;
 
     @Nullable
     @Override
@@ -38,7 +37,6 @@ public class BuildingInfo extends Fragment {
         View view = inflater.inflate(R.layout.activity_building_info, container, false);
 
         Context context = getContext();
-
 
         super.onCreate(savedInstanceState);
 
@@ -68,26 +66,37 @@ public class BuildingInfo extends Fragment {
         busBtn.setTypeface(robotoLight);
         //endregion
 
-        getInformation();
-        // todo set the  recyclers - maybe a info adapter?
-        view.findViewById(R.id.generalInfoRL);
-        view.findViewById(R.id.transportRL);
+        metroBtn.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+//        findARoom.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_container, new FindARoom())
+//                        .addToBackStack(null)
+//                        .commit();
+//            }
+//        });
 
         return view;
     }
 
-
     public void getInformation() {
-        info = new HashMap<>();
         BufferedReader reader = null;
         String mLine = "";
-        String[] split;
         try {
             reader = new BufferedReader(
                     new InputStreamReader(getContext().getAssets().open("BuildingInformation.txt")));
             while ((mLine = reader.readLine()) != null) {
-                split = mLine.split(":");
-                info.put(split[0], split[1]);
+                // todo do something with it
             }
         } catch (Exception e) {
             // throw new exception with which line caused the exception and the original exception
