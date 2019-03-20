@@ -1,6 +1,7 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.view.View.OnClickListener;
 
 import com.example.b6015413.usbtourteam6.R;
 
@@ -35,7 +37,6 @@ public class BuildingInfo extends Fragment {
         View view = inflater.inflate(R.layout.activity_building_info, container, false);
 
         Context context = getContext();
-
 
         super.onCreate(savedInstanceState);
 
@@ -65,9 +66,28 @@ public class BuildingInfo extends Fragment {
         busBtn.setTypeface(robotoLight);
         //endregion
 
+        metroBtn.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+//        findARoom.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_container, new FindARoom())
+//                        .addToBackStack(null)
+//                        .commit();
+//            }
+//        });
+
         return view;
     }
-
 
     public void getInformation() {
         BufferedReader reader = null;

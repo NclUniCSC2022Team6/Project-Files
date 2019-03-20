@@ -6,6 +6,8 @@ import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.ViewGroup;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -34,6 +36,9 @@ public class HomePage extends Fragment {
 
         AssetManager am = getContext().getAssets();
         Typeface robotoBlack = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Black.ttf"));
+
+
+
 
         //region set IDs
         welcomeButton = view.findViewById(R.id.welcomeBtn);
@@ -182,7 +187,6 @@ public class HomePage extends Fragment {
         });
 
         //endregion
-
         return view;
     }
 }
