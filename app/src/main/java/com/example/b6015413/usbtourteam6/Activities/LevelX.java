@@ -50,6 +50,7 @@ public class LevelX extends Fragment {
     Activity activity;
     View view;
     private DrawerLayout drawer;
+    Boolean expanded = false;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -137,12 +138,20 @@ public class LevelX extends Fragment {
         ((FrameworkMain) getActivity())
                 .setActionBarTitle(floorValue);
 
+
         final Button button = view.findViewById(R.id.expandBtn);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 tutorRoomAdapter = new TutorRoomAdapter(activity, context, tutorRoomItems,
                         ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX));
                 tutorRoomRV.setAdapter(tutorRoomAdapter);
+                if (expanded) {
+                    button.setText("Show more...");
+                    expanded = false;
+                } else {
+                    button.setText("Show less");
+                    expanded = true;
+                }
             }
         });
 
@@ -152,6 +161,13 @@ public class LevelX extends Fragment {
                 studySpaceAdapter = new RoomAdapter(activity, context, studySpaceItems,
                         ((studySpaceAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX));
                 studySpaceRV.setAdapter(studySpaceAdapter);
+                if (expanded) {
+                    buttonSS.setText("Show more...");
+                    expanded = false;
+                } else {
+                    buttonSS.setText("Show less");
+                    expanded = true;
+                }
             }
         });
 
@@ -161,6 +177,13 @@ public class LevelX extends Fragment {
                 otherRoomAdapter = new RoomAdapter(activity, context, otherRoomItems,
                         ((otherRoomAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX));
                 otherRoomsRV.setAdapter(otherRoomAdapter);
+                if (expanded) {
+                    buttonOR.setText("Show more...");
+                    expanded = false;
+                } else if (!expanded ) {
+                    buttonOR.setText("Show less");
+                    expanded = true;
+                }
             }
         });
 

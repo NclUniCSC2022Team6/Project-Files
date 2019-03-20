@@ -1,5 +1,6 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -28,7 +29,7 @@ public class BuildingInfo extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         // toolbar title
         ((FrameworkMain) getActivity())
@@ -36,7 +37,7 @@ public class BuildingInfo extends Fragment {
 
         View view = inflater.inflate(R.layout.activity_building_info, container, false);
 
-        Context context = getContext();
+        final Context context = getContext();
 
         super.onCreate(savedInstanceState);
 
@@ -66,6 +67,30 @@ public class BuildingInfo extends Fragment {
         busBtn.setTypeface(robotoLight);
         //endregion
 
+        //region Button clicks
+
+        openingHours.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog dialog = new AlertDialog.Builder(context)
+                        .setTitle("Opening Hours:")
+                        .setMessage(R.string.opening_hours)
+                        .show();
+            }
+        });
+
+        contactInfo.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog dialog = new AlertDialog.Builder(context)
+                        .setTitle("Contact Information:")
+                        .setMessage(R.string.contact_info)
+                        .show();
+            }
+        });
+        //endregion
+
+        //Metro stop button
         metroBtn.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -76,15 +101,7 @@ public class BuildingInfo extends Fragment {
         });
 
 
-//        findARoom.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getActivity().getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.fragment_container, new FindARoom())
-//                        .addToBackStack(null)
-//                        .commit();
-//            }
-//        });
+
 
         return view;
     }

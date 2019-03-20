@@ -1,5 +1,7 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -23,6 +26,7 @@ public class Settings extends Fragment {
 
     TextView settings, lookAndFeel, fontSizeTxt, about, appInfo, developerInfo;
     View line1, line2;
+    Button appInfoBtn, developerInfoBtn;
 
     public static void setFontSize(float fontSize) {
         Settings.fontSize = fontSize;
@@ -59,6 +63,8 @@ public class Settings extends Fragment {
         appInfo = view.findViewById(R.id.appInfo);
         line2 = view.findViewById(R.id.line2);
         developerInfo = view.findViewById(R.id.developerInfo);
+        appInfoBtn = view.findViewById(R.id.appInfoBtn);
+        developerInfoBtn = view.findViewById(R.id.developerInfoBtn);
         //endregion
 
         //region setting Typefaces
@@ -116,6 +122,30 @@ public class Settings extends Fragment {
                 break;
         }
         textSizeSeek.setProgress(progress);
+
+        final Context context = getContext();
+
+        //region Button clicks
+        appInfoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog dialog = new AlertDialog.Builder(context)
+                        .setTitle("Application Information:")
+                        .setMessage(R.string.app_info)
+                        .show();
+            }
+        });
+
+        developerInfoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog dialog = new AlertDialog.Builder(context)
+                        .setTitle("Developer Information:")
+                        .setMessage(R.string.developer_info)
+                        .show();
+            }
+        });
+        //endregion
 
         return view;
 
