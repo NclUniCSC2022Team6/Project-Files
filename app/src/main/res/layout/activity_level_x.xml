@@ -125,7 +125,9 @@
                     android:layout_below="@+id/tutorRV"
                     android:background="@android:color/transparent"
                     android:padding="0dp"
-                    android:text="..."
+                    android:text="Show more..."
+                    android:textAllCaps="false"
+                    android:textColor="@color/darkGrey"
                     android:textSize="10sp" />
 
             </RelativeLayout>
@@ -161,7 +163,9 @@
                     android:layout_height="20dp"
                     android:layout_below="@+id/studySpaceRV"
                     android:background="@android:color/transparent"
-                    android:text="..."
+                    android:text="Show more..."
+                    android:textAllCaps="false"
+                    android:textColor="@color/darkGrey"
                     android:textSize="10sp" />
 
             </RelativeLayout>
@@ -197,7 +201,9 @@
                     android:layout_height="20dp"
                     android:layout_below="@+id/otherRoomsRV"
                     android:background="@android:color/transparent"
-                    android:text="..."
+                    android:text="Show more..."
+                    android:textAllCaps="false"
+                    android:textColor="@color/darkGrey"
                     android:textSize="10sp" />
 
             </RelativeLayout>

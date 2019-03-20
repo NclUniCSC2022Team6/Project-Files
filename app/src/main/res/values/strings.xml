@@ -26,4 +26,74 @@
     <string name="BuildingInformation">Building Information</string>
     <string name="title_activity_maps">Map</string>
 
+    <!--Opening hours-->
+    <string name="opening_hours">
+        <b>Monday - Friday:</b> 06:00 - 23:00\n\n
+        <b>Saturday - Sunday:</b> 12:00 - 21:00
+    </string>
+
+    <!--Contact information-->
+    <string name="contact_info">
+        <b>Telephone:</b>\n\t\t0191 208 7972\n\n
+        <b>Address:</b>\n\t\tSchool Of Computing\n
+        \t\tUrban Sciences Building\n
+        \t\tNewcastle University\n
+        \t\t1 Science Square\n
+        \t\tNewcastle Helix\n
+        \t\tNewcastle Upon Tyne\n
+        \t\tNE4 5TG
+    </string>
+
+    <!--Application Information-->
+    <string name="app_info">
+        <b>Application name:</b> \n\t\tUSB Tour Guide\n\n
+        <b>Running on:</b> \n\t\tAndroid 5.0 Lollipop and above\n\n
+        <b>Version:</b> \n\t\t1.0
+    </string>
+
+    <!--Developer Information-->
+    <string name="developer_info">This application was developed by Team 6 at
+        Newcastle University by Stage 2 students in 2018/19\n\n
+        <b>The Team:</b>\n
+        \t\tT. Alvikas:\n
+        \t\t\t- Lead Tester \n
+        \t\t\t- Junior Web Developer \n\n
+
+        \t\tW. G. Comber: \n
+        \t\t\t- Team Leader \n
+        \t\t\t- Junior Tester \n
+        \t\t\t- Junior Documenter \n
+        \t\t\t- Junior Programmer \n\n
+
+        \t\tO. J. E Gilley: \n
+        \t\t\t- Lead Web Developer \n
+        \t\t\t- Junior Programmer \n\n
+
+        \t\tE. J. Goodchild: \n
+        \t\t\t- Junior Programmer \n
+        \t\t\t- Junior Documenter \n\n
+
+        \t\tJ. P. Lawrence: \n
+        \t\t\t- Lead Programmer \n
+        \t\t\t- Junior Web Developer \n\n
+
+        \t\tJ. E. P. Lowthian: \n
+        \t\t\t- Lead Designer \n
+        \t\t\t- Junior Programmer \n
+        \t\t\t- Junior Documenter \n
+        \t\t\t- Junior Researcher \n\n
+
+        \t\tI. J. Mohammed: \n
+        \t\t\t- Lead Administrator \n
+        \t\t\t- Junior Programmer \n\n
+
+        \t\tJ. E. O’Connor: \n
+        \t\t\t- Lead Researcher \n
+        \t\t\t- Junior Designer \n\n
+
+        \t\tE. R. G. R Phillips: \n
+        \t\t\t- Lead Documenter \n
+        \t\t\t- Junior Tester \n\n
+    </string>
+
 </resources>

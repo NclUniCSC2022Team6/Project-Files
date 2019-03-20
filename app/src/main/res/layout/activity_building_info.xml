@@ -26,6 +26,14 @@
         app:layout_constraintGuide_percent="0.01"/>
 
     <android.support.constraint.Guideline
+        android:id="@+id/guideline73"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.95"/>
+
+    <android.support.constraint.Guideline
         android:id="@+id/guideline13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,14 +80,17 @@
                     <Button
                         android:id="@+id/openingHoursBtn"
                         android:layout_width="match_parent"
-                        android:minWidth="0dp"
                         android:layout_height="wrap_content"
-                        android:minHeight="0dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
                         android:layout_below="@+id/generalInfoTitle"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@android:color/transparent"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
                         android:text="Opening Hours"
-                        android:background="@android:color/transparent"/>
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        android:textColor="@color/darkGrey" />
 
                     <View
                         android:id="@+id/separator"
@@ -92,14 +103,17 @@
                     <Button
                         android:id="@+id/contactInfoBtn"
                         android:layout_width="match_parent"
-                        android:minWidth="0dp"
                         android:layout_height="wrap_content"
-                        android:minHeight="0dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
                         android:layout_below="@+id/separator"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@android:color/transparent"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
                         android:text="Contact Information"
-                        android:background="@android:color/transparent"/>
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        android:textColor="@color/darkGrey" />
 
                 </RelativeLayout>
 
@@ -123,14 +137,17 @@
                     <Button
                         android:id="@+id/metroLinkBtn"
                         android:layout_width="match_parent"
-                        android:minWidth="0dp"
                         android:layout_height="wrap_content"
-                        android:minHeight="0dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
                         android:layout_below="@+id/transportLinksTitle"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@android:color/transparent"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
                         android:text="By Metro: St James Park"
-                        android:background="@android:color/transparent"/>
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        android:textColor="@color/darkGrey" />
 
                     <View
                         android:id="@+id/separator1"
@@ -143,14 +160,17 @@
                     <Button
                         android:id="@+id/busLinkBtn"
                         android:layout_width="match_parent"
-                        android:minWidth="0dp"
                         android:layout_height="wrap_content"
-                        android:minHeight="0dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
                         android:layout_below="@+id/separator1"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@android:color/transparent"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
                         android:text="By Bus: Barrack Road, St James Park"
-                        android:background="@android:color/transparent"/>
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        android:textColor="@color/darkGrey" />
 
                 </RelativeLayout>
 
