@@ -17,12 +17,15 @@ import com.example.b6015413.usbtourteam6.R;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class BuildingInfo extends Fragment {
 
     TextView title, generalInfoTxt, transportTxt;
     Button openingHours, contactInfo, metroBtn, busBtn;
+    Map<String, String> info;
 
     @Nullable
     @Override
@@ -65,18 +68,26 @@ public class BuildingInfo extends Fragment {
         busBtn.setTypeface(robotoLight);
         //endregion
 
+        getInformation();
+        // todo set the  recyclers - maybe a info adapter?
+        view.findViewById(R.id.generalInfoRL);
+        view.findViewById(R.id.transportRL);
+
         return view;
     }
 
 
     public void getInformation() {
+        info = new HashMap<>();
         BufferedReader reader = null;
         String mLine = "";
+        String[] split;
         try {
             reader = new BufferedReader(
                     new InputStreamReader(getContext().getAssets().open("BuildingInformation.txt")));
             while ((mLine = reader.readLine()) != null) {
-                // todo do something with it
+                split = mLine.split(":");
+                info.put(split[0], split[1]);
             }
         } catch (Exception e) {
             // throw new exception with which line caused the exception and the original exception

@@ -1,5 +1,6 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
@@ -7,12 +8,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.b6015413.usbtourteam6.Adapter.GetDirectionsAdapter;
@@ -103,6 +108,37 @@ public class GetDirections extends AppCompatActivity {
                 sfa = true;
                 updateRoute();
 
+            }
+        });
+        // go buttons with help from https://stackoverflow.com/questions/2577956/how-to-add-go-button-in-android-softkeyboard-and-its-functionality
+        firstLocation.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_DONE) {
+                    updateRoute();
+
+                    // hide virtual keyboard
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(firstLocation.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+
+                    return true;
+                }
+                return false;
+            }
+        });
+        secondLocation.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_DONE) {
+                    updateRoute();
+
+                    // hide virtual keyboard
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(secondLocation.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+
+                    return true;
+                }
+                return false;
             }
         });
         //endregion

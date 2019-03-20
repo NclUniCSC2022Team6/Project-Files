@@ -51,7 +51,7 @@ public class Settings extends Fragment {
 
 
         //region findViewById's
-       // settings = view.findViewById(R.id.settingsTxt);
+        // settings = view.findViewById(R.id.settingsTxt);
         lookAndFeel = view.findViewById(R.id.lookAndFeel);
         fontSizeTxt = view.findViewById(R.id.fontSize);
         line1 = view.findViewById(R.id.line1);
@@ -86,19 +86,43 @@ public class Settings extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                Settings.setFontSize(seekBar.getProgress());
+                float size;
+                switch (seekBar.getProgress()) {
+                    case 1:
+                        size = 15;
+                        break;
+                    case 2:
+                        size = 22;
+                        break;
+                    default: // can only be 3 but default to stop compiler complaining
+                        size = 30;
+                        break;
+                }
+                Settings.setFontSize(size);
                 updateTextSize();
             }
         });
 
-        textSizeSeek.setProgress(Math.round(Settings.fontSize));
+        int progress;
+        switch (Math.round(Settings.fontSize)) {
+            case 1:
+                progress = 1;
+                break;
+            case 2:
+                progress = 2;
+                break;
+            default: // can only be 3 but default to stop compiler complaining
+                progress = 3;
+                break;
+        }
+        textSizeSeek.setProgress(progress);
 
         return view;
 
     }
 
     private void updateTextSize() {
-       // settings.setTextSize(Settings.fontSize);
+        // settings.setTextSize(Settings.fontSize);
         lookAndFeel.setTextSize(Settings.fontSize + 5f);
         fontSizeTxt.setTextSize(Settings.fontSize + 5f);
         about.setTextSize(Settings.fontSize + 5f);

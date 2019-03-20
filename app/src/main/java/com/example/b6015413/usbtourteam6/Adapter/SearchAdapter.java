@@ -25,10 +25,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     private Context context;
     private List<Room> rooms;
-    List<Room> items;
     Activity activity;
 
-    public SearchAdapter(Context context, List<Room> rooms) {
+    public SearchAdapter(Activity activity, Context context, List<Room> rooms) {
+        this.activity = activity;
         this.context = context;
         this.rooms = rooms;
     }
@@ -55,11 +55,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                 context.startActivity(intent);
             }
         });
-        //TODO fix show on map
+
         holder.showOnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new ShowRoom(activity, context, items.get(j));
+                new ShowRoom(activity, context, rooms.get(j));
             }
         });
 

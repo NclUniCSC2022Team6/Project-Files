@@ -59,6 +59,16 @@ public class HomePage extends Fragment {
         findARoom.setTypeface(robotoBlack);
         //endregion
 
+        welcomeButton.setTextSize(Settings.fontSize);
+        groundFloor.setTextSize(Settings.fontSize);
+        firstFloor.setTextSize(Settings.fontSize);
+        secondFloor.setTextSize(Settings.fontSize);
+        thirdFloor.setTextSize(Settings.fontSize);
+        fourthFloor.setTextSize(Settings.fontSize);
+        fifthFloor.setTextSize(Settings.fontSize);
+        sixthFloor.setTextSize(Settings.fontSize);
+        findARoom.setTextSize(Settings.fontSize);
+
 
         Configuration c = getResources().getConfiguration();
         float scale = c.fontScale;

@@ -1,5 +1,6 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -57,9 +58,8 @@ public class SearchTutor extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 List<String> suggest = new ArrayList<>();
-                for(String search:suggestList)
-                {
-                    if(search.toLowerCase().contains(materialSearchBar.getText().toLowerCase()))
+                for (String search : suggestList) {
+                    if (search.toLowerCase().contains(materialSearchBar.getText().toLowerCase()))
                         suggest.add(search);
                 }
                 materialSearchBar.setLastSuggestions(suggest);
@@ -70,11 +70,12 @@ public class SearchTutor extends AppCompatActivity {
 
             }
         });
+        final Activity activity = this;
         materialSearchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
             @Override
             public void onSearchStateChanged(boolean enabled) {
-                if(!enabled)
-                    adapter = new SearchAdapter(getBaseContext(),database.getAllRooms());
+                if (!enabled)
+                    adapter = new SearchAdapter(activity, getBaseContext(), database.getAllRooms());
                 recyclerView.setAdapter(adapter);
             }
 
@@ -91,13 +92,13 @@ public class SearchTutor extends AppCompatActivity {
         });
 
         //init adatper default set all result
-        adapter = new SearchAdapter(this,database.getAllRooms());
+        adapter = new SearchAdapter(this, this, database.getAllRooms());
         recyclerView.setAdapter(adapter);
 
     }
 
     private void startSearch(String text) {
-        adapter = new SearchAdapter(this,database.getAllRoomsMatching(text));
+        adapter = new SearchAdapter(this, this, database.getAllRoomsMatching(text));
         recyclerView.setAdapter(adapter);
     }
 
