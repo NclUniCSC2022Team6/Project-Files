@@ -115,6 +115,29 @@
                     android:textAllCaps="false"
                     android:textColor="@color/darkGrey" />
 
+                <View
+                    android:id="@+id/separator3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:layout_below="@+id/contactInfoBtn"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/darkGrey" />
+
+                <Button
+                    android:id="@+id/cafe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/separator3"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/transparent"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:text="Eat@Urban - Cafe"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/darkGrey" />
+
             </RelativeLayout>
 
             <RelativeLayout

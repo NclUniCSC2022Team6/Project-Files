@@ -1,8 +1,6 @@
 Ground Floor ./.
 Cyber Physical Systems Laboratory
 This laboratory focuses on systems that combine hardware, software, networking and control. Research enables modules to be co-developed and co-simulated by joining them together to enhance product performance and optimisation. It is currently developing integrated systems for transport, smart grids, building infrastructure, etc.
-Eat@Urban
-The perfect space to refuel, whether it’s a formal meeting or a relaxing break, with a choice of barista coffee, deli sandwiches, paninis, jacket potatoes or snacks. It is open to staff, students and the general public from 8am to 4pm on a daily basis in term time.
 First Floor ./.
 Open Lab
 Open Lab is focussed on human interaction with computers and human-based design of computer systems. Many members of this group originate in disciplines outside computer science, including psychology, electronic engineering, clinical sciences, education, design and fine art.

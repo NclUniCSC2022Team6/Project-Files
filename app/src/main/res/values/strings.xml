@@ -44,6 +44,12 @@
         \t\tNE4 5TG
     </string>
 
+    <!--Cafe information-->
+    <string name="cafe_info">
+        The perfect space to refuel, whether it’s a formal meeting or a relaxing break, with a choice of barista coffee, deli sandwiches, paninis, jacket potatoes or snacks.
+        \n\nIt is open to staff, students and the general public from <b>8am to 4pm </b>on a daily basis in term time.
+    </string>
+
     <!--Application Information-->
     <string name="app_info">
         <b>Application name:</b> \n\t\tUSB Tour Guide\n\n

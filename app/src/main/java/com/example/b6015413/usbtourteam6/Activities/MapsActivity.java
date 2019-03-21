@@ -44,7 +44,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in location and move the camera
 //        LatLng Metro = new LatLng(54.974178, -1.620940);
-        mMap.addMarker(new MarkerOptions().position(location).title("Metro St James"));
+        mMap.addMarker(new MarkerOptions().position(location).title(getIntent().getStringExtra("title")));
 
         float zoomLevel = 16.0f; //This goes up to 21
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, zoomLevel));
