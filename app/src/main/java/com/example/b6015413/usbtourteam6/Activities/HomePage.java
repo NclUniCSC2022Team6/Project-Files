@@ -38,8 +38,6 @@ public class HomePage extends Fragment {
         Typeface robotoBlack = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Black.ttf"));
 
 
-
-
         //region set IDs
         welcomeButton = view.findViewById(R.id.welcomeBtn);
         groundFloor = view.findViewById(R.id.groundFloor);
@@ -84,6 +82,7 @@ public class HomePage extends Fragment {
         //region button clicks
 
         //test button click to make sure SearchResults page loads properly
+        // Replaces fragments
         welcomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

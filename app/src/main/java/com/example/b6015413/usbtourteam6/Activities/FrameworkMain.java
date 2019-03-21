@@ -35,11 +35,13 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //Syncs the navigation drawer
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Opens homepage if no other fragment is open
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new HomePage()).commit();
@@ -47,10 +49,13 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
         }
     }
 
+    // Sets the correct toolbar title
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }
 
+    // Provides the navigation for the navigation drawer
+    // If button is pressed, it will replace the current fragment with the one the user has pressed
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -58,6 +63,8 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new HomePage()).addToBackStack(null).commit();
                 break;
+                // Intents are used to access the correct floor
+                // putExtra is how additional info is passed through into the levelX class
             case R.id.nav_ground_floor:
                 Intent groundF = this.getIntent();
                 groundF.putExtra("floor value", "Ground Floor");
@@ -144,6 +151,7 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
     }
 
 
+    // Syncs the navigation drawer
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
