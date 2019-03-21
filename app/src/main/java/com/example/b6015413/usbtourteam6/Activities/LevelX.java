@@ -145,6 +145,7 @@ public class LevelX extends Fragment {
                 tutorRoomAdapter = new TutorRoomAdapter(activity, context, tutorRoomItems,
                         ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX));
                 tutorRoomRV.setAdapter(tutorRoomAdapter);
+                // todo if no items change text
                 if (expanded) {
                     button.setText("Show more...");
                     expanded = false;
@@ -161,6 +162,7 @@ public class LevelX extends Fragment {
                 studySpaceAdapter = new RoomAdapter(activity, context, studySpaceItems,
                         ((studySpaceAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX));
                 studySpaceRV.setAdapter(studySpaceAdapter);
+                // todo if no items change text
                 if (expanded) {
                     buttonSS.setText("Show more...");
                     expanded = false;
@@ -177,6 +179,7 @@ public class LevelX extends Fragment {
                 otherRoomAdapter = new RoomAdapter(activity, context, otherRoomItems,
                         ((otherRoomAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX));
                 otherRoomsRV.setAdapter(otherRoomAdapter);
+                // todo if no items change text
                 if (expanded) {
                     buttonOR.setText("Show more...");
                     expanded = false;

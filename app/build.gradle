@@ -36,3 +36,10 @@ dependencies {
     implementation 'com.github.mancj:MaterialSearchBar:+'
     implementation 'de.hdodenhof:circleimageview:+'
 }
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://maven.google.com"
+    }
+}

@@ -65,7 +65,7 @@ public class HomePage extends Fragment {
         //endregion
 
         welcomeButton.setTextSize(Settings.fontSize);
-        groundFloor.setTextSize(Settings.fontSize);
+        groundFloor.setTextSize(Settings. fontSize);
         firstFloor.setTextSize(Settings.fontSize);
         secondFloor.setTextSize(Settings.fontSize);
         thirdFloor.setTextSize(Settings.fontSize);

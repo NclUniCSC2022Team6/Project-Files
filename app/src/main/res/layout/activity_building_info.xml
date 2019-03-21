@@ -2,20 +2,20 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawer_layout"
+    android:background="@drawable/backgroundlightgrey"
     android:fitsSystemWindows="true"
-    tools:context="com.example.b6015413.usbtourteam6.Activities.BuildingInfo"
-    android:background="@drawable/backgroundlightgrey">
+    tools:context="com.example.b6015413.usbtourteam6.Activities.BuildingInfo">
 
     <!--Constraints-->
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.02" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline12"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.01"/>
+        app:layout_constraintGuide_percent="0.01" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline73"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.95"/>
+        app:layout_constraintGuide_percent="0.95" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline13"
@@ -39,147 +39,219 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.99"/>
+        app:layout_constraintGuide_percent="0.99" />
 
     <!--End of constraints-->
 
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline11">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline11">
 
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/generalInfoRL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:orientation="vertical">
+                android:background="@drawable/roundedbutton"
+                android:padding="5dp">
 
-                <RelativeLayout
-                    android:id="@+id/generalInfoRL"
+                <TextView
+                    android:id="@+id/generalInfoTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="General Information"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/openingHoursBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/roundedbutton"
-                    android:padding="5dp">
+                    android:layout_below="@+id/generalInfoTitle"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/transparent"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:text="Opening Hours"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/darkGrey" />
+
+                <View
+                    android:id="@+id/separator"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:layout_below="@+id/openingHoursBtn"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/darkGrey" />
+
+                <Button
+                    android:id="@+id/contactInfoBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/separator"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/transparent"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:text="Contact Information"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/darkGrey" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/transportRL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/roundedbutton"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/transportLinksTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Nearby Transport Links"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/metroLinkBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/transportLinksTitle"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/transparent"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:text="By Metro: St James Park"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/darkGrey" />
+
+                <View
+                    android:id="@+id/separator1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:layout_below="@+id/metroLinkBtn"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/darkGrey" />
+
+                <Button
+                    android:id="@+id/busLinkBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/separator1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/transparent"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:text="By Bus: Barrack Road, St James Park"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/darkGrey" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/usbGuide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/roundedbutton"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:id="@+id/floorGuidesLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/generalInfoTitle"
+                        android:id="@+id/floorGuidesTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:text="General Information"
-                        android:textSize="24sp"/>
+                        android:text="Guide to the USB"
+                        android:textSize="24sp" />
 
                     <Button
-                        android:id="@+id/openingHoursBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/generalInfoTitle"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@android:color/transparent"
-                        android:minWidth="0dp"
-                        android:minHeight="0dp"
-                        android:text="Opening Hours"
-                        android:textAlignment="viewStart"
-                        android:textAllCaps="false"
-                        android:textColor="@color/darkGrey" />
-
-                    <View
-                        android:id="@+id/separator"
-                        android:layout_width="fill_parent"
-                        android:layout_height="1dip"
-                        android:layout_marginTop="5dp"
-                        android:background="@color/darkGrey"
-                        android:layout_below="@+id/openingHoursBtn"/>
-
-                    <Button
-                        android:id="@+id/contactInfoBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/separator"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@android:color/transparent"
-                        android:minWidth="0dp"
-                        android:minHeight="0dp"
-                        android:text="Contact Information"
-                        android:textAlignment="viewStart"
-                        android:textAllCaps="false"
-                        android:textColor="@color/darkGrey" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/transportRL"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/roundedbutton"
-                    android:padding="5dp"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:id="@+id/transportLinksTitle"
+                        android:id="@+id/downFloor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:text="Nearby Transport Links"
-                        android:textSize="24sp"/>
-
-                    <Button
-                        android:id="@+id/metroLinkBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/transportLinksTitle"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
                         android:background="@android:color/transparent"
                         android:minWidth="0dp"
                         android:minHeight="0dp"
-                        android:text="By Metro: St James Park"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="-Prev"
                         android:textAlignment="viewStart"
                         android:textAllCaps="false"
                         android:textColor="@color/darkGrey" />
 
-                    <View
-                        android:id="@+id/separator1"
-                        android:layout_width="fill_parent"
-                        android:layout_height="1dip"
+                    <TextView
+                        android:id="@+id/currentFloorNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:background="@color/darkGrey"
-                        android:layout_below="@+id/metroLinkBtn"/>
+                        android:text="0"
+                        android:textSize="30sp" />
 
                     <Button
-                        android:id="@+id/busLinkBtn"
-                        android:layout_width="match_parent"
+                        android:id="@+id/upFloor"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/separator1"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
                         android:background="@android:color/transparent"
                         android:minWidth="0dp"
                         android:minHeight="0dp"
-                        android:text="By Bus: Barrack Road, St James Park"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="Next -"
                         android:textAlignment="viewStart"
                         android:textAllCaps="false"
                         android:textColor="@color/darkGrey" />
+                </LinearLayout>
 
-                </RelativeLayout>
+                <TextView
+                    android:id="@+id/currentFloorInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/floorGuidesLayout"
+                    android:layout_marginTop="5dp"
+                    android:text="This is info about the floor"
+                    android:textSize="15sp" />
 
-            </LinearLayout>
 
-        </ScrollView>
-
+            </RelativeLayout>
 
 
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </android.support.constraint.ConstraintLayout>

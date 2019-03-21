@@ -1,4 +1,27 @@
-Opening hours: Weekdays 8-10, Weekends 10-6
-Contact information: Reception phone is 0191...
-Address: Urban Sciences Building, NE1 1
-Cafe menu: See here
+Ground Floor ./.
+Cyber Physical Systems Laboratory
+This laboratory focuses on systems that combine hardware, software, networking and control. Research enables modules to be co-developed and co-simulated by joining them together to enhance product performance and optimisation. It is currently developing integrated systems for transport, smart grids, building infrastructure, etc.
+Eat@Urban
+The perfect space to refuel, whether it’s a formal meeting or a relaxing break, with a choice of barista coffee, deli sandwiches, paninis, jacket potatoes or snacks. It is open to staff, students and the general public from 8am to 4pm on a daily basis in term time.
+First Floor ./.
+Open Lab
+Open Lab is focussed on human interaction with computers and human-based design of computer systems. Many members of this group originate in disciplines outside computer science, including psychology, electronic engineering, clinical sciences, education, design and fine art.
+One of the examples of projects in the Open Lab is the ambient kitchen. This has utensils that contain instruments that communicate with the network around them allowing the kitchen to help you work out if you are stirring, cutting, how long you have been doing it for, etc. This technology might allow someone with mild dementia to get help in the kitchen and enable them to get computer aided assistance to lead a more independent life.
+Open Lab also houses the EPSRC-funded Doctoral Training Centre for Digital Civics.
+Lecture Theatre
+The Lecture Theatre has a capacity of 303 students and has the ability for the lecturer to customise what is shown on each of the projected screens. This means the lecturer can still display the lecture notes whilst they are demonstrating a piece of code or practical element of the future.
+There is a power socket at every seat and each seat has lumbar support.
+Second Floor ./.
+Reception / School Office
+The School Office contains all the Professional Services staff and the NUIT Computing Support team. This is the area where you should come and ask for help and support when required.
+Teaching Innovation Group (TIG)
+The Teaching Innovation Group aims to encourage, foster and pursue innovation in teaching. TIG run the Outreach Programme with the Computing at School initiative. This programme runs teacher training, outreach events and visits to schools. TIG are also responsible for reviewing existing degree programmes, developing employability skills and maintaining industry links.
+Third and Fourth Floor ./.
+Flat Floor Teaching
+312 Machines, with all the software that students will need for their degree. The machines run NetSupport software that allows the lecturer to send and receive files from the class. The lecturer is also able to share their screen to the students and give a lecture.
+Fifth Floor ./.
+Interdisciplinary Computing and Complex BioSystems (ICOS)
+The ICOS team have expertise in machine intelligence, complex systems and biocomputing. The problems they focus on are natural complex systems and synthetic ones. This ranges from biology, chemistry and physics, to biological engineering, healthcare and software engineering.
+Sixth Floor ./.
+Secure and Resilient Systems (SRS)
+The SRS group’s research directly contributes to creating modern information systems, networks and infrastructures. The SRS group investigates fundamental concepts, development techniques, models, architectures and mechanisms that directly contribute to making modern information systems, networks and infrastructures that are secure in all aspects. Such systems need to be resilient to malicious attacks and accidental faults to deliver services that can be justifiably trusted by their stakeholders. The Academic Centre for Excellence in Cyber Security Research is also located here.

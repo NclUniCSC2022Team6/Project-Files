@@ -14,6 +14,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private LatLng location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        location = new LatLng(getIntent().getDoubleExtra("locationLat", 0.0),
+                getIntent().getDoubleExtra("locationLng", 0.0));
     }
 
 
@@ -39,11 +42,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng Metro = new LatLng(54.974178, -1.620940);
-        mMap.addMarker(new MarkerOptions().position(Metro).title("Metro St James"));
+        // Add a marker in location and move the camera
+//        LatLng Metro = new LatLng(54.974178, -1.620940);
+        mMap.addMarker(new MarkerOptions().position(location).title("Metro St James"));
 
         float zoomLevel = 16.0f; //This goes up to 21
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Metro, zoomLevel));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, zoomLevel));
     }
 }
