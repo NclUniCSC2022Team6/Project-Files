@@ -110,8 +110,9 @@ public class BuildingInfo extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(getActivity(), MapsActivity.class);
-                                intent.putExtra("locationLat", 54.9733868); // todo get the right lat lng
-                                intent.putExtra("locationLng", -1.6257051);
+                                intent.putExtra("locationLat", 54.9735049); // todo Close enough
+                                intent.putExtra("locationLng", -1.6253759);
+                                intent.putExtra("locationTitle", "Urban Science Building");
                                 startActivity(intent);
                             }
                         })
@@ -146,6 +147,7 @@ public class BuildingInfo extends Fragment {
                 Intent intent = new Intent(getActivity(), MapsActivity.class);
                 intent.putExtra("locationLat", 54.974178);
                 intent.putExtra("locationLng", -1.620940);
+                intent.putExtra("locationTitle", "Metro Stop");
                 startActivity(intent);
             }
         });
@@ -154,9 +156,11 @@ public class BuildingInfo extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MapsActivity.class);
-                intent.putExtra("locationLat", 54.974178); // todo get the right lat lng
-                intent.putExtra("locationLng", -1.620940);
+                intent.putExtra("locationLat", 54.9766468); // todo Close enough
+                intent.putExtra("locationLng", -1.6149719);
+                intent.putExtra("locationTitle", "Bus Stop");
                 startActivity(intent);
+                intent.putExtra("level", 3);
             }
         });
 
