@@ -1,16 +1,13 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,16 +16,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import com.example.b6015413.usbtourteam6.Helper_Classes.DatabaseHelper;
-import com.example.b6015413.usbtourteam6.Helper_Classes.ShowImage;
 import com.example.b6015413.usbtourteam6.Helper_Classes.ShowRoom;
 import com.example.b6015413.usbtourteam6.R;
 
@@ -42,7 +35,7 @@ import java.util.Map;
 public class BuildingInfo extends Fragment {
 
     TextView title, generalInfoTxt, transportTxt, currentFloorNum, currentFloorInfo;
-    Button openingHours, contactInfo, metroBtn, busBtn, prevFloor, nextFloor, cafe;
+    Button openingHours, contactInfo, metroBtn, busBtn, prevFloor, nextFloor;
     Map<Integer, String> floorGuides;
 
     @Nullable
@@ -77,7 +70,6 @@ public class BuildingInfo extends Fragment {
         nextFloor = view.findViewById(R.id.upFloor);
         currentFloorNum = view.findViewById(R.id.currentFloorNumber);
         currentFloorInfo = view.findViewById(R.id.currentFloorInfo);
-        cafe = view.findViewById(R.id.cafe);
         //endregion
 
         //region set Typefaces
@@ -92,22 +84,9 @@ public class BuildingInfo extends Fragment {
         nextFloor.setTypeface(robotoLight);
         currentFloorNum.setTypeface(robotoLight);
         currentFloorInfo.setTypeface(robotoLight);
-        cafe.setTypeface(robotoLight);
         //endregion
 
-        //region set text sizes
-        generalInfoTxt.setTextSize(Settings.fontSize);
-        transportTxt.setTextSize(Settings.fontSize);
-        openingHours.setTextSize(Settings.fontSize);
-        contactInfo.setTextSize(Settings.fontSize);
-        metroBtn.setTextSize(Settings.fontSize);
-        busBtn.setTextSize(Settings.fontSize);
-        prevFloor.setTextSize(Settings.fontSize);
-        nextFloor.setTextSize(Settings.fontSize);
-        currentFloorNum.setTextSize(Settings.fontSize);
-        currentFloorInfo.setTextSize(Settings.fontSize);
-        cafe.setTextSize(Settings.fontSize);
-        //endregion
+        // todo font sizes
 
         //region Button clicks
 
@@ -133,7 +112,6 @@ public class BuildingInfo extends Fragment {
                                 Intent intent = new Intent(getActivity(), MapsActivity.class);
                                 intent.putExtra("locationLat", 54.9733868); // todo get the right lat lng
                                 intent.putExtra("locationLng", -1.6257051);
-                                intent.putExtra("title", "Urban Sciences Building");
                                 startActivity(intent);
                             }
                         })
@@ -168,7 +146,6 @@ public class BuildingInfo extends Fragment {
                 Intent intent = new Intent(getActivity(), MapsActivity.class);
                 intent.putExtra("locationLat", 54.974178);
                 intent.putExtra("locationLng", -1.620940);
-                intent.putExtra("title", "Metro St James");
                 startActivity(intent);
             }
         });
@@ -179,49 +156,7 @@ public class BuildingInfo extends Fragment {
                 Intent intent = new Intent(getActivity(), MapsActivity.class);
                 intent.putExtra("locationLat", 54.974178); // todo get the right lat lng
                 intent.putExtra("locationLng", -1.620940);
-                intent.putExtra("title", "Bus");
                 startActivity(intent);
-            }
-        });
-
-        final Activity activity = getActivity();
-
-        cafe.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog dialog = new AlertDialog.Builder(context)
-                        .setTitle("Eat@Urban Cafe")
-                        .setMessage(R.string.cafe_info) // todo this is some random menu i found on the internet
-                        .setPositiveButton("View menu", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Dialog builder = new Dialog(context);
-                                builder.getWindow().setBackgroundDrawable(
-                                        new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-
-                                // region get id of level floor plan
-                                ImageView imageView = new ImageView(context);
-                                int id = R.drawable.cafe_menu;
-
-                                // variables to zoom out and move floor plan to centre
-                                float scale = 0.3f;
-                                int py = activity.getWindow().getDecorView().getHeight() / 4;
-                                int px = activity.getWindow().getDecorView().getWidth() / 10;
-
-                                builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                                imageView.setImageDrawable(activity.getDrawable(id));
-
-                                imageView.setScaleType(ImageView.ScaleType.MATRIX);
-                                imageView.setOnTouchListener(new ShowImage(scale, scale, px, py, imageView));
-
-                                builder.addContentView(imageView, new RelativeLayout.LayoutParams(
-                                        ViewGroup.LayoutParams.MATCH_PARENT,
-                                        ViewGroup.LayoutParams.MATCH_PARENT));
-                                builder.show();
-                            }
-                        })
-                        .show();
             }
         });
 

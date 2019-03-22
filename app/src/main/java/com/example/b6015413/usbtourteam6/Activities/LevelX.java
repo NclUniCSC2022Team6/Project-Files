@@ -134,7 +134,7 @@ public class LevelX extends Fragment {
         floorSelected(floorValue);
 
         // Toolbar title
-        // Placed here to get the floorValue.
+        // Placed here to get the floorValue for the toolbar title.
         ((FrameworkMain) getActivity())
                 .setActionBarTitle(floorValue);
 
