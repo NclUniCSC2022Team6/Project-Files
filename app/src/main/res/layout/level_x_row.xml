@@ -14,10 +14,10 @@
         android:textSize="15sp" />
 
     <View
+        android:id="@+id/divisor"
         android:layout_width="fill_parent"
         android:layout_height="1dip"
         android:layout_marginTop="5dp"
         android:background="@color/darkGrey" />
-
 
 </LinearLayout>
