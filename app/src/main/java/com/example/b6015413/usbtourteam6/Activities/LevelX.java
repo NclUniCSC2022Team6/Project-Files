@@ -72,6 +72,9 @@ public class LevelX extends Fragment {
         //endregion
 
         //region findViewByIDs
+        final Button button = view.findViewById(R.id.expandBtn);
+        final Button buttonSS = view.findViewById(R.id.expandBtnSS);
+        final Button buttonOR = view.findViewById(R.id.expandBtnOR);
         levelX = view.findViewById(R.id.levelXTxt);
         tutorRoomsTitle = view.findViewById(R.id.tutorRoomTitle);
         studySpacesTitle = view.findViewById(R.id.studySpaceTitle);
@@ -97,19 +100,29 @@ public class LevelX extends Fragment {
         expandBtnOR.setTypeface(robotoLight);
         //endregion
 
+        //region setting button font sizes // todo make it so when large doesnt break
+        button.setTextSize(Settings.fontSize - 5f);
+        buttonSS.setTextSize(Settings.fontSize - 5f);
+        buttonOR.setTextSize(Settings.fontSize - 5f);
+
         // get items from database
         DatabaseHelper dbHelper = new DatabaseHelper(context);
         tutorRoomItems = dbHelper.getTutorOnLevel(level);
         studySpaceItems = dbHelper.getStudySpacesOnLevel(level);
         otherRoomItems = dbHelper.getOtherRoomsOnLevel(level);
 
-        if (tutorRoomItems.isEmpty())
+        if (tutorRoomItems.isEmpty()) {
             tutorRoomItems.add(new Tutor(0, "None", "", "no tutor rooms on this floor"));
-        if (studySpaceItems.isEmpty())
+            button.setText("");
+        }
+        if (studySpaceItems.isEmpty()) {
             studySpaceItems.add(new Room("no study spaces on this floor", 0, "", "0,0", "None"));
-        if (otherRoomItems.isEmpty())
+            buttonSS.setText("");
+        }
+        if (otherRoomItems.isEmpty()) {
             otherRoomItems.add(new Room("no other rooms on this floor", 0, "", "0,0", "None"));
-
+            buttonOR.setText("");
+        }
         //region RecyclerViews
         //Tutor Rooms RV
         tutorRoomRV = view.findViewById(R.id.tutorRV);
@@ -144,53 +157,61 @@ public class LevelX extends Fragment {
                 .setActionBarTitle(floorValue);
 
 
-        final Button button = view.findViewById(R.id.expandBtn);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 tutorRoomAdapter = new TutorRoomAdapter(activity, context, tutorRoomItems,
                         ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX),floorValue);
                 tutorRoomRV.setAdapter(tutorRoomAdapter);
-                // todo if no items change text
-                if (expanded) {
-                    button.setText("Show more...");
-                    expanded = false;
+                if (tutorRoomItems.size() == 1 && tutorRoomItems.get(0).getSurname().equals("None")) {
+                    return;
                 } else {
-                    button.setText("Show less");
-                    expanded = true;
+                    if (expanded) {
+                        button.setText("Show more...");
+                        expanded = false;
+                    } else {
+                        button.setText("Show less");
+                        expanded = true;
+                    }
                 }
             }
         });
 
-        final Button buttonSS = view.findViewById(R.id.expandBtnSS);
+
         buttonSS.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 studySpaceAdapter = new RoomAdapter(activity, context, studySpaceItems,
                         ((studySpaceAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX), floorValue);
                 studySpaceRV.setAdapter(studySpaceAdapter);
-                // todo if no items change text
-                if (expanded) {
-                    buttonSS.setText("Show more...");
-                    expanded = false;
+                if (studySpaceItems.size() == 1 && studySpaceItems.get(0).getDescription().equals("None")) {
+                    return;
                 } else {
-                    buttonSS.setText("Show less");
-                    expanded = true;
+                    if (expanded) {
+                        buttonSS.setText("Show more...");
+                        expanded = false;
+                    } else {
+                        buttonSS.setText("Show less");
+                        expanded = true;
+                    }
                 }
             }
         });
 
-        final Button buttonOR = view.findViewById(R.id.expandBtnOR);
+
         buttonOR.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 otherRoomAdapter = new RoomAdapter(activity, context, otherRoomItems,
                         ((otherRoomAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX), floorValue);
                 otherRoomsRV.setAdapter(otherRoomAdapter);
-                // todo if no items change text
-                if (expanded) {
-                    buttonOR.setText("Show more...");
-                    expanded = false;
-                } else if (!expanded ) {
-                    buttonOR.setText("Show less");
-                    expanded = true;
+                if (otherRoomItems.size() == 1 && otherRoomItems.get(0).getDescription().equals("None")) {
+                    return;
+                } else {
+                    if (expanded) {
+                        buttonOR.setText("Show more...");
+                        expanded = false;
+                    } else if (!expanded) {
+                        buttonOR.setText("Show less");
+                        expanded = true;
+                    }
                 }
             }
         });
