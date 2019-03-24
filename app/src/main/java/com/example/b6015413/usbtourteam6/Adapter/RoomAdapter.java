@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -16,11 +17,9 @@ import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.Activities.GetDirections;
 import com.example.b6015413.usbtourteam6.Activities.Settings;
-import com.example.b6015413.usbtourteam6.Helper_Classes.DatabaseHelper;
 import com.example.b6015413.usbtourteam6.Helper_Classes.ShowRoom;
 import com.example.b6015413.usbtourteam6.R;
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
-import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 
 import java.util.List;
 import java.util.Locale;
@@ -31,13 +30,15 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     List<Room> items;
     Activity activity;
     int maxItems;
+    String floorValue;
     public static final int COLAPSED_MAX = 2;
 
-    public RoomAdapter(Activity activity, Context context, List<Room> items, int maxItems) {
+    public RoomAdapter(Activity activity, Context context, List<Room> items, int maxItems, String floorValue) {
         this.activity = activity;
         this.context = context;
         this.items = items;
         this.maxItems = maxItems;
+        this.floorValue = floorValue;
     }
 
     public int getMaxItems() {
@@ -77,6 +78,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public class Item extends RecyclerView.ViewHolder {
         //defining objects in the custom row xml files
         TextView studySpaceTxt;
+        View view;
 
         //adding font for recycler view to use
         AssetManager am = context.getApplicationContext().getAssets();
@@ -87,11 +89,14 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             //findViewById for all objects defined above
             //Find A Room
             studySpaceTxt = itemView.findViewById(R.id.infoTxt);
+            view = itemView.findViewById(R.id.divisor);
 
             //setting font for objects
             //Find A Room
             studySpaceTxt.setTypeface(robotoLight);
             studySpaceTxt.setTextSize(Settings.fontSize);
+
+            setTextColour(floorValue);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -137,6 +142,15 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             textView = dialog.findViewById(android.R.id.button2);
             textView.setTextSize(Settings.fontSize);
         }
+
+        void setTextColour(String floorValue) {
+            if (floorValue.equals("Sixth Floor")) {
+                studySpaceTxt.setTextColor(Color.WHITE);
+                view.setBackgroundColor(Color.WHITE);
+            }
+        }
     }
+
+
 
 }

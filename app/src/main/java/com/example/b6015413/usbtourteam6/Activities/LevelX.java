@@ -37,7 +37,7 @@ public class LevelX extends Fragment {
 
     TextView levelX, tutorRoomsTitle, studySpacesTitle, otherRoomsTitle;
     RecyclerView tutorRoomRV, studySpaceRV, otherRoomsRV;
-    Button floorPlan, expandBtn;
+    Button floorPlan, expandBtn, expandBtnSS, expandBtnOR;
     List<Tutor> tutorRoomItems;
     List<Room> studySpaceItems;
     List<Room> otherRoomItems;
@@ -78,6 +78,8 @@ public class LevelX extends Fragment {
         otherRoomsTitle = view.findViewById(R.id.otherRoomsTitle);
         floorPlan = view.findViewById(R.id.floorPlanBtn);
         expandBtn = view.findViewById(R.id.expandBtn);
+        expandBtnSS = view.findViewById(R.id.expandBtnSS);
+        expandBtnOR = view.findViewById(R.id.expandBtnOR);
         tutorRoomsRL = view.findViewById(R.id.tutorRoomsRL);
         studySpacesRL = view.findViewById(R.id.studySpacesRL);
         otherRoomsRL = view.findViewById(R.id.otherRoomsRL);
@@ -90,6 +92,9 @@ public class LevelX extends Fragment {
         otherRoomsTitle.setTypeface(robotoLight);
         levelX.setTypeface(robotoLight);
         floorPlan.setTypeface(robotoLight);
+        expandBtn.setTypeface(robotoLight);
+        expandBtnSS.setTypeface(robotoLight);
+        expandBtnOR.setTypeface(robotoLight);
         //endregion
 
         // get items from database
@@ -111,14 +116,14 @@ public class LevelX extends Fragment {
         //set the layout of the recycler view as the
         tutorRoomRV.setLayoutManager(new LinearLayoutManager(context));
         //populate the recycler view with this class as context and items as data
-        tutorRoomAdapter = new TutorRoomAdapter(activity, context, tutorRoomItems, TutorRoomAdapter.COLAPSED_MAX);
+        tutorRoomAdapter = new TutorRoomAdapter(activity, context, tutorRoomItems, TutorRoomAdapter.COLAPSED_MAX, floorValue);
         tutorRoomRV.setAdapter(tutorRoomAdapter);
 
         //Study Spaces RV
         studySpaceRV = view.findViewById(R.id.studySpaceRV);
         studySpaceRV.setLayoutManager(new LinearLayoutManager(context));
 
-        studySpaceAdapter = new RoomAdapter(activity, context, studySpaceItems, RoomAdapter.COLAPSED_MAX);
+        studySpaceAdapter = new RoomAdapter(activity, context, studySpaceItems, RoomAdapter.COLAPSED_MAX, floorValue);
         studySpaceRV.setAdapter(studySpaceAdapter);
         //endregion
 
@@ -127,7 +132,7 @@ public class LevelX extends Fragment {
         //set the layout of the recycler view as the
         otherRoomsRV.setLayoutManager(new LinearLayoutManager(context));
         //populate the recycler view with this class as context and items as data
-        otherRoomAdapter = new RoomAdapter(activity, context, otherRoomItems, RoomAdapter.COLAPSED_MAX);
+        otherRoomAdapter = new RoomAdapter(activity, context, otherRoomItems, RoomAdapter.COLAPSED_MAX, floorValue);
         otherRoomsRV.setAdapter(otherRoomAdapter);
 
         //Change the layout of page based on which floor is selected
@@ -143,7 +148,7 @@ public class LevelX extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 tutorRoomAdapter = new TutorRoomAdapter(activity, context, tutorRoomItems,
-                        ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX));
+                        ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX),floorValue);
                 tutorRoomRV.setAdapter(tutorRoomAdapter);
                 // todo if no items change text
                 if (expanded) {
@@ -160,7 +165,7 @@ public class LevelX extends Fragment {
         buttonSS.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 studySpaceAdapter = new RoomAdapter(activity, context, studySpaceItems,
-                        ((studySpaceAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX));
+                        ((studySpaceAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX), floorValue);
                 studySpaceRV.setAdapter(studySpaceAdapter);
                 // todo if no items change text
                 if (expanded) {
@@ -177,7 +182,7 @@ public class LevelX extends Fragment {
         buttonOR.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 otherRoomAdapter = new RoomAdapter(activity, context, otherRoomItems,
-                        ((otherRoomAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX));
+                        ((otherRoomAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX), floorValue);
                 otherRoomsRV.setAdapter(otherRoomAdapter);
                 // todo if no items change text
                 if (expanded) {
@@ -252,7 +257,6 @@ public class LevelX extends Fragment {
 
     private void floorSelected(String floorValue) {
 
-
         //change text at top of page
         levelX.setText(floorValue);
 
@@ -293,11 +297,21 @@ public class LevelX extends Fragment {
                 floorPlan.setBackground(activity.getDrawable(R.drawable.floorplangreen));
                 break;
             case "Sixth Floor":
-                tutorRoomsRL.setBackground(activity.getDrawable(R.drawable.green_rounded));
-                studySpacesRL.setBackground(activity.getDrawable(R.drawable.green_rounded));
-                otherRoomsRL.setBackground(activity.getDrawable(R.drawable.green_rounded));
-                floorPlan.setBackground(activity.getDrawable(R.drawable.floorplangreen));
+                tutorRoomsRL.setBackground(activity.getDrawable(R.drawable.dark_green_rounded));
+                studySpacesRL.setBackground(activity.getDrawable(R.drawable.dark_green_rounded));
+                otherRoomsRL.setBackground(activity.getDrawable(R.drawable.dark_green_rounded));
+                floorPlan.setBackground(activity.getDrawable(R.drawable.floorplandarkgreen));
+                changeTextColour();
                 break;
         }
+    }
+
+    private void changeTextColour() {
+        tutorRoomsTitle.setTextColor(getResources().getColor(R.color.white));
+        studySpacesTitle.setTextColor(getResources().getColor(R.color.white));
+        otherRoomsTitle.setTextColor(getResources().getColor(R.color.white));
+        expandBtn.setTextColor(getResources().getColor(R.color.white));
+        expandBtnSS.setTextColor(getResources().getColor(R.color.white));
+        expandBtnOR.setTextColor(getResources().getColor(R.color.white));
     }
 }
