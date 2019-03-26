@@ -57,6 +57,50 @@
         <b>Version:</b> \n\t\t1.0
     </string>
 
+    <!--Tour guide text-->
+
+    <string name="groundFloorTourText">
+    <b>Cyber Physical Systems Laboratory</b>\n
+    This laboratory focuses on systems that combine hardware, software, networking and control. Research enables modules to be co-developed and co-simulated by joining them together to enhance product performance and optimisation. It is currently developing integrated systems for transport, smart grids, building infrastructure, etc.
+    </string>
+    <string name="firstFloorTourText">
+    <b>Open Lab</b>\n
+    Open Lab is focussed on human interaction with computers and human-based design of computer systems. Many members of this group originate in disciplines outside computer science, including psychology, electronic engineering, clinical sciences, education, design and fine art.
+    One of the examples of projects in the Open Lab is the ambient kitchen. This has utensils that contain instruments that communicate with the network around them allowing the kitchen to help you work out if you are stirring, cutting, how long you have been doing it for, etc. This technology might allow someone with mild dementia to get help in the kitchen and enable them to get computer aided assistance to lead a more independent life.
+    Open Lab also houses the EPSRC-funded Doctoral Training Centre for Digital Civics.\n
+    <b>Lecture Theatre</b>\n
+    The Lecture Theatre has a capacity of 303 students and has the ability for the lecturer to customise what is shown on each of the projected screens. This means the lecturer can still display the lecture notes whilst they are demonstrating a piece of code or practical element of the future.
+    There is a power socket at every seat and each seat has lumbar support.</string>
+    <string name="secondFloorTourText">
+    <b>Reception / School Office</b>\n
+    The School Office contains all the Professional Services staff and the NUIT Computing Support
+    team. This is the area where you should come and ask for help and support when required.\n
+    <b>Teaching Innovation Group (TIG)</b>\n
+    The Teaching Innovation Group aims to encourage, foster and pursue innovation in teaching. TIG
+    run the Outreach Programme with the Computing at School initiative. This programme runs teacher
+    training, outreach events and visits to schools. TIG are also responsible for reviewing existing
+    degree programmes, developing employability skills and maintaining industry links.</string>
+
+    <string name="threeFourFloorTourText"> <b>Flat Floor Teaching</b>\n
+    312 Machines, with all the software that students will need for their degree. The machines run
+    NetSupport software that allows the lecturer to send and receive files from the class. The
+    lecturer is also able to share their screen to the students and give a lecture.</string>
+
+    <string name="fifthFloorTourText"><b>Interdisciplinary Computing and Complex BioSystems (ICOS)</b>\n
+    The ICOS team have expertise in machine intelligence, complex systems and biocomputing. The
+    problems they focus on are natural complex systems and synthetic ones. This ranges from biology,
+    chemistry and physics, to biological engineering, healthcare and software engineering.</string>
+
+    <string name="sixthFloorTourText"><b>Secure and Resilient Systems (SRS)</b>\n
+    The SRS group’s research directly contributes to creating modern information systems, networks
+    and infrastructures. The SRS group investigates fundamental concepts, development techniques,
+    models, architectures and mechanisms that directly contribute to making modern information
+    systems, networks and infrastructures that are secure in all aspects. Such systems need to be
+    resilient to malicious attacks and accidental faults to deliver services that can be justifiably
+    trusted by their stakeholders. The Academic Centre for Excellence in Cyber Security Research is
+    also located here.</string>
+
+
     <!--Developer Information-->
     <string name="developer_info">This application was developed by Team 6 at
         Newcastle University by Stage 2 students in 2018/19\n\n

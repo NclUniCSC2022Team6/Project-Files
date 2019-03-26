@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
+import android.widget.Toast;
 
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
 import com.example.b6015413.usbtourteam6.Table_Models.Route;
@@ -15,11 +16,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
+    private Set<Route> routeList = new HashSet<>();
 
     private static final String DB_NAME = "TourSys.db";
 
@@ -33,7 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, 1);
         this.context = context;
         // uncomment to re-read data in
-        onUpgrade(getWritableDatabase(), 1, 1);
+        //onUpgrade(getWritableDatabase(), 1, 1);
     }
 
     // sets up tables
@@ -63,16 +68,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //private method that inserts data from a specific text file to a specific table
-    private void insertTableData(SQLiteDatabase db, String table, String file){
+    private void insertTableData(SQLiteDatabase db, String table, String file) {
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(
-                    new InputStreamReader(context.getAssets().open(file +".txt")));
+                    new InputStreamReader(context.getAssets().open(file + ".txt")));
 
             // read the file
             String mLine;
             while ((mLine = reader.readLine()) != null) {
-                db.execSQL("INSERT INTO `"+ table +"` VALUES (" + mLine + ");");
+                db.execSQL("INSERT INTO `" + table + "` VALUES (" + mLine + ");");
             }
         } catch (IOException e) {
             // fail quietly
@@ -95,74 +100,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // private helper method to export database to a textfile
-    public void addAllRoutesToDB(){
+    public void addAllRoutesToDB() {
 
-        List<Room> rooms =  getAllRooms();
-        List<String> routes = new ArrayList<>();
+        List<Room> rooms = getAllRooms();
 
-        for(int i = 0; i< rooms.size(); i++){
-            for(int x = 0; x<rooms.size(); x++){
-                String from = rooms.get(i).toString(), to = rooms.get(x).toString();
-                String route = null;
+        for (int i = 0; i < rooms.size(); i++) {
+            for (int x = 0; x < rooms.size(); x++) {
+                String from = rooms.get(i).getName(), to = rooms.get(x).getName();
 
-                if(i != x){
-
+                if (i != x) {
                     getRoute(from, to, false);
                     getRoute(from, to, true);
                 }
-
-            }
-
-        }
-
-
-
-
-        //TODO Export route data when getAllRoutes() exists
-
-
-    }
-
-    private void exportTableData(String Table, String file, String[] data){
-        FileWriter writer = null;
-        //throw new IllegalArgumentException(this.context.getFileStreamPath("Room.txt").getAbsolutePath());
-        try {
-
-            writer = new FileWriter(context.getFileStreamPath(file+".txt"));
-//            writer = new FileWriter(new File("/data/user/0/com.example.USBTourTeam6/files/"+ file+".txt"));
-            //    writer = new FileWriter(new File(context.getFilesDir().getPath()+ file+".txt"));
-            for(int i =0; i < data.length; i++){
-                writer.write(data[i] + "\n");
-            }
-
-
-        } catch (IOException e) {
-            // fail quietly
-        } finally {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                    // fail quietly
-                }
             }
         }
-
+        exportTableData("Route", new ArrayList<Route>(routeList));
+        throw new IllegalArgumentException("done");
     }
 
-    private void exportTableData(String Table, String file, List<String> data){
+    private void exportTableData(String file, List<Route> data) {
         FileWriter writer = null;
-        //throw new IllegalArgumentException(this.context.getFileStreamPath("Room.txt").getAbsolutePath());
         try {
 
-            writer = new FileWriter(context.getFileStreamPath(file+".txt"));
-//            writer = new FileWriter(new File("/data/user/0/com.example.USBTourTeam6/files/"+ file+".txt"));
-            //    writer = new FileWriter(new File(context.getFilesDir().getPath()+ file+".txt"));
-            for(int i =0; i < data.size(); i++){
-                writer.write(data.get(i) + "\n");
+            writer = new FileWriter(context.getFileStreamPath(file + ".txt"));
+            for (int i = 0; i < data.size(); i++) {
+                writer.write(data.get(i).toString() + "\n");
             }
-
-
         } catch (IOException e) {
             // fail quietly
         } finally {
@@ -180,6 +143,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // endregion
 
     // region methods to return results from the database
+
+
+    public List<Route> getAllRoutes() {
+        Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM Route", new String[]{});
+        List<Route> routes = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                Route route = new Route(
+                        (cursor.getString(cursor.getColumnIndex("rTo"))),
+                        (cursor.getString(cursor.getColumnIndex("rFrom"))),
+                        (cursor.getString(cursor.getColumnIndex("route"))));
+
+                routes.add(route);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return routes;
+    }
 
     // returns list of get all tutors
     public List<Tutor> getTutors() {
@@ -477,6 +458,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return room;
     }
 
+    // return all rooms matching inputted name
+    public List<Room> getAllRoomsMatching(String input) {
+        Room room;
+        List<Room> result = new ArrayList<Room>();
+        SQLiteDatabase db = getReadableDatabase();
+        input = removeSpace(input);
+        Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE rName LIKE ? OR description LIKE ?", new String[]{"%" + input + "%", "%" + input + "%"});
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            room = new Room(
+                    cursor.getString(cursor.getColumnIndex("rName")),
+                    cursor.getInt(cursor.getColumnIndex("level")),
+                    cursor.getString(cursor.getColumnIndex("prevRoom")),
+                    cursor.getString(cursor.getColumnIndex("coords")),
+                    cursor.getString(cursor.getColumnIndex("description"))
+            );
+            if (!(room.getName().contains("stair") || room.getName().contains("lift"))) {
+                result.add(room);
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        db.close();
+        return result;
+    }
+
+
     public int[] getRoomCoords(String rName) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT coords FROM Room WHERE rName = ?", new String[]{rName});
@@ -507,6 +515,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             btc.add(prevRoom);
             from = prevRoom;
         }
+        if (btc.contains(null))
+            throw new IllegalArgumentException("somehow null " + from.toString());
         return btc;
     }
 
@@ -519,17 +529,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             fromPoint--;
             toPoint--;
         }
-        return btcFrom.get(fromPoint + 1);
+        try {
+            return btcFrom.get(fromPoint + 1);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalArgumentException(Arrays.toString(btcFrom.toArray()) + "\n" + Arrays.toString(btcTo.toArray()));
+        }
     }
 
     // private helper method for routeNav
     private Route getRouteHelper(Route route, SQLiteDatabase db) {
-        Cursor cursor = db.rawQuery("SELECT * FROM Route WHERE rFrom = ? AND rTo = ?", new String[]{route.getFrom(), route.getTo()});
+        routeList.add(route);
+
+        Cursor cursor = db.query("Route", new String[]{"route"}, "rFrom = ? AND rTo = ?", new String[]{route.getFrom(), route.getTo()}, null, null, null);//db.rawQuery("SELECT * FROM Route WHERE rFrom = ? AND rTo = ?", new String[]{route.getFrom(),route.getTo()});
         if (!cursor.moveToFirst()) {
             cursor.close();
-            return null;
+            route.setRoute("");
+            return route;
+//            throw new IllegalArgumentException("Invalid route");
         }
-        route.setRoute(cursor.getColumnName(cursor.getColumnIndex("")));
+        route.setRoute(cursor.getString(cursor.getColumnIndex("route")));
         cursor.close();
         return route;
     }
@@ -544,20 +562,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             pointer = backtrack.size() - 1;
             change = -1;
         }
-
-        boolean isNavigating = backtrack.get(pointer) != ecn && pointer >= 0 && pointer < backtrack.size();
         List<Route> routes = new ArrayList<Route>();
+        try {
+            while (pointer <= backtrack.size() - 1 && pointer >= 0 && (!backtrack.get(pointer).equals(ecn))) {
+                if (backtrack.contains(null)) backtrack.remove(null);
 
-        while (isNavigating) {
-            routes.add(getRouteHelper(new Route(backtrack.get(pointer + change).getName(), backtrack.get(pointer).getName(), null), db));
+                routes.add(getRouteHelper(new Route(backtrack.get(pointer + change).getName(), backtrack.get(pointer).getName(), null), db));
+                pointer = pointer + change;
+
+            }
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
         }
-
         return routes;
     }
 
     // method removes leading or trailing spaces
     private String removeSpace(String input) {
-//        throw new IllegalArgumentException("'" + input +"'");
         if (input.length() == 0) return input;
 
         if (input.matches("[\\s]+")) return ""; // if just 1 or more spaces

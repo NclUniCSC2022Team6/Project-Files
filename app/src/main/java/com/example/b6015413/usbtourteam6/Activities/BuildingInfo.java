@@ -41,9 +41,8 @@ import java.util.Map;
 
 public class BuildingInfo extends Fragment {
 
-    TextView title, generalInfoTxt, transportTxt, currentFloorNum, currentFloorInfo;
-    Button openingHours, contactInfo, metroBtn, busBtn, prevFloor, nextFloor, cafe;
-    Map<Integer, String> floorGuides;
+    TextView title, generalInfoTxt, transportTxt;
+    Button openingHours, contactInfo, metroBtn, busBtn, cafe;
 
     @Nullable
     @Override
@@ -56,7 +55,7 @@ public class BuildingInfo extends Fragment {
         View view = inflater.inflate(R.layout.activity_building_info, container, false);
 
         final Context context = getContext();
-        getInformation();
+
         super.onCreate(savedInstanceState);
 
         //region Add fonts
@@ -73,10 +72,7 @@ public class BuildingInfo extends Fragment {
         contactInfo = view.findViewById(R.id.contactInfoBtn);
         metroBtn = view.findViewById(R.id.metroLinkBtn);
         busBtn = view.findViewById(R.id.busLinkBtn);
-        prevFloor = view.findViewById(R.id.downFloor);
-        nextFloor = view.findViewById(R.id.upFloor);
-        currentFloorNum = view.findViewById(R.id.currentFloorNumber);
-        currentFloorInfo = view.findViewById(R.id.currentFloorInfo);
+
         cafe = view.findViewById(R.id.cafe);
         //endregion
 
@@ -88,10 +84,6 @@ public class BuildingInfo extends Fragment {
         contactInfo.setTypeface(robotoLight);
         metroBtn.setTypeface(robotoLight);
         busBtn.setTypeface(robotoLight);
-        prevFloor.setTypeface(robotoLight);
-        nextFloor.setTypeface(robotoLight);
-        currentFloorNum.setTypeface(robotoLight);
-        currentFloorInfo.setTypeface(robotoLight);
         cafe.setTypeface(robotoLight);
         //endregion
 
@@ -102,10 +94,6 @@ public class BuildingInfo extends Fragment {
         contactInfo.setTextSize(Settings.fontSize);
         metroBtn.setTextSize(Settings.fontSize);
         busBtn.setTextSize(Settings.fontSize);
-        prevFloor.setTextSize(Settings.fontSize);
-        nextFloor.setTextSize(Settings.fontSize);
-        currentFloorNum.setTextSize(Settings.fontSize);
-        currentFloorInfo.setTextSize(Settings.fontSize);
         cafe.setTextSize(Settings.fontSize);
         //endregion
 
@@ -224,59 +212,8 @@ public class BuildingInfo extends Fragment {
                         .show();
             }
         });
-
-        prevFloor.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (Integer.valueOf(currentFloorNum.getText().toString()) == 0) return;
-                currentFloorNum.setText(Integer.valueOf(currentFloorNum.getText().toString()) - 1 + "");
-                currentFloorInfo.setText(floorGuides.get(Integer.valueOf(currentFloorNum.getText().toString())));
-            }
-        });
-        nextFloor.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (Integer.valueOf(currentFloorNum.getText().toString()) == 5) return;
-                currentFloorNum.setText(Integer.valueOf(currentFloorNum.getText().toString()) + 1 + "");
-                currentFloorInfo.setText(floorGuides.get(Integer.valueOf(currentFloorNum.getText().toString())));
-            }
-        });
-        currentFloorInfo.setText(floorGuides.get(Integer.valueOf(currentFloorNum.getText().toString())));
         //endregion
         return view;
-    }
-
-    /**
-     * read in floor info from file and save to hash map
-     */
-    public void getInformation() {
-        BufferedReader reader = null;
-        String mLine = "";
-        int currentFloor = -1;
-        floorGuides = new HashMap<>();
-        try {
-            reader = new BufferedReader(
-                    new InputStreamReader(getContext().getAssets().open("BuildingInformation.txt")));
-            while ((mLine = reader.readLine()) != null) {
-                if (mLine.contains("Floor ./.")) {
-                    currentFloor++;
-                    floorGuides.put(currentFloor, "");
-                } else {
-                    floorGuides.put(currentFloor, floorGuides.get(currentFloor) + "\n" + mLine);
-                }
-            }
-        } catch (Exception e) {
-            // throw new exception with which line caused the exception and the original exception
-            throw new IllegalArgumentException("Error with line: " + mLine + "\n" + e);
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    // fail quietly
-                }
-            }
-        }
     }
 }
 
