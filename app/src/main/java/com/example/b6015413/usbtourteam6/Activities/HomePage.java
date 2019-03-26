@@ -30,7 +30,7 @@ public class HomePage extends Fragment {
         View view = inflater.inflate(R.layout.activity_home_page, container, false);
         // toolbar title
         ((FrameworkMain) getActivity())
-                .setActionBarTitle("Home Page");
+                .setActionBarTitle("Welcome to the USB");
 
         super.onCreate(savedInstanceState);
 
