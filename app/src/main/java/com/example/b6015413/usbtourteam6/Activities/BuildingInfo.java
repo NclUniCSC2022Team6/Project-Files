@@ -165,8 +165,8 @@ public class BuildingInfo extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MapsActivity.class);
-                intent.putExtra("locationLat", 54.9766468);
-                intent.putExtra("locationLng", -1.6149719);
+                intent.putExtra("locationLat", 54.9745148);
+                intent.putExtra("locationLng", -1.6227728);
                 intent.putExtra("title", "Bus station");
                 startActivity(intent);
             }

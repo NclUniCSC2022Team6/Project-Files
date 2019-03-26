@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <supports-screens
         android:largeScreens="true"
@@ -58,31 +58,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".Activities.BuildingInfo"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".Activities.Settings"
-            android:label="Settings"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Activities.GetDirections" />
-        <activity
-            android:name=".Activities.HomePage"
-            android:label="@string/home_page_title"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-        </activity>
-        <activity
-            android:name=".Activities.FindARoom"
-            android:label="Find A Room"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-        </activity>
+            android:name=".Activities.GetDirections"
+            android:label="Directions"></activity>
+
+
         <activity
             android:name=".Activities.SearchTutor"
             android:label="Search Tutor">
@@ -94,10 +75,7 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity
-            android:name=".Activities.LevelX"
-            android:label="Floor Information"
-            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>
