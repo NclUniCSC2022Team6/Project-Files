@@ -11,6 +11,7 @@ import com.example.b6015413.usbtourteam6.Table_Models.Route;
 import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -61,27 +62,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // private helper method of onUpgrade to insert data from text files into table
-    private void insertData(SQLiteDatabase db) {
+    //private method that inserts data from a specific text file to a specific table
+    private void insertTableData(SQLiteDatabase db, String table, String file){
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(
-                    new InputStreamReader(context.getAssets().open("Tutors.txt")));
+                    new InputStreamReader(context.getAssets().open(file +".txt")));
 
             // read the file
             String mLine;
             while ((mLine = reader.readLine()) != null) {
-                db.execSQL("INSERT INTO `Tutor` VALUES (" + mLine + ");");
+                db.execSQL("INSERT INTO `"+ table +"` VALUES (" + mLine + ");");
             }
-
-            reader = new BufferedReader(
-                    new InputStreamReader(context.getAssets().open("Room.txt")));
-
-            // read the file
-            while ((mLine = reader.readLine()) != null) {
-                db.execSQL("INSERT INTO `Room` VALUES (" + mLine + ");");
-            }
-
         } catch (IOException e) {
             // fail quietly
         } finally {
@@ -94,6 +86,97 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
     }
+
+    // private helper method of onUpgrade to insert data from text files into table
+    private void insertData(SQLiteDatabase db) {
+        insertTableData(db, "Tutor", "Tutors");
+        insertTableData(db, "Room", "Room");
+        insertTableData(db, "Route", "Route");
+    }
+
+    // private helper method to export database to a textfile
+    public void addAllRoutesToDB(){
+
+        List<Room> rooms =  getAllRooms();
+        List<String> routes = new ArrayList<>();
+
+        for(int i = 0; i< rooms.size(); i++){
+            for(int x = 0; x<rooms.size(); x++){
+                String from = rooms.get(i).toString(), to = rooms.get(x).toString();
+                String route = null;
+
+                if(i != x){
+
+                    getRoute(from, to, false);
+                    getRoute(from, to, true);
+                }
+
+            }
+
+        }
+
+
+
+
+        //TODO Export route data when getAllRoutes() exists
+
+
+    }
+
+    private void exportTableData(String Table, String file, String[] data){
+        FileWriter writer = null;
+        //throw new IllegalArgumentException(this.context.getFileStreamPath("Room.txt").getAbsolutePath());
+        try {
+
+            writer = new FileWriter(context.getFileStreamPath(file+".txt"));
+//            writer = new FileWriter(new File("/data/user/0/com.example.USBTourTeam6/files/"+ file+".txt"));
+            //    writer = new FileWriter(new File(context.getFilesDir().getPath()+ file+".txt"));
+            for(int i =0; i < data.length; i++){
+                writer.write(data[i] + "\n");
+            }
+
+
+        } catch (IOException e) {
+            // fail quietly
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    // fail quietly
+                }
+            }
+        }
+
+    }
+
+    private void exportTableData(String Table, String file, List<String> data){
+        FileWriter writer = null;
+        //throw new IllegalArgumentException(this.context.getFileStreamPath("Room.txt").getAbsolutePath());
+        try {
+
+            writer = new FileWriter(context.getFileStreamPath(file+".txt"));
+//            writer = new FileWriter(new File("/data/user/0/com.example.USBTourTeam6/files/"+ file+".txt"));
+            //    writer = new FileWriter(new File(context.getFilesDir().getPath()+ file+".txt"));
+            for(int i =0; i < data.size(); i++){
+                writer.write(data.get(i) + "\n");
+            }
+
+
+        } catch (IOException e) {
+            // fail quietly
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    // fail quietly
+                }
+            }
+        }
+
+    }
+
     // endregion
 
     // region methods to return results from the database
