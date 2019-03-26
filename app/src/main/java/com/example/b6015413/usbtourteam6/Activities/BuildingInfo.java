@@ -121,7 +121,7 @@ public class BuildingInfo extends Fragment {
                                 Intent intent = new Intent(getActivity(), MapsActivity.class);
                                 intent.putExtra("locationLat", 54.9735049);
                                 intent.putExtra("locationLng", -1.6253759);
-                                intent.putExtra("title", "Urban Sciences Building");
+                                intent.putExtra("locationTitle", "Urban Sciences Building");
                                 startActivity(intent);
                             }
                         })
@@ -156,7 +156,7 @@ public class BuildingInfo extends Fragment {
                 Intent intent = new Intent(getActivity(), MapsActivity.class);
                 intent.putExtra("locationLat", 54.974178);
                 intent.putExtra("locationLng", -1.620940);
-                intent.putExtra("title", "Metro St James");
+                intent.putExtra("locationTitle", "Metro St James");
                 startActivity(intent);
             }
         });
@@ -167,7 +167,7 @@ public class BuildingInfo extends Fragment {
                 Intent intent = new Intent(getActivity(), MapsActivity.class);
                 intent.putExtra("locationLat", 54.9745148);
                 intent.putExtra("locationLng", -1.6227728);
-                intent.putExtra("title", "Bus station");
+                intent.putExtra("locationTitle", "Bus station");
                 startActivity(intent);
             }
         });

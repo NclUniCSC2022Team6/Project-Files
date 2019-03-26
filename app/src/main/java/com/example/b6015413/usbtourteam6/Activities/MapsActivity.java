@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.example.b6015413.usbtourteam6.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -22,8 +23,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        MapFragment mapFragment = (MapFragment) getFragmentManager() .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         location = new LatLng(getIntent().getDoubleExtra("locationLat", 0.0),
                 getIntent().getDoubleExtra("locationLng", 0.0));
@@ -43,7 +43,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         locationTitle = getIntent().getStringExtra("locationTitle");
-
 
         // Add a marker in location and move the camera
         mMap.addMarker(new MarkerOptions().position(location).title(locationTitle));
