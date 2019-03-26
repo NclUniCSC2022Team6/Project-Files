@@ -61,4 +61,9 @@ public class Route {
         result = 31 * result + (route != null ? route.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "'" + getTo()+"','"+getFrom()+"','"+getRoute()+"'";
+    }
 }

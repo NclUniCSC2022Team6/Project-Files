@@ -149,9 +149,9 @@ public class GetDirections extends AppCompatActivity {
     private void updateRoute() { // TODO make this work not sample data
         try {
             getDirectionsItems = new ArrayList<>();
-            getDirectionsItems.add(new Route("", "", "go left " + sfa));
-//            getDirectionsItems = databaseHelper.getRoute(firstLocation.getText().toString(), secondLocation.getText().toString(),
-//                    sfa);
+           // getDirectionsItems.add(new Route("", "", "go left " + sfa));
+            getDirectionsItems = databaseHelper.getRoute(firstLocation.getText().toString(), secondLocation.getText().toString(),
+                    sfa);
             directionsRV.setAdapter(new GetDirectionsAdapter(this, getDirectionsItems));
         } catch (IllegalArgumentException e) {
             Toast.makeText(this, "Check the start and end are valid rooms!",

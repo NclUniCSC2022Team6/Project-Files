@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 
-import com.example.b6015413.usbtourteam6.Activities.Settings;
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
 import com.example.b6015413.usbtourteam6.Table_Models.Route;
 import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
@@ -20,6 +19,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
+
     private static final String DB_NAME = "TourSys.db";
 
 //    "Tutor(tutorId, firstName, lastName, rName)",
@@ -27,12 +27,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //    "Route(rFrom, rTo, route)"
 
     // region set up database
+
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
         this.context = context;
-
-        if (Settings.updateDB) // use boolean in settings to choose to update or not
-            onUpgrade(getWritableDatabase(), 1, 1);
+        // uncomment to re-read data in
+        onUpgrade(getWritableDatabase(), 1, 1);
     }
 
     // sets up tables
@@ -64,12 +64,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // private helper method of onUpgrade to insert data from text files into table
     private void insertData(SQLiteDatabase db) {
         BufferedReader reader = null;
-        String mLine = "";
         try {
             reader = new BufferedReader(
                     new InputStreamReader(context.getAssets().open("Tutors.txt")));
 
             // read the file
+            String mLine;
             while ((mLine = reader.readLine()) != null) {
                 db.execSQL("INSERT INTO `Tutor` VALUES (" + mLine + ");");
             }
@@ -82,9 +82,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 db.execSQL("INSERT INTO `Room` VALUES (" + mLine + ");");
             }
 
-        } catch (Exception e) {
-            // throw new exception with which line caused the exception and the original exception
-            throw new IllegalArgumentException("Error with line: " + mLine + "\n" + e);
+        } catch (IOException e) {
+            // fail quietly
         } finally {
             if (reader != null) {
                 try {
@@ -264,8 +263,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // returns list of all rooms that are not tutor rooms or study spaces on a level
     public List<Room> getOtherRoomsOnLevel(int level) {
         List<Room> roomList = getRoomsOnLevel(level);
-        roomList.removeAll(getTutorRoomsOnLevel(level));
         roomList.removeAll(getStudySpacesOnLevel(level));
+        roomList.removeAll(getTutorRoomsOnLevel(level));
         return roomList;
     }
 
@@ -315,11 +314,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    // returns list of study spaces on a level. defined as containing 'study space|room|area' in the description
+    // returns list of study spaces on a level. defined as containing 'study space' in the description
     public List<Room> getStudySpacesOnLevel(int level) {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE level = ? AND (description LIKE ? OR description LIKE ? OR description LIKE ?)"
-                , new String[]{"" + level, "%study space%", "%Study Area%", "%Study Room%"});
+        Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE level = ? AND description LIKE ?", new String[]{"" + level, "%study space%"});
         Room room;
         List<Room> roomList = new ArrayList<>();
 
@@ -394,31 +392,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
         cursor.close();
         return room;
-    }
-
-    public List<Room> getAllRoomsMatching(String input){
-        Room room;
-        List<Room> result = new ArrayList<Room>();
-        SQLiteDatabase db = getReadableDatabase();
-        input = removeSpace(input);
-        Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE rName LIKE ? OR description LIKE ?", new String[]{"%" + input + "%","%" + input + "%"});
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            room = new Room(
-                    cursor.getString(cursor.getColumnIndex("rName")),
-                    cursor.getInt(cursor.getColumnIndex("level")),
-                    cursor.getString(cursor.getColumnIndex("prevRoom")),
-                    cursor.getString(cursor.getColumnIndex("coords")),
-                    cursor.getString(cursor.getColumnIndex("description"))
-            );
-            if (!(room.getName().contains("stair") || room.getName().contains("lift"))) {
-                result.add(room);
-            }
-            cursor.moveToNext();
-        }
-        cursor.close();
-        db.close();
-        return result;
     }
 
     public int[] getRoomCoords(String rName) {
@@ -503,11 +476,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String removeSpace(String input) {
 //        throw new IllegalArgumentException("'" + input +"'");
         if (input.length() == 0) return input;
+
         if (input.matches("[\\s]+")) return ""; // if just 1 or more spaces
+
         if (input.charAt(0) == ' ') input = input.substring(1);
+
         if (input.charAt(input.length() - 1) == ' ') input = input.substring(0, input.length() - 1);
 
         return input;
+
     }
     // endregion
 }
