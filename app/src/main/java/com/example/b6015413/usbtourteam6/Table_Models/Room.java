@@ -91,4 +91,10 @@ public class Room {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "'" + getName()+"','"+getLevel()+"','"+getPrevRoom()+"','" +"'"+getDescription()+"'";
+    }
+    //TODO add coordinates to toString method once data exists
 }
