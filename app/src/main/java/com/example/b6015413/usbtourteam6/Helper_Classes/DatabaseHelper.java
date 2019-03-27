@@ -12,19 +12,21 @@ import com.example.b6015413.usbtourteam6.Table_Models.Route;
 import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
-    private Set<Route> routeList = new HashSet<>();
+    private List<Route> routeList = new LinkedList<>();
 
     private static final String DB_NAME = "TourSys.db";
 
@@ -38,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, 1);
         this.context = context;
         // uncomment to re-read data in
-        //onUpgrade(getWritableDatabase(), 1, 1);
+        onUpgrade(getWritableDatabase(), 1, 1);
     }
 
     // sets up tables
@@ -101,7 +103,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // private helper method to export database to a textfile
     public void addAllRoutesToDB() {
-
         List<Room> rooms = getAllRooms();
 
         for (int i = 0; i < rooms.size(); i++) {
@@ -114,14 +115,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 }
             }
         }
-        exportTableData("Route", new ArrayList<Route>(routeList));
+
+        exportTableData("Route", new ArrayList<Route>(new HashSet<Route>(routeList)));
         throw new IllegalArgumentException("done");
     }
 
     private void exportTableData(String file, List<Route> data) {
         FileWriter writer = null;
         try {
-
             writer = new FileWriter(context.getFileStreamPath(file + ".txt"));
             for (int i = 0; i < data.size(); i++) {
                 writer.write(data.get(i).toString() + "\n");
@@ -137,7 +138,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 }
             }
         }
-
     }
 
     // endregion
@@ -538,14 +538,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // private helper method for routeNav
     private Route getRouteHelper(Route route, SQLiteDatabase db) {
-        routeList.add(route);
-
+        //routeList.add(route); todo remove when tested and return route
         Cursor cursor = db.query("Route", new String[]{"route"}, "rFrom = ? AND rTo = ?", new String[]{route.getFrom(), route.getTo()}, null, null, null);//db.rawQuery("SELECT * FROM Route WHERE rFrom = ? AND rTo = ?", new String[]{route.getFrom(),route.getTo()});
         if (!cursor.moveToFirst()) {
             cursor.close();
             route.setRoute("");
-            return route;
-//            throw new IllegalArgumentException("Invalid route");
+           // return route;
+            throw new IllegalArgumentException("Invalid route");
         }
         route.setRoute(cursor.getString(cursor.getColumnIndex("route")));
         cursor.close();
@@ -571,7 +570,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 pointer = pointer + change;
 
             }
-        } catch (NullPointerException | IndexOutOfBoundsException e) {
+        } catch (NullPointerException | IndexOutOfBoundsException e) {//todo fix these needing to be here
         }
         return routes;
     }
