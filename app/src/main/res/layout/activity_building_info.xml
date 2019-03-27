@@ -197,6 +197,26 @@
                     android:textColor="@color/darkGrey" />
 
             </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:background="@drawable/roundedbutton">
+
+                <Button
+                    android:id="@+id/tourGuideBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:text="Tour Guide"
+                    android:textSize="24sp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/darkGrey" />
+
+            </RelativeLayout>
+
         </LinearLayout>
 
     </ScrollView>

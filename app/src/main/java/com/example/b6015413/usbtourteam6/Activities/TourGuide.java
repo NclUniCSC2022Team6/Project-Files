@@ -11,9 +11,6 @@ import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.R;
 
-import java.util.HashMap;
-import java.util.Map;
-
 
 public class TourGuide extends Fragment {
 
@@ -22,15 +19,20 @@ public class TourGuide extends Fragment {
     private int level;
     private String[] levelNumToText = new String[]{"0", "1", "2", "3", "4-5", "6"};
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_level_x, container, false); // todo change activity
+        View view = inflater.inflate(R.layout.activity_tour_guide, container, false);
+
+        //region findViewByIds
+        prevFloor = view.findViewById(R.id.pageLeft);
+        nextFloor = view.findViewById(R.id.pageRight);
+        currentFloorInfo = view.findViewById(R.id.infoText);
+        currentFloorNum = view.findViewById(R.id.pageNumber);
+        //endregion
 
         level = 0;
-
 
         prevFloor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +57,7 @@ public class TourGuide extends Fragment {
 
         return view;
     }
+
 
     int getLevelText(int level) {
         int textId;

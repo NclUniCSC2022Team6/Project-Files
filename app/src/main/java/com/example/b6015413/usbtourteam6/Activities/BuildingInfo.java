@@ -18,31 +18,24 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.view.View.OnClickListener;
 import android.widget.Toast;
 
-import com.example.b6015413.usbtourteam6.Helper_Classes.DatabaseHelper;
 import com.example.b6015413.usbtourteam6.Helper_Classes.ShowImage;
-import com.example.b6015413.usbtourteam6.Helper_Classes.ShowRoom;
 import com.example.b6015413.usbtourteam6.R;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 public class BuildingInfo extends Fragment {
 
     TextView title, generalInfoTxt, transportTxt;
-    Button openingHours, contactInfo, metroBtn, busBtn, cafe;
+    Button openingHours, contactInfo, metroBtn, busBtn, cafe, tourGuide;
 
     @Nullable
     @Override
@@ -72,6 +65,7 @@ public class BuildingInfo extends Fragment {
         contactInfo = view.findViewById(R.id.contactInfoBtn);
         metroBtn = view.findViewById(R.id.metroLinkBtn);
         busBtn = view.findViewById(R.id.busLinkBtn);
+        tourGuide = view.findViewById(R.id.tourGuideBtn);
 
         cafe = view.findViewById(R.id.cafe);
         //endregion
@@ -85,6 +79,7 @@ public class BuildingInfo extends Fragment {
         metroBtn.setTypeface(robotoLight);
         busBtn.setTypeface(robotoLight);
         cafe.setTypeface(robotoLight);
+        tourGuide.setTypeface(robotoLight);
         //endregion
 
         //region set text sizes
@@ -95,6 +90,7 @@ public class BuildingInfo extends Fragment {
         metroBtn.setTextSize(Settings.fontSize);
         busBtn.setTextSize(Settings.fontSize);
         cafe.setTextSize(Settings.fontSize);
+        tourGuide.setTextSize(Settings.fontSize);
         //endregion
 
         //region Button clicks
@@ -210,6 +206,16 @@ public class BuildingInfo extends Fragment {
                             }
                         })
                         .show();
+            }
+        });
+
+        tourGuide.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new TourGuide())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
         //endregion
