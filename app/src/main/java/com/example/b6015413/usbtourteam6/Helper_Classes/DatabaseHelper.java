@@ -538,12 +538,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // private helper method for routeNav
     private Route getRouteHelper(Route route, SQLiteDatabase db) {
-        //routeList.add(route); todo remove when tested and return route
         Cursor cursor = db.query("Route", new String[]{"route"}, "rFrom = ? AND rTo = ?", new String[]{route.getFrom(), route.getTo()}, null, null, null);//db.rawQuery("SELECT * FROM Route WHERE rFrom = ? AND rTo = ?", new String[]{route.getFrom(),route.getTo()});
         if (!cursor.moveToFirst()) {
             cursor.close();
-            route.setRoute("");
-           // return route;
             throw new IllegalArgumentException("Invalid route");
         }
         route.setRoute(cursor.getString(cursor.getColumnIndex("route")));
