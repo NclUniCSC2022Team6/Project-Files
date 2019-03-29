@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class GetDirections extends AppCompatActivity {
+public class GetDirections extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     EditText firstLocation, secondLocation;
     Button stairsBtn, elevatorBtn;
@@ -41,6 +42,8 @@ public class GetDirections extends AppCompatActivity {
     Boolean StairsClicked, elevatorClicked;
     private DatabaseHelper databaseHelper;
     boolean sfa = false;
+    String firstLocationTxt, secondLocationTxt, firstRoomCode, secondRoomCode;
+    String[] firstRoomCodeItems, secondRoomCodeItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,6 +159,15 @@ public class GetDirections extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         firstLocationSpinner.setAdapter(adapter);
         secondLocationSpinner.setAdapter(adapter);
+
+        firstLocationSpinner.setOnItemSelectedListener(this);
+        firstLocationTxt = firstLocationSpinner.getItemAtPosition(firstLocationSpinner.getSelectedItemPosition()).toString();
+        firstRoomCodeItems = firstLocationTxt.split(": ");
+        firstRoomCode = firstRoomCodeItems[1];
+        secondLocationSpinner.setOnItemSelectedListener(this);
+        secondLocationTxt = secondLocationSpinner.getItemAtPosition(secondLocationSpinner.getSelectedItemPosition()).toString();
+        secondRoomCodeItems = secondLocationTxt.split(": ");
+        secondRoomCode = secondRoomCodeItems[1];
         //endregion
 
 
@@ -168,8 +180,8 @@ public class GetDirections extends AppCompatActivity {
             getDirectionsItems = databaseHelper.getRoute(firstLocation.getText().toString(), secondLocation.getText().toString(),
                     sfa);
             //TODO: change getRoute to work with spinner values
-//            getDirectionsItems = databaseHelper.getRoute(firstLocationSpinner.getSelectedItem().toString(),
-//                    secondLocationSpinner.getSelectedItem().toString(), sfa);
+//            getDirectionsItems = databaseHelper.getRoute(firstRoomCode,
+//                    secondRoomCode, sfa);
             directionsRV.setAdapter(new GetDirectionsAdapter(this, getDirectionsItems));
         } catch (IllegalArgumentException e) {
             Toast.makeText(this, "Check the start and end are valid rooms!",
@@ -196,5 +208,16 @@ public class GetDirections extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String text = adapterView.getItemAtPosition(i).toString();
+        Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
