@@ -5,14 +5,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
-import android.widget.Toast;
 
 import com.example.b6015413.usbtourteam6.Table_Models.Room;
 import com.example.b6015413.usbtourteam6.Table_Models.Route;
 import com.example.b6015413.usbtourteam6.Table_Models.Tutor;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,7 +19,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -405,6 +402,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // method to return list of route objects for a given route between room names
+    //TODO: change to work with spinner values
     public List<Route> getRoute(String routeFrom, String routeTo, boolean sfa) {
         Room from = getRoomByName(routeFrom),
                 to = getRoomByName(routeTo);

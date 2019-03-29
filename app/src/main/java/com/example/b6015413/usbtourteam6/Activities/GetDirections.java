@@ -15,8 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +37,7 @@ public class GetDirections extends AppCompatActivity {
     Button stairsBtn, elevatorBtn;
     RecyclerView directionsRV;
     List<Route> getDirectionsItems;
+    Spinner firstLocationSpinner, secondLocationSpinner;
     Boolean StairsClicked, elevatorClicked;
     private DatabaseHelper databaseHelper;
     boolean sfa = false;
@@ -51,6 +54,8 @@ public class GetDirections extends AppCompatActivity {
         secondLocation = findViewById(R.id.secondLocation);
         stairsBtn = findViewById(R.id.stairsBtn);
         elevatorBtn = findViewById(R.id.elevatorBtn);
+        firstLocationSpinner = findViewById(R.id.firstLocationSpinner);
+        secondLocationSpinner = findViewById(R.id.secondLocationSpinner);
 
         firstLocation.setTypeface(robotoLight);
         secondLocation.setTypeface(robotoLight);
@@ -143,6 +148,16 @@ public class GetDirections extends AppCompatActivity {
         });
         //endregion
 
+        //region Spinners
+        //create an ArrayAdapter using string array in strings.xml
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.locations,
+                android.R.layout.simple_spinner_item);
+        //set what spinner looks like when it's dropdown
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        firstLocationSpinner.setAdapter(adapter);
+        secondLocationSpinner.setAdapter(adapter);
+        //endregion
+
 
     }
 
@@ -152,6 +167,9 @@ public class GetDirections extends AppCompatActivity {
            // getDirectionsItems.add(new Route("", "", "go left " + sfa));
             getDirectionsItems = databaseHelper.getRoute(firstLocation.getText().toString(), secondLocation.getText().toString(),
                     sfa);
+            //TODO: change getRoute to work with spinner values
+//            getDirectionsItems = databaseHelper.getRoute(firstLocationSpinner.getSelectedItem().toString(),
+//                    secondLocationSpinner.getSelectedItem().toString(), sfa);
             directionsRV.setAdapter(new GetDirectionsAdapter(this, getDirectionsItems));
         } catch (IllegalArgumentException e) {
             Toast.makeText(this, "Check the start and end are valid rooms!",

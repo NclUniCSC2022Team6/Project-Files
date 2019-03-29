@@ -41,7 +41,15 @@
                 android:padding="5dp"
                 android:singleLine="true"
                 android:textAlignment="center"
-                android:textColor="@color/darkGrey" />
+                android:textColor="@color/darkGrey"
+                android:visibility="gone"/>
+
+            <Spinner
+                android:id="@+id/firstLocationSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textAlignment="center"
+                android:background="@drawable/not_clicked_button" />
 
 
             <!--todo Need to change background to give element a border-->
@@ -49,7 +57,7 @@
                 android:id="@+id/secondLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/firstLocation"
+                android:layout_below="@+id/firstLocationSpinner"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/not_clicked_button"
                 android:hint="Second location"
@@ -57,7 +65,17 @@
                 android:padding="5dp"
                 android:singleLine="true"
                 android:textAlignment="center"
-                android:textColor="@color/darkGrey" />
+                android:textColor="@color/darkGrey"
+                android:visibility="gone"/>
+
+            <Spinner
+                android:id="@+id/secondLocationSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/firstLocationSpinner"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/not_clicked_button"
+                android:textAlignment="center" />
 
 
             <!--todo Need to swap these colour schemes on select-->
@@ -65,7 +83,7 @@
                 android:id="@+id/stairsBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/secondLocation"
+                android:layout_below="@+id/secondLocationSpinner"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
@@ -77,7 +95,7 @@
                 android:id="@+id/elevatorBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/secondLocation"
+                android:layout_below="@+id/secondLocationSpinner"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="50dp"

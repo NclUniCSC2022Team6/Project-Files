@@ -149,5 +149,137 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    
+    <string-array name="locations">
+        <item>Ground floor lift: 0.lift</item>
+        <item>Ground floor stairs: 0.stair</item>
+        <item>Main Entrance: 0.063</item>
+        <item>Atrium: 0.062</item>
+        <item>Reception: 0.059</item>
+        <item>Lift Lobby: 0.035</item>
+        <item>Event Space: 0.003</item>
+        <item>Lift first floor: 1.lift</item>
+        <item>Stairs first floor: 1.stair</item>
+        <item>Circulation: 1.008</item>
+        <item>Collaboration: 1.010</item>
+        <item>Lift Lobby: 1.021</item>
+        <item>Circulation: 1.047</item>
+        <item>Group Study Area: 1.049</item>
+        <item>DIG: 1.024</item>
+        <item>Open Lab: 1.043</item>
+        <item>Social Learning: 1.020</item>
+        <item>Meeting: 1.025</item>
+        <item>Meeting A: 1.025A</item>
+        <item>Meeting B: 1.025B</item>
+        <item>Design Research Workshop: 1.019</item>
+        <item>Ambient Kitchen: 1.018</item>
+        <item>Lecture Theatre: 1.006</item>
+        <item>Lift Second Floor: 2.lift</item>
+        <item>Stairs Second Floor: 2.stair</item>
+        <item>Circulation: 2.007</item>
+        <item>Student Refreshment: 2.008</item>
+        <item>Lift Lobby: 2.028</item>
+        <item>Social Learning: 2.014</item>
+        <item>Reception: 2.015</item>
+        <item>Interview/Meeting Room: 2.017</item>
+        <item>Reception Office: 2.019</item>
+        <item>Circulation: 2.025</item>
+        <item>Seminar Room: 2.022</item>
+        <item>Quiet Room A: 2.026</item>
+        <item>Quiet Room B: 2.027</item>
+        <item>Common Room: 2.037</item>
+        <item>Urban Observatory/Institute for Sustainability: 2.048</item>
+        <item>Meeting Room: 2.060</item>
+        <item>Lecture Theatre: 2.006</item>
+        <item>John Colquhoun Office: 2.047</item>
+        <item>Nick Cook Office: 2.044</item>
+        <item>Marie Devlin Office: 2.039</item>
+        <item>John Fitzgerald Office: 2.018</item>
+        <item>Laura Heels Office: 2.040</item>
+        <item>Lindsay Marshall Office: 2.042</item>
+        <item>Steve Riddle Office: 2.041</item>
+        <item>Ellis Solaiman Office: 2.043</item>
+        <item>Neil Speirs Office: 2.045</item>
+        <item>Alan Tully Office: 2.046</item>
+        <item>Jennifer Warrender Office: 2.038</item>
+        <item>Lift third floor: 3.lift</item>
+        <item>Stairs third floor: 3.stairUP</item>
+        <item>Stairs third floor: 3.stairDown</item>
+        <item>Circulation: 3.006</item>
+        <item>Group Study Area: 3.004</item>
+        <item>Group Study Area: 3.007</item>
+        <item>Group Study Area: 3.008</item>
+        <item>Social Learning: 3.014</item>
+        <item>Lobby: 3.019</item>
+        <item>Circulation: 3.022</item>
+        <item>Flat Floor Teaching: 3.005</item>
+        <item>Flat Floor Teaching: 3.015</item>
+        <item>Flat Floor Teaching: 3.018</item>
+        <item>Collaboration: 3.031</item>
+        <item>Meeting Room: 3.032</item>
+        <item>Steve McGough Office: 3.037</item>
+        <item>Graham Morgan Office: 3.035</item>
+        <item>Rajiv Ranjan Office: 3.036</item>
+        <item>Nigel Thomas Office: 3.038</item>
+        <item>Gary Ushaw Office: 3.034</item>
+        <item>Scalable and Cloud workspace: 3.033</item>
+        <item>Lift fourth floor: 4.lift</item>
+        <item>Stairs fourth floor: 4.stair</item>
+        <item>Circulation: 4.008</item>
+        <item>MSc Teaching: 4.005</item>
+        <item>Roof Terrace: 4.009</item>
+        <item>Circulation: 4.019</item>
+        <item>CDT Cloud: 4.018</item>
+        <item>Group Study Room: 4.020</item>
+        <item>Group Study Room: 4.021</item>
+        <item>Circulation: 4.026</item>
+        <item>MSc ACS: 4.022</item>
+        <item>Lobby: 4.023</item>
+        <item>Meeting Room: 4.034</item>
+        <item>Meeting Room: 4.033</item>
+        <item>Meeting Room: 4.052</item>
+        <item>Meeting Room: 4.053</item>
+        <item>Scalable/Cloud: 4.037</item>
+        <item>Office: 4.038</item>
+        <item>Office: 4.039</item>
+        <item>Sara Johansson Fernstad Office: 4.042</item>
+        <item>Paolo Missier Office: 4.041</item>
+        <item>Lift fifth floor: 5.lift</item>
+        <item>Stairs fifth floor: 5.stair</item>
+        <item>ICOS: 5.008</item>
+        <item>ICOS Project Room: 5.009</item>
+        <item>Collaboration area: 5.022</item>
+        <item>MSc BIO: 5.023</item>
+        <item>MSc BIO: 5.024</item>
+        <item>Meeting Room: 5.025</item>
+        <item>Terrace: 5.044</item>
+        <item>Jaume Bacardit Office: 5.020</item>
+        <item>Paul Ezhilchelvan Office: 5.031A</item>
+        <item>Harold Fellermann Office: 5.015</item>
+        <item>Angel Goni-Moreno Office: 5.014</item>
+        <item>Marcus Kaiser Office: 5.019</item>
+        <item>Victor Khomenko Office: 5.026</item>
+        <item>Maciej Koutny Office: 5.028</item>
+        <item>Marta Koutny Office: 5.029</item>
+        <item>Phillip Lord Office: 5.012</item>
+        <item>Jason Steggles Office: 5.027</item>
+        <item>Anil Wipat Office: 5.018</item>
+        <item>Paolo Zuliani Office: 5.013</item>
+        <item>Lift sixth floor: 6.lift</item>
+        <item>Stairs sixth floor: 6.stair</item>
+        <item>Meeting Room: 6.011</item>
+        <item>S+R: 6.007</item>
+        <item>Cyber Incident Room: 6.026</item>
+        <item>Collaboration area: 6.028</item>
+        <item>Amber: 6.031</item>
+        <item>Collaborative Meeting Spaces: 6.032</item>
+        <item>Changyu Dong Office: 6.016</item>
+        <item>Leo Freitas Office: 6.034</item>
+        <item>Thomas Gross Office: 6.018</item>
+        <item>Feng Hao Office: 6.014</item>
+        <item>Charles Morisset Office: 6.023</item>
+        <item>Alexander Romanovsky Office: 6.021</item>
+        <item>Aad van Moorsel Office: 6.020</item>
+    </string-array>
 
 </resources>
