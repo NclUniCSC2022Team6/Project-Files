@@ -30,43 +30,13 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="10dp">
 
-            <!--Need to change background to give element a border-->
-            <EditText
-                android:id="@+id/firstLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/not_clicked_button"
-                android:hint="First location"
-                android:imeOptions="actionGo"
-                android:padding="5dp"
-                android:singleLine="true"
-                android:textAlignment="center"
-                android:textColor="@color/darkGrey"
-                android:visibility="gone"/>
-
+            <!--todo is this still relevant? Need to change background to give element a border-->
             <Spinner
                 android:id="@+id/firstLocationSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:textAlignment="center"
                 android:background="@drawable/not_clicked_button" />
-
-
-            <!--todo Need to change background to give element a border-->
-            <EditText
-                android:id="@+id/secondLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/firstLocationSpinner"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/not_clicked_button"
-                android:hint="Second location"
-                android:imeOptions="actionGo"
-                android:padding="5dp"
-                android:singleLine="true"
-                android:textAlignment="center"
-                android:textColor="@color/darkGrey"
-                android:visibility="gone"/>
 
             <Spinner
                 android:id="@+id/secondLocationSpinner"
