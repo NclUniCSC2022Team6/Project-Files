@@ -210,6 +210,7 @@ public class GetDirections extends AppCompatActivity implements AdapterView.OnIt
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String text = adapterView.getItemAtPosition(i).toString();
