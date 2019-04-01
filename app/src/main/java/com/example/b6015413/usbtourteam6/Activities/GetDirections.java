@@ -32,18 +32,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class GetDirections extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class GetDirections extends AppCompatActivity {
 
-    EditText firstLocation, secondLocation;
     Button stairsBtn, elevatorBtn;
     RecyclerView directionsRV;
     List<Route> getDirectionsItems;
     Spinner firstLocationSpinner, secondLocationSpinner;
-    Boolean StairsClicked, elevatorClicked;
     private DatabaseHelper databaseHelper;
     boolean sfa = false;
-    String firstLocationTxt, secondLocationTxt, firstRoomCode, secondRoomCode;
-    String[] firstRoomCodeItems, secondRoomCodeItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,37 +49,29 @@ public class GetDirections extends AppCompatActivity implements AdapterView.OnIt
         AssetManager am = this.getApplicationContext().getAssets();
         Typeface robotoLight = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Light.ttf"));
 
-        firstLocation = findViewById(R.id.firstLocation);
-        secondLocation = findViewById(R.id.secondLocation);
         stairsBtn = findViewById(R.id.stairsBtn);
         elevatorBtn = findViewById(R.id.elevatorBtn);
         firstLocationSpinner = findViewById(R.id.firstLocationSpinner);
         secondLocationSpinner = findViewById(R.id.secondLocationSpinner);
 
-        firstLocation.setTypeface(robotoLight);
-        secondLocation.setTypeface(robotoLight);
         stairsBtn.setTypeface(robotoLight);
         elevatorBtn.setTypeface(robotoLight);
 
-        firstLocation.setTextSize(Settings.fontSize + 2f);
-        secondLocation.setTextSize(Settings.fontSize + 2f);
         stairsBtn.setTextSize(Settings.fontSize + 2f);
         elevatorBtn.setTextSize(Settings.fontSize + 2f);
 
         databaseHelper = new DatabaseHelper(this);
 
-        // set destination as value that has been selected
-        secondLocation.setText(getIntent().getStringExtra("directionsTo"));
+        // set destination as value that has been selected todo
+//        secondLocationSpinner.setSelection(getNumber(getStringExtra("directionsTo")));
 
         //Tutor Rooms RV
         directionsRV = findViewById(R.id.getDirectionsRV);
         //set the layout of the recycler view as the
         directionsRV.setLayoutManager(new LinearLayoutManager(this));
 
-        // populate list of routes
-        updateRoute();
-
         //populate the recycler view with this class as context and list of routes as data
+        getDirectionsItems = new ArrayList<Route>();
         directionsRV.setAdapter(new GetDirectionsAdapter(this, getDirectionsItems));
 
         //region button presses
@@ -97,7 +85,6 @@ public class GetDirections extends AppCompatActivity implements AdapterView.OnIt
                 elevatorBtn.setBackground(getDrawable(R.drawable.not_clicked_button));
                 elevatorBtn.setTextColor(getResources().getColor(R.color.darkGrey));
 
-                //might be an idea to reverse this when the user changes the search queries
                 sfa = false;
                 updateRoute();
             }
@@ -112,82 +99,62 @@ public class GetDirections extends AppCompatActivity implements AdapterView.OnIt
                 stairsBtn.setBackground(getDrawable(R.drawable.not_clicked_button));
                 stairsBtn.setTextColor(getResources().getColor(R.color.darkGrey));
 
-                //might be an idea to reverse this when the user changes the search queries
                 sfa = true;
                 updateRoute();
 
             }
         });
-        // go buttons with help from https://stackoverflow.com/questions/2577956/how-to-add-go-button-in-android-softkeyboard-and-its-functionality
-        firstLocation.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_DONE) {
-                    updateRoute();
-
-                    // hide virtual keyboard
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(firstLocation.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
-
-                    return true;
-                }
-                return false;
-            }
-        });
-        secondLocation.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_DONE) {
-                    updateRoute();
-
-                    // hide virtual keyboard
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(secondLocation.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
-
-                    return true;
-                }
-                return false;
-            }
-        });
         //endregion
 
         //region Spinners
-        //create an ArrayAdapter using string array in strings.xml
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.locations,
-                android.R.layout.simple_spinner_item);
+        //create an ArrayAdapter using formatted room names
+        ArrayAdapter<CharSequence> adapter =
+                new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, databaseHelper.getRoomsAsStrings());
+
         //set what spinner looks like when it's dropdown
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         firstLocationSpinner.setAdapter(adapter);
         secondLocationSpinner.setAdapter(adapter);
 
-        firstLocationSpinner.setOnItemSelectedListener(this);
-        firstLocationTxt = firstLocationSpinner.getItemAtPosition(firstLocationSpinner.getSelectedItemPosition()).toString();
-        firstRoomCodeItems = firstLocationTxt.split(": ");
-        firstRoomCode = firstRoomCodeItems[1];
-        secondLocationSpinner.setOnItemSelectedListener(this);
-        secondLocationTxt = secondLocationSpinner.getItemAtPosition(secondLocationSpinner.getSelectedItemPosition()).toString();
-        secondRoomCodeItems = secondLocationTxt.split(": ");
-        secondRoomCode = secondRoomCodeItems[1];
+        firstLocationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                updateRoute();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        secondLocationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                updateRoute();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         //endregion
 
+        stairsBtn.callOnClick(); // make one of the buttons selected
 
     }
 
-    private void updateRoute() { // TODO make this work not sample data
-        try {
-            getDirectionsItems = new ArrayList<>();
-           // getDirectionsItems.add(new Route("", "", "go left " + sfa));
-            getDirectionsItems = databaseHelper.getRoute(firstLocation.getText().toString(), secondLocation.getText().toString(),
-                    sfa);
-            //TODO: change getRoute to work with spinner values
-//            getDirectionsItems = databaseHelper.getRoute(firstRoomCode,
-//                    secondRoomCode, sfa);
+    private void updateRoute() {
+        //try {
+            String firstRoomCode = firstLocationSpinner.getSelectedItem().toString().split(": ")[1],
+                    secondRoomCode = secondLocationSpinner.getSelectedItem().toString().split(": ")[1];
+            getDirectionsItems = databaseHelper.getRoute(firstRoomCode,
+                    secondRoomCode, sfa);
             directionsRV.setAdapter(new GetDirectionsAdapter(this, getDirectionsItems));
-        } catch (IllegalArgumentException e) {
-            Toast.makeText(this, "Check the start and end are valid rooms!",
-                    Toast.LENGTH_LONG).show(); // error will be thrown by DatabaseHelper
-        }
-
+//        } catch (IllegalArgumentException e) {
+//            Toast.makeText(this, "Check the start and end are valid rooms! ", Toast.LENGTH_LONG).show(); // error will be thrown by DatabaseHelper
+//        }
     }
 
 
@@ -208,17 +175,5 @@ public class GetDirections extends AppCompatActivity implements AdapterView.OnIt
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String text = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 }

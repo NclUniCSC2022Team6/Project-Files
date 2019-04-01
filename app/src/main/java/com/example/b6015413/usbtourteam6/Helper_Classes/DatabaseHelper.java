@@ -32,7 +32,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //    "Route(rFrom, rTo, route)"
 
     // region set up database
-
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
         this.context = context;
@@ -140,8 +139,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // endregion
 
     // region methods to return results from the database
-
-
     public List<Route> getAllRoutes() {
         Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM Route", new String[]{});
         List<Route> routes = new ArrayList<>();
@@ -402,7 +399,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // method to return list of route objects for a given route between room names
-    //TODO: change to work with spinner values
     public List<Route> getRoute(String routeFrom, String routeTo, boolean sfa) {
         Room from = getRoomByName(routeFrom),
                 to = getRoomByName(routeTo);
@@ -417,21 +413,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Room> btcFrom = backtrack(routeFrom, db);
         List<Room> btcTo = backtrack(routeTo, db);
         List<Route> route;
+        Room transportTo, transportFrom;
 
+        if (routeFrom.equals(routeTo)) {
+            List<Route> same = new ArrayList<>();
+            same.add(new Route("", "", "Start and destination are the same"));
+            return same;
+        }
         if (routeFrom.getLevel() == routeTo.getLevel()) {
             Room ecn = ECN(btcFrom, btcTo);
             route = routeNav(btcFrom, ecn, "LR", db);
             route.addAll(routeNav(btcTo, ecn, "RL", db));
             return route;
         } else if (sfa) {
-            btcFrom.add(getRoomByName(routeFrom.getLevel() + ".lift"));
-            btcTo.add(getRoomByName(routeTo.getLevel() + ".lift"));
+            transportTo = getRoomByName(routeTo.getLevel() + ".lift");
+            transportFrom = getRoomByName(routeFrom.getLevel() + ".lift");
+
+            if (roomNeededInBacktrack(btcFrom, transportFrom))
+                btcFrom.add(transportFrom);
+
+            if (roomNeededInBacktrack(btcTo, transportTo))
+                btcTo.add(transportTo);
         } else {
-            btcFrom.add(getRoomByName(routeFrom.getLevel() + ".stairs"));
-            btcTo.add(getRoomByName(routeTo.getLevel() + ".stairs"));
+            transportTo = getRoomByName(routeTo.getLevel() + ".stair");
+            transportFrom = getRoomByName(routeFrom.getLevel() + ".stair");
+
+            if (roomNeededInBacktrack(btcFrom, transportFrom))
+                btcFrom.add(transportFrom);
+
+            if (roomNeededInBacktrack(btcTo, transportTo))
+                btcTo.add(transportTo);
         }
+        String mode = sfa ? ".lift" : ".stair";
         route = routeNav(btcFrom, null, "LR", db);
-        route.add(new Route(routeTo.getLevel() + ".stairs", routeFrom.getLevel() + ".stairs", " travel to level " + routeTo.getLevel()));
+        route.add(new Route(routeTo.getLevel() + mode, routeFrom.getLevel() + mode, " travel to level " + routeTo.getLevel()));
         route.addAll(routeNav(btcTo, null, "RL", db));
         return route;
     }
@@ -443,7 +458,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT  * FROM Room WHERE rName = ?", new String[]{rName});
         if (!cursor.moveToFirst()) {
             cursor.close();
-            return null;
+            throw new IllegalArgumentException(rName);
         }
         Room room = new Room(
                 cursor.getString(cursor.getColumnIndex("rName")),
@@ -482,23 +497,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
-
-    public int[] getRoomCoords(String rName) {
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT coords FROM Room WHERE rName = ?", new String[]{rName});
-        int[] result;
-
-
-        if (cursor.moveToFirst()) {
-            String[] rawCoords = cursor.getString(cursor.getColumnIndex("coords")).split(",");
-            result = new int[]{Integer.valueOf(rawCoords[0]), Integer.valueOf(rawCoords[1])};
-        } else {
-            result = new int[]{0, 0};
+    // return list of all rooms formatted as strings
+    public String[] getRoomsAsStrings() {
+        List<Room> allRooms = getAllRooms();
+        String[] allStringRooms = new String[allRooms.size()];
+        Room current;
+        for (int i = 0; i < allStringRooms.length; i++) {
+            current = allRooms.get(i);
+            allStringRooms[i] = current.getDescription() + ": " + current.getName();
         }
-        cursor.close();
-        db.close();
-        return result;
-
+        return allStringRooms;
     }
 //endregion
 
@@ -509,12 +517,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Room> btc = new ArrayList<Room>();
         btc.add(from);
         Room prevRoom;
-        while ((prevRoom = getRoomByName(from.getPrevRoom())) != null) {
-            btc.add(prevRoom);
+        while (!from.getPrevRoom().equals("")) {
+            btc.add(prevRoom = getRoomByName(from.getPrevRoom()));
             from = prevRoom;
         }
-        if (btc.contains(null))
-            throw new IllegalArgumentException("somehow null " + from.toString());
         return btc;
     }
 
@@ -539,14 +545,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query("Route", new String[]{"route"}, "rFrom = ? AND rTo = ?", new String[]{route.getFrom(), route.getTo()}, null, null, null);//db.rawQuery("SELECT * FROM Route WHERE rFrom = ? AND rTo = ?", new String[]{route.getFrom(),route.getTo()});
         if (!cursor.moveToFirst()) {
             cursor.close();
-            throw new IllegalArgumentException("Invalid route");
+            throw new IllegalArgumentException("Invalid route: " + route.getFrom() + " to " + route.getTo());
         }
         route.setRoute(cursor.getString(cursor.getColumnIndex("route")));
         cursor.close();
         return route;
     }
 
-    // private heplper method for getRoute returns the list of routes based on parameters
+    // private helper method for getRoute returns the list of routes based on parameters
     private List<Route> routeNav(List<Room> backtrack, Room ecn, String direction, SQLiteDatabase db) {
         int pointer, change;
         if (direction == "LR") {
@@ -558,16 +564,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         List<Route> routes = new ArrayList<Route>();
         try {
-            while (pointer <= backtrack.size() - 1 && pointer >= 0 && (!backtrack.get(pointer).equals(ecn))) {
-                if (backtrack.contains(null)) backtrack.remove(null);
+            while (validNav(pointer, backtrack, direction, ecn)) {
+                backtrack.remove(null); // somehow a null value gets in
 
                 routes.add(getRouteHelper(new Route(backtrack.get(pointer + change).getName(), backtrack.get(pointer).getName(), null), db));
                 pointer = pointer + change;
 
             }
-        } catch (NullPointerException | IndexOutOfBoundsException e) {//todo fix these needing to be here
+        } catch (NullPointerException e) {//todo fix these needing to be here
+            throw new IllegalArgumentException("exception thrown: " + e + "\n " + Arrays.toString(backtrack.toArray()));
         }
         return routes;
+    }
+
+
+    //pointer <= backtrack.size() - 1 && pointer >= 0 && (!backtrack.get(pointer).equals(ecn))
+    // method for in route nav to check valid to loop again
+    private boolean validNav(int pointer, List<Room> backtrack, String direction, Room ecn) {
+        backtrack.remove(null);
+        if (direction == "LR" && !(pointer < backtrack.size() - 1 && pointer >= 0)) return false;
+        if (direction == "RL" && !(pointer <= backtrack.size() - 1 && pointer > 0)) return false;
+        return (!backtrack.get(pointer).equals(ecn));
     }
 
     // method removes leading or trailing spaces
@@ -582,6 +599,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return input;
 
+    }
+
+    // method checks if final item in backtrack is what will be added (stairs or lift)
+    private boolean roomNeededInBacktrack(List<Room> btc, Room room) {
+        return !btc.get(btc.size() - 1).equals(room);
     }
     // endregion
 }
