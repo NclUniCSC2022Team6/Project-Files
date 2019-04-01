@@ -1,26 +1,20 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.b6015413.usbtourteam6.Adapter.GetDirectionsAdapter;
@@ -146,15 +140,15 @@ public class GetDirections extends AppCompatActivity {
     }
 
     private void updateRoute() {
-        //try {
+        try {
             String firstRoomCode = firstLocationSpinner.getSelectedItem().toString().split(": ")[1],
                     secondRoomCode = secondLocationSpinner.getSelectedItem().toString().split(": ")[1];
             getDirectionsItems = databaseHelper.getRoute(firstRoomCode,
                     secondRoomCode, sfa);
             directionsRV.setAdapter(new GetDirectionsAdapter(this, getDirectionsItems));
-//        } catch (IllegalArgumentException e) {
-//            Toast.makeText(this, "Check the start and end are valid rooms! ", Toast.LENGTH_LONG).show(); // error will be thrown by DatabaseHelper
-//        }
+        } catch (IllegalArgumentException e) {
+            Toast.makeText(this, "Check the start and end are valid rooms! ", Toast.LENGTH_LONG).show(); // error will be thrown by DatabaseHelper
+        }
     }
 
 

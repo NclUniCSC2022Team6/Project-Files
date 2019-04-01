@@ -1,6 +1,7 @@
 '0.003','0.062','Exit using doors and walk past the corner into open space atrium.'
 '0.035','0.062','Facing the lifts, exit using doors to the left and go into open space atrium.'
 '0.035','0.lift','Go forward into lift.'
+'0.035','0.stair', 'Turn right and go through the doors. Turn left onto stairs'
 '0.059','0.062','Turn around and go into open space atrium.'
 '0.062','0.003','Facing the exit go left into a corner and enter using doors.'
 '0.062','0.035','Facing the stairs, go through the doors to the left of the stairs.'
