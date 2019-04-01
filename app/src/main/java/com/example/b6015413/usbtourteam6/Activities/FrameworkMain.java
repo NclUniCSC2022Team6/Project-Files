@@ -143,15 +143,16 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.search_btn:
-                startActivity(new Intent(this, SearchTutor.class));
-                return true;
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new SearchTutor()).addToBackStack(null).commit();
+           //     startActivity(new Intent(this, SearchTutor.class));
+           //     return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-
-    // Syncs the navigation drawer
+        // Syncs the navigation drawer
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {

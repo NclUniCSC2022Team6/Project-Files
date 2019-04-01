@@ -2,11 +2,16 @@ package com.example.b6015413.usbtourteam6.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.b6015413.usbtourteam6.Adapter.SearchAdapter;
 import com.example.b6015413.usbtourteam6.Helper_Classes.DatabaseHelper;
@@ -17,7 +22,7 @@ import com.mancj.materialsearchbar.MaterialSearchBar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchTutor extends AppCompatActivity {
+public class SearchTutor extends Fragment {
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -28,21 +33,30 @@ public class SearchTutor extends AppCompatActivity {
 
     DatabaseHelper database;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+
+        View inputFragmentView = inflater.inflate(R.layout.activity_search_tutor, container, false);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_tutor);
+
+        ((FrameworkMain) getActivity())
+                .setActionBarTitle("Search for a Room");
+
+        View view = inputFragmentView;
+
 
         //init view
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_search);
-        layoutManager = new LinearLayoutManager(this);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_search);
+        layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        materialSearchBar = (MaterialSearchBar) findViewById(R.id.search_bar);
+        materialSearchBar = (MaterialSearchBar) view.findViewById(R.id.search_bar);
 
         //init database
-        database = new DatabaseHelper(this);
+        database = new DatabaseHelper(getActivity());
 
         //setup search bar
         materialSearchBar.setHint("Search");
@@ -70,12 +84,12 @@ public class SearchTutor extends AppCompatActivity {
 
             }
         });
-        final Activity activity = this;
+        final Activity activity = getActivity();
         materialSearchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
             @Override
             public void onSearchStateChanged(boolean enabled) {
                 if (!enabled)
-                    adapter = new SearchAdapter(activity, getBaseContext(), database.getAllRooms());
+                    adapter = new SearchAdapter(activity, getActivity().getBaseContext(), database.getAllRooms());
                 recyclerView.setAdapter(adapter);
             }
 
@@ -92,13 +106,14 @@ public class SearchTutor extends AppCompatActivity {
         });
 
         //init adatper default set all result
-        adapter = new SearchAdapter(this, this, database.getAllRooms());
+        adapter = new SearchAdapter(getActivity(), getActivity(), database.getAllRooms());
         recyclerView.setAdapter(adapter);
 
+        return inputFragmentView;
     }
 
     private void startSearch(String text) {
-        adapter = new SearchAdapter(this, this, database.getAllRoomsMatching(text));
+        adapter = new SearchAdapter(getActivity(), getActivity(), database.getAllRoomsMatching(text));
         recyclerView.setAdapter(adapter);
     }
 
