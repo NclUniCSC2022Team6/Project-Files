@@ -97,7 +97,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         insertTableData(db, "Route", "Route");
     }
 
-    // private helper method to export database to a textfile
+    // test to see if all possible routes work
+    public boolean testAllRoutes() {
+        List<String> errors = new ArrayList<>();
+        List<Room> rooms = getAllRooms();
+        for (int i = 0; i < rooms.size(); i++) {
+            for (int x = 0; x < rooms.size(); x++) {
+                String from = rooms.get(i).getName(), to = rooms.get(x).getName();
+
+                if (i != x) {
+                    try {
+                        getRoute(from, to, false);
+                    } catch (Exception e) {
+                        errors.add(e.getMessage());
+                    }
+                    try {
+                        getRoute(from, to, true);
+                    } catch (Exception e) {
+                        errors.add(e.getMessage());
+                    }
+                }
+            }
+        }
+
+        if (errors.size() == 0) return true; // pass!
+        throw new IllegalArgumentException(Arrays.toString(new ArrayList<>(new HashSet<>(errors)).toArray())); // fail so output all
+    }
+
+    /**
+     * @depreciated helper method that was used to generate all routes and then write to a textfile
+     * now WILL NOT WORK as code no longer exists in methods to write all routes to the
+     * routeList global
+     */
+    @Deprecated
     public void addAllRoutesToDB() {
         List<Room> rooms = getAllRooms();
 
@@ -375,7 +407,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // returns list of study spaces on a level. defined as containing 'study space' in the description
     public List<Room> getStudySpacesOnLevel(int level) {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE level = ? AND description LIKE ?", new String[]{"" + level, "%study space%"});
+        Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE level = ? AND description LIKE ?", new String[]{"" + level, "%Study%"});
         Room room;
         List<Room> roomList = new ArrayList<>();
 
@@ -435,8 +467,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (roomNeededInBacktrack(btcTo, transportTo))
                 btcTo.add(transportTo);
         } else {
-            transportTo = getRoomByName(routeTo.getLevel() + ".stair");
-            transportFrom = getRoomByName(routeFrom.getLevel() + ".stair");
+            if (routeTo.getLevel() == 3) {
+                if (routeFrom.getLevel() < 3)
+                    transportTo = getRoomByName(routeTo.getLevel() + ".stairDown");
+                else
+                    transportTo = getRoomByName(routeTo.getLevel() + ".stairUp");
+
+                transportFrom = getRoomByName(routeFrom.getLevel() + ".stair");
+
+            } else if (routeFrom.getLevel() == 3) {
+                if (routeTo.getLevel() < 3)
+                    transportFrom = getRoomByName(routeTo.getLevel() + ".stairDown");
+                else
+                    transportFrom = getRoomByName(routeTo.getLevel() + ".stairUp");
+
+                transportTo = getRoomByName(routeFrom.getLevel() + ".stair");
+
+            } else {
+                transportTo = getRoomByName(routeTo.getLevel() + ".stair");
+                transportFrom = getRoomByName(routeFrom.getLevel() + ".stair");
+            }
 
             if (roomNeededInBacktrack(btcFrom, transportFrom))
                 btcFrom.add(transportFrom);
@@ -446,7 +496,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         String mode = sfa ? ".lift" : ".stair";
         route = routeNav(btcFrom, null, "LR", db);
-        route.add(new Route(routeTo.getLevel() + mode, routeFrom.getLevel() + mode, " travel to level " + routeTo.getLevel()));
+        route.add(new Route(routeTo.getLevel() + mode, routeFrom.getLevel() + mode, "Travel to level " + routeTo.getLevel()));
         route.addAll(routeNav(btcTo, null, "RL", db));
         return route;
     }
@@ -508,6 +558,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return allStringRooms;
     }
+
+    // method to return index of given room in list of rooms
+    public int getIndexOfRoom(String rName) {
+        List<Room> allRooms = getAllRooms();
+        for (int i = 0; i < allRooms.size(); i++) {
+            if (allRooms.get(i).getName().equals(rName)) return i;
+        }
+        throw new IllegalArgumentException("Invalid room" + rName);
+    }
 //endregion
 
     // region helper methods
@@ -555,6 +614,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // private helper method for getRoute returns the list of routes based on parameters
     private List<Route> routeNav(List<Room> backtrack, Room ecn, String direction, SQLiteDatabase db) {
         int pointer, change;
+        boolean ecnFound = false;
         if (direction == "LR") {
             pointer = 0;
             change = 1;
@@ -564,27 +624,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         List<Route> routes = new ArrayList<Route>();
         try {
-            while (validNav(pointer, backtrack, direction, ecn)) {
-                backtrack.remove(null); // somehow a null value gets in
-
+            while (validNav(pointer, backtrack, direction, ecnFound)) {
+                backtrack.remove(null);
                 routes.add(getRouteHelper(new Route(backtrack.get(pointer + change).getName(), backtrack.get(pointer).getName(), null), db));
                 pointer = pointer + change;
-
+                ecnFound = backtrack.get(pointer).equals(ecn);
             }
-        } catch (NullPointerException e) {//todo fix these needing to be here
+        } catch (NullPointerException e) {
             throw new IllegalArgumentException("exception thrown: " + e + "\n " + Arrays.toString(backtrack.toArray()));
         }
         return routes;
     }
 
-
-    //pointer <= backtrack.size() - 1 && pointer >= 0 && (!backtrack.get(pointer).equals(ecn))
     // method for in route nav to check valid to loop again
-    private boolean validNav(int pointer, List<Room> backtrack, String direction, Room ecn) {
+    private boolean validNav(int pointer, List<Room> backtrack, String direction, boolean ecnFound) {
         backtrack.remove(null);
         if (direction == "LR" && !(pointer < backtrack.size() - 1 && pointer >= 0)) return false;
         if (direction == "RL" && !(pointer <= backtrack.size() - 1 && pointer > 0)) return false;
-        return (!backtrack.get(pointer).equals(ecn));
+        return !ecnFound;
     }
 
     // method removes leading or trailing spaces

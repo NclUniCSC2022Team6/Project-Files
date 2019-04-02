@@ -56,9 +56,6 @@ public class GetDirections extends AppCompatActivity {
 
         databaseHelper = new DatabaseHelper(this);
 
-        // set destination as value that has been selected todo
-//        secondLocationSpinner.setSelection(getNumber(getStringExtra("directionsTo")));
-
         //Tutor Rooms RV
         directionsRV = findViewById(R.id.getDirectionsRV);
         //set the layout of the recycler view as the
@@ -136,7 +133,8 @@ public class GetDirections extends AppCompatActivity {
         //endregion
 
         stairsBtn.callOnClick(); // make one of the buttons selected
-
+        // select right rooms that was passed in
+        secondLocationSpinner.setSelection(databaseHelper.getIndexOfRoom(getIntent().getStringExtra("directionsTo")));
     }
 
     private void updateRoute() {
@@ -146,8 +144,8 @@ public class GetDirections extends AppCompatActivity {
             getDirectionsItems = databaseHelper.getRoute(firstRoomCode,
                     secondRoomCode, sfa);
             directionsRV.setAdapter(new GetDirectionsAdapter(this, getDirectionsItems));
-        } catch (IllegalArgumentException e) {
-            Toast.makeText(this, "Check the start and end are valid rooms! ", Toast.LENGTH_LONG).show(); // error will be thrown by DatabaseHelper
+        } catch (IllegalArgumentException e) {// error will be thrown by DatabaseHelper TODO REMOVE TOAST OF ERROR BEFORE RELEASE
+            Toast.makeText(this, "Check the start and end are valid rooms!\n" + e, Toast.LENGTH_LONG).show();
         }
     }
 
