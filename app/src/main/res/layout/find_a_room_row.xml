@@ -42,10 +42,10 @@
                 android:background="@android:color/transparent"
                 android:text="@string/get_directions"
                 android:textColor="@android:color/holo_orange_light"
-                android:paddingBottom="16dp"
+                android:paddingBottom="6dp"
                 android:shadowColor="#000000"
-                android:shadowDx="1.0"
-                android:shadowDy="0.8"
+                android:shadowDx="0.9"
+                android:shadowDy="0.7"
                 android:shadowRadius="1.6"/>
 
             <Button
@@ -60,10 +60,10 @@
                 android:background="@android:color/transparent"
                 android:text="@string/show_on_map"
                 android:textColor="@android:color/holo_orange_light"
-                android:paddingBottom="16dp"
+                android:paddingBottom="6dp"
                 android:shadowColor="#000000"
-                android:shadowDx="1.0"
-                android:shadowDy="0.8"
+                android:shadowDx="0.9"
+                android:shadowDy="0.7"
                 android:shadowRadius="1.6"/>
 
         </RelativeLayout>
