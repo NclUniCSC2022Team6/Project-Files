@@ -145,8 +145,7 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
             case R.id.search_btn:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new SearchTutor()).addToBackStack(null).commit();
-           //     startActivity(new Intent(this, SearchTutor.class));
-           //     return true;
+
         }
 
         return super.onOptionsItemSelected(item);
