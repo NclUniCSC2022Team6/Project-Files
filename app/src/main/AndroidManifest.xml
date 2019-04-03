@@ -64,19 +64,6 @@
             android:name=".Activities.GetDirections"
             android:label="Directions"></activity>
 
-
-        <activity
-            android:name=".Activities.SearchTutor"
-            android:label="Search Rooms">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-        </activity>
-
     </application>
 
 </manifest>
