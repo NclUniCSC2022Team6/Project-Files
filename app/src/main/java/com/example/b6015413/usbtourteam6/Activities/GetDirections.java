@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class GetDirections extends AppCompatActivity {
+public class GetDirections extends Fragment {
 
     Button stairsBtn, elevatorBtn;
     RecyclerView directionsRV;
@@ -35,18 +39,28 @@ public class GetDirections extends AppCompatActivity {
     private DatabaseHelper databaseHelper;
     boolean sfa = false;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_get_directions);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
-        AssetManager am = this.getApplicationContext().getAssets();
+        View inputFragmentView = inflater.inflate(R.layout.activity_get_directions, container, false);
+        super.onCreate(savedInstanceState);
+
+        //TODO This class has been converted to a fragment. The buttons which open the directions need to inflate this layout.
+
+        ((FrameworkMain) getActivity())
+                .setActionBarTitle("Directions");
+
+        View view = inputFragmentView;
+
+        AssetManager am = getActivity().getApplicationContext().getAssets();
         Typeface robotoLight = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Light.ttf"));
 
-        stairsBtn = findViewById(R.id.stairsBtn);
-        elevatorBtn = findViewById(R.id.elevatorBtn);
-        firstLocationSpinner = findViewById(R.id.firstLocationSpinner);
-        secondLocationSpinner = findViewById(R.id.secondLocationSpinner);
+        stairsBtn = view.findViewById(R.id.stairsBtn);
+        elevatorBtn = view.findViewById(R.id.elevatorBtn);
+        firstLocationSpinner = view.findViewById(R.id.firstLocationSpinner);
+        secondLocationSpinner = view.findViewById(R.id.secondLocationSpinner);
 
         stairsBtn.setTypeface(robotoLight);
         elevatorBtn.setTypeface(robotoLight);
@@ -54,26 +68,26 @@ public class GetDirections extends AppCompatActivity {
         stairsBtn.setTextSize(Settings.fontSize + 2f);
         elevatorBtn.setTextSize(Settings.fontSize + 2f);
 
-        databaseHelper = new DatabaseHelper(this);
+        databaseHelper = new DatabaseHelper(getActivity());
 
         //Tutor Rooms RV
-        directionsRV = findViewById(R.id.getDirectionsRV);
+        directionsRV = view.findViewById(R.id.getDirectionsRV);
         //set the layout of the recycler view as the
-        directionsRV.setLayoutManager(new LinearLayoutManager(this));
+        directionsRV.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         //populate the recycler view with this class as context and list of routes as data
         getDirectionsItems = new ArrayList<Route>();
-        directionsRV.setAdapter(new GetDirectionsAdapter(this, getDirectionsItems));
+        directionsRV.setAdapter(new GetDirectionsAdapter(getActivity(), getDirectionsItems));
 
         //region button presses
         stairsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //change stairs button colour and text colour
-                stairsBtn.setBackground(getDrawable(R.drawable.clicked_button));
+                stairsBtn.setBackground(getActivity().getDrawable(R.drawable.clicked_button));
                 stairsBtn.setTextColor(getResources().getColor(R.color.lightBlue));
                 //change elevator button colour and text colour
-                elevatorBtn.setBackground(getDrawable(R.drawable.not_clicked_button));
+                elevatorBtn.setBackground(getActivity().getDrawable(R.drawable.not_clicked_button));
                 elevatorBtn.setTextColor(getResources().getColor(R.color.darkGrey));
 
                 sfa = false;
@@ -84,10 +98,10 @@ public class GetDirections extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //change elevator button colour and text colour
-                elevatorBtn.setBackground(getDrawable(R.drawable.clicked_button));
+                elevatorBtn.setBackground(getActivity().getDrawable(R.drawable.clicked_button));
                 elevatorBtn.setTextColor(getResources().getColor(R.color.lightBlue));
                 //change stairs button colour and text colour
-                stairsBtn.setBackground(getDrawable(R.drawable.not_clicked_button));
+                stairsBtn.setBackground(getActivity().getDrawable(R.drawable.not_clicked_button));
                 stairsBtn.setTextColor(getResources().getColor(R.color.darkGrey));
 
                 sfa = true;
@@ -100,7 +114,7 @@ public class GetDirections extends AppCompatActivity {
         //region Spinners
         //create an ArrayAdapter using formatted room names
         ArrayAdapter<CharSequence> adapter =
-                new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, databaseHelper.getRoomsAsStrings());
+                new ArrayAdapter<CharSequence>(getActivity(), android.R.layout.simple_spinner_item, databaseHelper.getRoomsAsStrings());
 
         //set what spinner looks like when it's dropdown
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -134,7 +148,9 @@ public class GetDirections extends AppCompatActivity {
 
         stairsBtn.callOnClick(); // make one of the buttons selected
         // select right rooms that was passed in
-        secondLocationSpinner.setSelection(databaseHelper.getIndexOfRoom(getIntent().getStringExtra("directionsTo")));
+        secondLocationSpinner.setSelection(databaseHelper.getIndexOfRoom(getActivity().getIntent().getStringExtra("directionsTo")));
+
+        return inputFragmentView;
     }
 
     private void updateRoute() {
@@ -143,29 +159,10 @@ public class GetDirections extends AppCompatActivity {
                     secondRoomCode = secondLocationSpinner.getSelectedItem().toString().split(": ")[1];
             getDirectionsItems = databaseHelper.getRoute(firstRoomCode,
                     secondRoomCode, sfa);
-            directionsRV.setAdapter(new GetDirectionsAdapter(this, getDirectionsItems));
+            directionsRV.setAdapter(new GetDirectionsAdapter(getActivity(), getDirectionsItems));
         } catch (IllegalArgumentException e) {// error will be thrown by DatabaseHelper TODO REMOVE TOAST OF ERROR BEFORE RELEASE
-            Toast.makeText(this, "Check the start and end are valid rooms!\n" + e, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Check the start and end are valid rooms!\n" + e, Toast.LENGTH_LONG).show();
         }
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_menu, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.search_btn:
-                startActivity(new Intent(this, SearchTutor.class));
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
