@@ -477,11 +477,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             } else if (routeFrom.getLevel() == 3) {
                 if (routeTo.getLevel() < 3)
-                    transportFrom = getRoomByName(routeTo.getLevel() + ".stairDown");
+                    transportFrom = getRoomByName(routeFrom.getLevel() + ".stairDown");
                 else
-                    transportFrom = getRoomByName(routeTo.getLevel() + ".stairUp");
+                    transportFrom = getRoomByName(routeFrom.getLevel() + ".stairUp");
 
-                transportTo = getRoomByName(routeFrom.getLevel() + ".stair");
+                transportTo = getRoomByName(routeTo.getLevel() + ".stair");
 
             } else {
                 transportTo = getRoomByName(routeTo.getLevel() + ".stair");
