@@ -20,8 +20,8 @@
         android:xlargeScreens="true" />
 
     <application
-        android:hardwareAccelerated="true"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -60,9 +60,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".Activities.GetDirections"
-            android:label="Directions"></activity>
 
     </application>
 
