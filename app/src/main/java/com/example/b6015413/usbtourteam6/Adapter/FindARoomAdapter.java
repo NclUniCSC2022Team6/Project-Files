@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.b6015413.usbtourteam6.Activities.FindARoom;
 import com.example.b6015413.usbtourteam6.Activities.GetDirections;
 import com.example.b6015413.usbtourteam6.Activities.Settings;
 import com.example.b6015413.usbtourteam6.Helper_Classes.ShowRoom;

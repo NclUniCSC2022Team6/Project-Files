@@ -131,7 +131,6 @@ public class BuildingInfo extends Fragment {
                                     //request permission
                                     ActivityCompat.requestPermissions(getActivity(),
                                             new String[]{Manifest.permission.CALL_PHONE}, 10);
-                                    return;
                                 } else {     //have got permission
                                     try {
                                         startActivity(callIntent);  //call activity and make phone call

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -48,12 +47,12 @@ public class SearchTutor extends Fragment {
 
 
         //init view
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_search);
+        recyclerView = view.findViewById(R.id.recycler_search);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        materialSearchBar = (MaterialSearchBar) view.findViewById(R.id.search_bar);
+        materialSearchBar = view.findViewById(R.id.search_bar);
 
         //init database
         database = new DatabaseHelper(getActivity());

@@ -163,7 +163,6 @@ public class LevelX extends Fragment {
                         ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX),floorValue);
                 tutorRoomRV.setAdapter(tutorRoomAdapter);
                 if (tutorRoomItems.size() == 1 && tutorRoomItems.get(0).getSurname().equals("None")) {
-                    return;
                 } else {
                     if (expanded) {
                         button.setText("Show more...");
@@ -183,7 +182,6 @@ public class LevelX extends Fragment {
                         ((studySpaceAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX), floorValue);
                 studySpaceRV.setAdapter(studySpaceAdapter);
                 if (studySpaceItems.size() == 1 && studySpaceItems.get(0).getDescription().equals("None")) {
-                    return;
                 } else {
                     if (expanded) {
                         buttonSS.setText("Show more...");
@@ -203,7 +201,6 @@ public class LevelX extends Fragment {
                         ((otherRoomAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX), floorValue);
                 otherRoomsRV.setAdapter(otherRoomAdapter);
                 if (otherRoomItems.size() == 1 && otherRoomItems.get(0).getDescription().equals("None")) {
-                    return;
                 } else {
                     if (expanded) {
                         buttonOR.setText("Show more...");

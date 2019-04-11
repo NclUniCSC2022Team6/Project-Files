@@ -53,7 +53,7 @@ public class FindARoom extends Fragment {
 
         findARoomTxt.setTypeface(robotoLight);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.findARoomRV);
+        recyclerView = view.findViewById(R.id.findARoomRV);
         //set the layout of the recycler view as the
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         //populate the recycler view with this class as context and items as data
