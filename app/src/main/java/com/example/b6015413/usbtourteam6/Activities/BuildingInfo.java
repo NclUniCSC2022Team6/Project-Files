@@ -83,8 +83,6 @@ public class BuildingInfo extends Fragment {
         //endregion
 
         //region set text sizes
-        generalInfoTxt.setTextSize(Settings.fontSize);
-        transportTxt.setTextSize(Settings.fontSize);
         openingHours.setTextSize(Settings.fontSize);
         contactInfo.setTextSize(Settings.fontSize);
         metroBtn.setTextSize(Settings.fontSize);

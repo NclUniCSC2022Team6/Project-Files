@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundlightgrey"
     tools:context="com.example.b6015413.usbtourteam6.Activities.TourGuide">
 
 
@@ -16,12 +17,20 @@
         app:layout_constraintGuide_percent="0.01" />
 
     <android.support.constraint.Guideline
+        android:id="@+id/guideline15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="15dp"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <android.support.constraint.Guideline
         android:id="@+id/guideline17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.01"/>
+        app:layout_constraintGuide_percent="0.01" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline18"
@@ -29,102 +38,117 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.99"/>
+        app:layout_constraintGuide_percent="0.99" />
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/selectAFloor"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Select A Floor"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline18"
+        app:layout_constraintStart_toStartOf="@+id/guideline17"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/roundedbutton"
-        android:padding="5dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline15"
+        app:layout_constraintEnd_toStartOf="@+id/guideline18"
+        app:layout_constraintStart_toStartOf="@+id/guideline17"
+        app:layout_constraintTop_toBottomOf="@+id/selectAFloor" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/guideline18"
-        app:layout_constraintStart_toStartOf="@id/guideline17"
-        app:layout_constraintTop_toTopOf="@id/guideline16">
+        app:layout_constraintEnd_toStartOf="@+id/guideline18"
+        app:layout_constraintStart_toStartOf="@+id/guideline17"
+        app:layout_constraintTop_toTopOf="@+id/guideline15">
 
-        <TextView
-            android:id="@+id/welcomeTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:text="Welcome"
-            android:textColor="@color/darkGrey"
-            android:textSize="24sp" />
-
-        <ScrollView
+        <LinearLayout
+            android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/welcomeTitle"
-            android:layout_marginTop="5dp">
+            android:gravity="end"
+            android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/view1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/roundedbutton"
+                android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/infoText"
+                    android:id="@+id/view1Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="test"
+                    android:text="@string/groundFloorTourTitle"
                     android:textAlignment="center"
                     android:textColor="@color/darkGrey"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/pageNumber"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/view1Text"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/infoText"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="5dp"
-                    android:text="0"
-                    android:textColor="@color/darkGrey"
-                    android:textSize="24sp" />
-
-                <Button
-                    android:id="@+id/pageRight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/infoText"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@+id/pageNumber"
-                    android:background="@drawable/ic_arrow_forward_black_24dp"
-                    android:minWidth="35dp"
-                    android:minHeight="0dp"
-                    android:textColor="@color/darkGrey"
-                    android:textSize="24sp" />
-
-                <Button
-                    android:id="@+id/pageLeft"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/infoText"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toLeftOf="@+id/pageNumber"
-                    android:background="@drawable/ic_arrow_back_black_24dp"
-                    android:minWidth="35dp"
-                    android:minHeight="0dp"
-                    android:textColor="@color/darkGrey"
-                    android:textSize="24sp" />
+                    android:layout_below="@+id/view1Title"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/groundFloorTourText"
+                    android:textAlignment="center"
+                    android:textColor="@color/darkGrey" />
 
             </RelativeLayout>
 
-        </ScrollView>
+            <RelativeLayout
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view1"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/roundedbutton"
+                android:padding="5dp">
 
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/view2Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/firstFloorTourTitle2"
+                    android:textAlignment="center"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/view2Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view2Title"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/firstFloorTourText2"
+                    android:textAlignment="center"
+                    android:textColor="@color/darkGrey" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </android.support.constraint.ConstraintLayout>
