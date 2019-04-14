@@ -187,7 +187,7 @@ public class HomePage extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new FindARoom())
+                        .replace(R.id.fragment_container, new SearchTutor())
                         .addToBackStack(null)
                         .commit();
             }

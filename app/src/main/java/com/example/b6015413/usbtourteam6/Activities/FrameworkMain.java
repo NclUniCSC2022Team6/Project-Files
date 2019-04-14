@@ -115,7 +115,7 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.nav_find_room:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new FindARoom()).addToBackStack(null).commit();
+                        new SearchTutor()).addToBackStack(null).commit();
                 break;
             case R.id.nav_building_info:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
