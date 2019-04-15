@@ -218,5 +218,14 @@ public class BuildingInfo extends Fragment {
         //endregion
         return view;
     }
+
+    // Sends a broadcast to the FrameworkMain Activity
+    @Override
+    public void onStart() {
+        super.onStart();
+        Intent intent = new Intent();
+        intent.setAction("drawer.listener");
+        getActivity().sendBroadcast(intent);
+    }
 }
 

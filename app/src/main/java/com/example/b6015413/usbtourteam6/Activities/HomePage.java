@@ -77,6 +77,8 @@ public class HomePage extends Fragment {
             Settings.setFontSize(20);
         }
 
+
+
         //region button clicks
 
         //test button click to make sure SearchResults page loads properly
@@ -195,5 +197,14 @@ public class HomePage extends Fragment {
 
         //endregion
         return view;
+    }
+
+    // Sends a broadcast to the FrameworkMain Activity
+    @Override
+    public void onStart() {
+        super.onStart();
+        Intent intent = new Intent();
+        intent.setAction("drawer.listener");
+        getActivity().sendBroadcast(intent);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -119,5 +120,14 @@ public class SearchTutor extends Fragment {
     private void loadSuggestList() {
         suggestList = database.getNames();
         materialSearchBar.setLastSuggestions(suggestList);
+    }
+
+    // Sends a broadcast to the FrameworkMain Activity
+    @Override
+    public void onStart() {
+        super.onStart();
+        Intent intent = new Intent();
+        intent.setAction("drawer.listener");
+        getActivity().sendBroadcast(intent);
     }
 }

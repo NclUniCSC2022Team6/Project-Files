@@ -1,6 +1,9 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,12 +15,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import com.example.b6015413.usbtourteam6.R;
 
 
 public class FrameworkMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private DrawerLayout drawer;
+    private static DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +44,40 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
         // Opens homepage if no other fragment is open
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new HomePage()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
+    }
+
+    // Broadcasts across all classes about the state of the navigation drawer
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawers();
+            }
+        }
+    };
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("drawer.listener");
+        this.registerReceiver(mBroadcastReceiver, filter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        this.unregisterReceiver(mBroadcastReceiver);
     }
 
     // Sets the correct toolbar title
@@ -62,8 +94,8 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new HomePage()).addToBackStack(null).commit();
                 break;
-                // Intents are used to access the correct floor
-                // putExtra is how additional info is passed through into the levelX class
+            // Intents are used to access the correct floor
+            // putExtra is how additional info is passed through into the levelX class
             case R.id.nav_ground_floor:
                 Intent groundF = this.getIntent();
                 groundF.putExtra("floor value", "Ground Floor");
@@ -126,7 +158,6 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
                         new Settings()).addToBackStack(null).commit();
                 break;
         }
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -150,7 +181,7 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
         return super.onOptionsItemSelected(item);
     }
 
-        // Syncs the navigation drawer
+    // Syncs the navigation drawer
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {

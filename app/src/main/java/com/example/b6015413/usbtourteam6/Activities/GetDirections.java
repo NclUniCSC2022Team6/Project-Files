@@ -159,5 +159,4 @@ public class GetDirections extends Fragment {
             Toast.makeText(getActivity(), "Check the start and end are valid rooms!\n" + e, Toast.LENGTH_LONG).show();
         }
     }
-
 }

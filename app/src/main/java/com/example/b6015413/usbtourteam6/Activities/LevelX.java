@@ -3,6 +3,7 @@ package com.example.b6015413.usbtourteam6.Activities;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -331,5 +332,14 @@ public class LevelX extends Fragment {
         expandBtn.setTextColor(getResources().getColor(R.color.white));
         expandBtnSS.setTextColor(getResources().getColor(R.color.white));
         expandBtnOR.setTextColor(getResources().getColor(R.color.white));
+    }
+
+    // Sends a broadcast to the FrameworkMain Activity
+    @Override
+    public void onStart() {
+        super.onStart();
+        Intent intent = new Intent();
+        intent.setAction("drawer.listener");
+        getActivity().sendBroadcast(intent);
     }
 }

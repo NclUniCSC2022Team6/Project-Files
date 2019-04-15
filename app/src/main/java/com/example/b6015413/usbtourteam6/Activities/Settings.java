@@ -2,6 +2,7 @@ package com.example.b6015413.usbtourteam6.Activities;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -158,5 +159,14 @@ public class Settings extends Fragment {
         about.setTextSize(Settings.fontSize + 5f);
         appInfo.setTextSize(Settings.fontSize + 5f);
         developerInfo.setTextSize(Settings.fontSize + 5f);
+    }
+
+    // Sends a broadcast to the FrameworkMain Activity
+    @Override
+    public void onStart() {
+        super.onStart();
+        Intent intent = new Intent();
+        intent.setAction("drawer.listener");
+        getActivity().sendBroadcast(intent);
     }
 }
