@@ -78,8 +78,7 @@ public class Room {
 
         Room room = (Room) o;
 
-        if (name != null ? !name.equals(room.name) : room.name != null) return false;
-        return true;
+        return name != null ? name.equals(room.name) : room.name == null;
     }
 
     @Override
