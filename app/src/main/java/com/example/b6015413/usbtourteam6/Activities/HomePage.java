@@ -60,15 +60,15 @@ public class HomePage extends Fragment {
         findARoom.setTypeface(robotoBlack);
         //endregion
 
-        welcomeButton.setTextSize(Settings.fontSize);
-        groundFloor.setTextSize(Settings. fontSize);
-        firstFloor.setTextSize(Settings.fontSize);
-        secondFloor.setTextSize(Settings.fontSize);
-        thirdFloor.setTextSize(Settings.fontSize);
-        fourthFloor.setTextSize(Settings.fontSize);
-        fifthFloor.setTextSize(Settings.fontSize);
-        sixthFloor.setTextSize(Settings.fontSize);
-        findARoom.setTextSize(Settings.fontSize);
+        welcomeButton.setTextSize(Settings.getFontSize());
+        groundFloor.setTextSize(Settings. getFontSize());
+        firstFloor.setTextSize(Settings.getFontSize());
+        secondFloor.setTextSize(Settings.getFontSize());
+        thirdFloor.setTextSize(Settings.getFontSize());
+        fourthFloor.setTextSize(Settings.getFontSize());
+        fifthFloor.setTextSize(Settings.getFontSize());
+        sixthFloor.setTextSize(Settings.getFontSize());
+        findARoom.setTextSize(Settings.getFontSize());
 
 
         Configuration c = getResources().getConfiguration();

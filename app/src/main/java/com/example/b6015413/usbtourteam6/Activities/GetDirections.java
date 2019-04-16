@@ -60,8 +60,8 @@ public class GetDirections extends Fragment {
         stairsBtn.setTypeface(robotoLight);
         elevatorBtn.setTypeface(robotoLight);
 
-        stairsBtn.setTextSize(Settings.fontSize + 2f);
-        elevatorBtn.setTextSize(Settings.fontSize + 2f);
+        stairsBtn.setTextSize(Settings.getFontSize() + 2f);
+        elevatorBtn.setTextSize(Settings.getFontSize() + 2f);
 
         databaseHelper = new DatabaseHelper(getActivity());
 

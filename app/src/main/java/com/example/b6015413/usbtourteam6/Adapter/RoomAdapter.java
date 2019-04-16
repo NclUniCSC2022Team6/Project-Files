@@ -9,6 +9,7 @@ import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,12 +29,12 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context;
     List<Room> items;
-    Activity activity;
+    FragmentActivity activity;
     int maxItems;
     String floorValue;
     public static final int COLAPSED_MAX = 2;
 
-    public RoomAdapter(Activity activity, Context context, List<Room> items, int maxItems, String floorValue) {
+    public RoomAdapter(FragmentActivity activity, Context context, List<Room> items, int maxItems, String floorValue) {
         this.activity = activity;
         this.context = context;
         this.items = items;
@@ -94,7 +95,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             //setting font for objects
             //Find A Room
             studySpaceTxt.setTypeface(robotoLight);
-            studySpaceTxt.setTextSize(Settings.fontSize);
+            studySpaceTxt.setTextSize(Settings.getFontSize());
 
             setTextColour(floorValue);
 
@@ -120,9 +121,12 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     .setPositiveButton("Get directions", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(context, GetDirections.class);
+                            Intent intent = activity.getIntent();
                             intent.putExtra("directionsTo", room.getName());
-                            context.startActivity(intent);
+                            activity.getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragment_container, new GetDirections())
+                                    .addToBackStack(null)
+                                    .commit();
                         }
                     })
                     .setNegativeButton("Show on map", new DialogInterface.OnClickListener() {
@@ -135,12 +139,12 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             // set size of message to bigger than text in buttons
             TextView textView = dialog.findViewById(android.R.id.message);
             textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
-            textView.setTextSize(Settings.fontSize + 2f);
+            textView.setTextSize(Settings.getFontSize() + 2f);
 
             textView = dialog.findViewById(android.R.id.button1);
-            textView.setTextSize(Settings.fontSize);
+            textView.setTextSize(Settings.getFontSize());
             textView = dialog.findViewById(android.R.id.button2);
-            textView.setTextSize(Settings.fontSize);
+            textView.setTextSize(Settings.getFontSize());
         }
 
         void setTextColour(String floorValue) {
@@ -150,7 +154,6 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
         }
     }
-
 
 
 }

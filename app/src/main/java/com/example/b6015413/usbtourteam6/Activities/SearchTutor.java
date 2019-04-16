@@ -89,7 +89,7 @@ public class SearchTutor extends Fragment {
             @Override
             public void onSearchStateChanged(boolean enabled) {
                 if (!enabled)
-                    adapter = new SearchAdapter(activity, getActivity().getBaseContext(), database.getAllRooms());
+                    adapter = new SearchAdapter(getActivity(), getActivity().getBaseContext(), database.getAllRooms());
                 recyclerView.setAdapter(adapter);
             }
 

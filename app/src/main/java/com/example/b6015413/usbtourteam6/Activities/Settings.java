@@ -17,24 +17,62 @@ import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.R;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Locale;
 
 public class Settings extends Fragment {
 
-    // todo these should probs be private
-    public static float fontSize = 15f;
-    public static boolean updateDB = true;
+    private static float fontSize = 15f;
+    private static boolean updateDB = true;
+    private static boolean firstLoad = true;
 
     TextView settings, lookAndFeel, fontSizeTxt, about, appInfo, developerInfo;
     View line1, line2;
     Button appInfoBtn, developerInfoBtn;
 
+    public static float getFontSize() {
+        if (firstLoad) {
+            firstLoad = false;
+        }
+        return fontSize;
+    }
+
     public static void setFontSize(float fontSize) {
         Settings.fontSize = fontSize;
     }
 
-    public static void setUpdateDB(boolean updateDB) {
-        Settings.updateDB = updateDB;
+    public static boolean getUpdateDB() {
+        if (updateDB) { // update on first open
+            updateDB = false;
+            return true;
+        }
+        return false;
+    }
+
+    private void updateSizeFromFile() {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(
+                    new InputStreamReader(getContext().getAssets().open("AppData.txt")));
+
+            // read the file
+            String mLine;
+            if ((mLine = reader.readLine()) != null) {
+                setFontSize(Float.valueOf(mLine));
+            }
+        } catch (NumberFormatException | IOException e) {
+            fontSize = 15f; // error so set to standard value
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    // fail quietly
+                }
+            }
+        }
     }
 
     @Nullable

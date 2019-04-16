@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,9 +26,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     private Context context;
     private List<Room> rooms;
-    Activity activity;
+    FragmentActivity activity;
 
-    public SearchAdapter(Activity activity, Context context, List<Room> rooms) {
+    public SearchAdapter(FragmentActivity activity, Context context, List<Room> rooms) {
         this.activity = activity;
         this.context = context;
         this.rooms = rooms;
@@ -50,9 +51,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         holder.getDirections.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, GetDirections.class);
+                Intent intent = activity.getIntent();
                 intent.putExtra("directionsTo", rooms.get(j).getName());
-                context.startActivity(intent);
+                activity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new GetDirections())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
@@ -84,6 +88,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
         public SearchViewHolder(View itemView) {
             super(itemView);
+            // todo why commented out?
 //            name = itemView.findViewById(R.id.name);
 //            description = itemView.findViewById(R.id.surname);
 //            level = itemView.findViewById(R.id.room);
@@ -101,9 +106,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 //            description.setTextSize(Settings.fontSize);
 //            name.setTextSize(Settings.fontSize);
 //            level.setTextSize(Settings.fontSize);
-            roomTxt.setTextSize(Settings.fontSize);
-            getDirections.setTextSize(Settings.fontSize > 21f ? 21f : Settings.fontSize); // above 21 and text overlaps
-            showOnMap.setTextSize(Settings.fontSize > 21f ? 21f : Settings.fontSize);
+            roomTxt.setTextSize(Settings.getFontSize());
+            getDirections.setTextSize(Settings.getFontSize() > 21f ? 21f : Settings.getFontSize()); // above 21 and text overlaps
+            showOnMap.setTextSize(Settings.getFontSize() > 21f ? 21f : Settings.getFontSize());
 
         }
 

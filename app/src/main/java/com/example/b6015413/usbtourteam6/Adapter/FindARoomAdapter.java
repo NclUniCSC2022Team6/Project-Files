@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.Activities.GetDirections;
+import com.example.b6015413.usbtourteam6.Activities.SearchTutor;
 import com.example.b6015413.usbtourteam6.Activities.Settings;
 import com.example.b6015413.usbtourteam6.Helper_Classes.ShowRoom;
 import com.example.b6015413.usbtourteam6.R;
@@ -26,9 +28,9 @@ public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     Context context;
     List<Room> items;
-    Activity activity;
+    FragmentActivity activity;
 
-    public FindARoomAdapter(Activity activity, Context context, List<Room> items) {
+    public FindARoomAdapter(FragmentActivity activity, Context context, List<Room> items) {
         this.activity = activity;
         this.context = context;
         this.items = items;
@@ -54,9 +56,13 @@ public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         ((Item) viewHolder).getDirectionsFARR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, GetDirections.class);
+                Intent intent = activity.getIntent();
                 intent.putExtra("directionsTo", items.get(j).getName());
-                context.startActivity(intent);
+                activity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new GetDirections())
+                        .addToBackStack(null)
+                        .commit();
+
             }
         });
         ((Item) viewHolder).showOnMapFARR.setOnClickListener(new View.OnClickListener() {
@@ -96,9 +102,9 @@ public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             getDirectionsFARR.setTypeface(robotoBlack);
             showOnMapFARR.setTypeface(robotoBlack);
 
-            roomTextFARR.setTextSize(Settings.fontSize + 2f); // needs to be slightly bigger
-            getDirectionsFARR.setTextSize(Settings.fontSize > 20f ? 20f : Settings.fontSize); // above 20 and text overlaps
-            showOnMapFARR.setTextSize(Settings.fontSize > 20f ? 20f : Settings.fontSize);
+            roomTextFARR.setTextSize(Settings.getFontSize() + 2f); // needs to be slightly bigger
+            getDirectionsFARR.setTextSize(Settings.getFontSize() > 20f ? 20f : Settings.getFontSize()); // above 20 and text overlaps
+            showOnMapFARR.setTextSize(Settings.getFontSize() > 20f ? 20f : Settings.getFontSize());
 
         }
     }
