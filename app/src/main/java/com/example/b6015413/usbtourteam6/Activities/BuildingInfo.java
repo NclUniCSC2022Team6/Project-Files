@@ -188,7 +188,7 @@ public class BuildingInfo extends Fragment {
                                 int id = R.drawable.cafe_menu;
 
                                 // variables to zoom out and move floor plan to centre
-                                float scale = 0.3f;
+                                float scale = 0.6f;
                                 int py = activity.getWindow().getDecorView().getHeight() / 4;
                                 int px = activity.getWindow().getDecorView().getWidth() / 10;
 
