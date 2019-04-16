@@ -33,6 +33,7 @@ public class SearchTutor extends Fragment {
 
     DatabaseHelper database;
 
+    // this is from github repository: https://github.com/mancj/MaterialSearchBar
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -105,7 +106,7 @@ public class SearchTutor extends Fragment {
             }
         });
 
-        //init adatper default set all result
+        //init adapter default set all result
         adapter = new SearchAdapter(getActivity(), getActivity(), database.getAllRooms());
         recyclerView.setAdapter(adapter);
 

@@ -21,7 +21,7 @@ import com.example.b6015413.usbtourteam6.R;
 
 
 public class FrameworkMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private static DrawerLayout drawer;
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

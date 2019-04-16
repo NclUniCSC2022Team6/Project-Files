@@ -23,7 +23,7 @@
 
                 <TextView
                     android:id="@+id/name"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:gravity="center_vertical|start"
                     android:text="Jaume"
                     android:textSize="17sp"
@@ -33,34 +33,34 @@
 
                 <TextView
                     android:id="@+id/surname"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:gravity="center_vertical|start"
                     android:text="Bacardit"
                     android:textSize="17sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/name"
+                    android:layout_toEndOf="@+id/name"
                     android:layout_marginTop="10dp"/>
 
                 <TextView
                     android:id="@+id/roomTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/surname"
-                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/surname"
+                    android:layout_marginStart="5dp"
                     android:text=" - "
                     android:textSize="17sp"
                     android:layout_marginTop="10dp"/>
 
                 <TextView
                     android:id="@+id/room"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
                     android:text="5.02"
                     android:textSize="17sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/roomTxt"
-                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/roomTxt"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="10dp"/>
 
                 <Button

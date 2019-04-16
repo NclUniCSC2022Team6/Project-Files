@@ -2,8 +2,8 @@
     <string name="app_name">USB-Tour Team6</string>
     <string name="get_directions">Get Directions</string>
     <string name="show_on_map">Show on Map</string>
-    <string name="search_title">Search...</string>
-    <string name="search_hint">Search...</string>
+    <string name="search_title">Search&#8230;</string>
+    <string name="search_hint">Search&#8230;</string>
 
     <!--Fixing warnings-->
     <string name="Find_Room_USB">Find A Room in the USB</string>

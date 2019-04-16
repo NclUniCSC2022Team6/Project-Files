@@ -101,7 +101,7 @@ public class LevelX extends Fragment {
         expandBtnOR.setTypeface(robotoLight);
         //endregion
 
-        //region setting button font sizes // todo make it so when large doesnt break
+        //region setting button font sizes // todo make it so when large does not break
         button.setTextSize(Settings.getFontSize() - 5f);
         buttonSS.setTextSize(Settings.getFontSize() - 5f);
         buttonOR.setTextSize(Settings.getFontSize() - 5f);
@@ -137,7 +137,7 @@ public class LevelX extends Fragment {
         studySpaceRV = view.findViewById(R.id.studySpaceRV);
         studySpaceRV.setLayoutManager(new LinearLayoutManager(context));
 
-        studySpaceAdapter = new RoomAdapter(getActivity(), context, studySpaceItems, RoomAdapter.COLAPSED_MAX, floorValue);
+        studySpaceAdapter = new RoomAdapter(getActivity(), context, studySpaceItems, RoomAdapter.COLLAPSED_MAX, floorValue);
         studySpaceRV.setAdapter(studySpaceAdapter);
         //endregion
 
@@ -146,7 +146,7 @@ public class LevelX extends Fragment {
         //set the layout of the recycler view as the
         otherRoomsRV.setLayoutManager(new LinearLayoutManager(context));
         //populate the recycler view with this class as context and items as data
-        otherRoomAdapter = new RoomAdapter(getActivity(), context, otherRoomItems, RoomAdapter.COLAPSED_MAX, floorValue);
+        otherRoomAdapter = new RoomAdapter(getActivity(), context, otherRoomItems, RoomAdapter.COLLAPSED_MAX, floorValue);
         otherRoomsRV.setAdapter(otherRoomAdapter);
 
         //Change the layout of page based on which floor is selected
@@ -180,7 +180,7 @@ public class LevelX extends Fragment {
         buttonSS.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 studySpaceAdapter = new RoomAdapter(getActivity(), context, studySpaceItems,
-                        ((studySpaceAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX), floorValue);
+                        ((studySpaceAdapter.getMaxItems() == RoomAdapter.COLLAPSED_MAX) ? -1 : RoomAdapter.COLLAPSED_MAX), floorValue);
                 studySpaceRV.setAdapter(studySpaceAdapter);
                 if (studySpaceItems.size() == 1 && studySpaceItems.get(0).getDescription().equals("None")) {
                 } else {
@@ -199,7 +199,7 @@ public class LevelX extends Fragment {
         buttonOR.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 otherRoomAdapter = new RoomAdapter(getActivity(), context, otherRoomItems,
-                        ((otherRoomAdapter.getMaxItems() == RoomAdapter.COLAPSED_MAX) ? -1 : RoomAdapter.COLAPSED_MAX), floorValue);
+                        ((otherRoomAdapter.getMaxItems() == RoomAdapter.COLLAPSED_MAX) ? -1 : RoomAdapter.COLLAPSED_MAX), floorValue);
                 otherRoomsRV.setAdapter(otherRoomAdapter);
                 if (otherRoomItems.size() == 1 && otherRoomItems.get(0).getDescription().equals("None")) {
                 } else {

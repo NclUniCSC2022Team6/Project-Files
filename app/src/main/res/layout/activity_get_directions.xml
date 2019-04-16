@@ -53,8 +53,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/secondLocationSpinner"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/not_clicked_button"
                 android:text="Stairs"
@@ -65,9 +65,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/secondLocationSpinner"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="50dp"
+                android:layout_marginEnd="50dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/not_clicked_button"
                 android:text="Elevator"
@@ -89,7 +89,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/getDirectionsRV"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

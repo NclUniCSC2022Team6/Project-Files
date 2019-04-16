@@ -1,6 +1,5 @@
 package com.example.b6015413.usbtourteam6.Adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -15,7 +14,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.Activities.GetDirections;
-import com.example.b6015413.usbtourteam6.Activities.SearchTutor;
 import com.example.b6015413.usbtourteam6.Activities.Settings;
 import com.example.b6015413.usbtourteam6.Helper_Classes.ShowRoom;
 import com.example.b6015413.usbtourteam6.R;

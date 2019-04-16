@@ -1,6 +1,5 @@
 package com.example.b6015413.usbtourteam6.Adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;

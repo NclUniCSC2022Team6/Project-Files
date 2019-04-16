@@ -1,6 +1,5 @@
 package com.example.b6015413.usbtourteam6.Adapter;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,7 +31,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     FragmentActivity activity;
     int maxItems;
     String floorValue;
-    public static final int COLAPSED_MAX = 2;
+    public static final int COLLAPSED_MAX = 2;
 
     public RoomAdapter(FragmentActivity activity, Context context, List<Room> items, int maxItems, String floorValue) {
         this.activity = activity;

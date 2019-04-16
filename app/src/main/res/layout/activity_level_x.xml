@@ -104,7 +104,7 @@
                     android:id="@+id/tutorRoomTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:text="Tutor Rooms"
                     android:textSize="24sp" />
@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tutorRoomTitle"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"></android.support.v7.widget.RecyclerView>
+                    android:layout_marginTop="5dp"/>
 
                 <Button
                     android:id="@+id/expandBtn"
@@ -124,7 +124,7 @@
                     android:layout_below="@+id/tutorRV"
                     android:background="@android:color/transparent"
                     android:padding="0dp"
-                    android:text="Show more..."
+                    android:text="Show more&#8230;"
                     android:textAllCaps="false"
                     android:textColor="@color/darkGrey"
                     android:textSize="10sp" />
@@ -162,7 +162,7 @@
                     android:layout_height="20dp"
                     android:layout_below="@+id/studySpaceRV"
                     android:background="@android:color/transparent"
-                    android:text="Show more..."
+                    android:text="Show more&#8230;"
                     android:textAllCaps="false"
                     android:textColor="@color/darkGrey"
                     android:textSize="10sp" />
@@ -200,7 +200,7 @@
                     android:layout_height="20dp"
                     android:layout_below="@+id/otherRoomsRV"
                     android:background="@android:color/transparent"
-                    android:text="Show more..."
+                    android:text="Show more&#8230;"
                     android:textAllCaps="false"
                     android:textColor="@color/darkGrey"
                     android:textSize="10sp" />
