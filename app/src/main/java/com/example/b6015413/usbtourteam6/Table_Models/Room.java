@@ -9,11 +9,11 @@ public class Room {
     private String description;
 
     /**
-     * @param name
-     * @param level
-     * @param prevRoom
-     * @param coords
-     * @param description
+     * @param name The name
+     * @param level The level
+     * @param prevRoom The prevRoom
+     * @param coords The coords
+     * @param description The description
      */
     public Room(String name, int level, String prevRoom, String coords, String description) {
         this.name = name;

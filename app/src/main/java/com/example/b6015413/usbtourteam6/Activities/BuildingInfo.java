@@ -34,8 +34,8 @@ import java.util.Locale;
 
 public class BuildingInfo extends Fragment {
 
-    TextView title, generalInfoTxt, transportTxt;
-    Button openingHours, contactInfo, metroBtn, busBtn, cafe, tourGuide;
+    private TextView title, generalInfoTxt, transportTxt;
+    private Button openingHours, contactInfo, metroBtn, busBtn, cafe, tourGuide;
 
     @Nullable
     @Override

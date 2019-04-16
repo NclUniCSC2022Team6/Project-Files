@@ -36,22 +36,21 @@ import java.util.Locale;
 
 public class LevelX extends Fragment {
 
-    TextView levelX, tutorRoomsTitle, studySpacesTitle, otherRoomsTitle;
-    RecyclerView tutorRoomRV, studySpaceRV, otherRoomsRV;
-    Button floorPlan, expandBtn, expandBtnSS, expandBtnOR;
-    List<Tutor> tutorRoomItems;
-    List<Room> studySpaceItems;
-    List<Room> otherRoomItems;
-    String floorValue;
-    RelativeLayout tutorRoomsRL, studySpacesRL, otherRoomsRL;
-    int level;
-    TutorRoomAdapter tutorRoomAdapter;
-    RoomAdapter studySpaceAdapter, otherRoomAdapter;
-    Context context;
-    Activity activity;
-    View view;
-    private DrawerLayout drawer;
-    Boolean expanded = false;
+    private TextView levelX, tutorRoomsTitle, studySpacesTitle, otherRoomsTitle;
+    private RecyclerView tutorRoomRV, studySpaceRV, otherRoomsRV;
+    private Button floorPlan, expandBtn, expandBtnSS, expandBtnOR;
+    private List<Tutor> tutorRoomItems;
+    private List<Room> studySpaceItems;
+    private List<Room> otherRoomItems;
+    private String floorValue;
+    private RelativeLayout tutorRoomsRL, studySpacesRL, otherRoomsRL;
+    private int level;
+    private TutorRoomAdapter tutorRoomAdapter;
+    private RoomAdapter studySpaceAdapter, otherRoomAdapter;
+    private Context context;
+    private Activity activity;
+    private View view;
+    private Boolean expanded = false;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {

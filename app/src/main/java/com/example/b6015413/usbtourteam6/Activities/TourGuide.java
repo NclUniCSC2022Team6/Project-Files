@@ -22,11 +22,10 @@ import java.util.Locale;
 
 public class TourGuide extends Fragment implements AdapterView.OnItemSelectedListener {
 
-    Button prevFloor, nextFloor;
-    TextView selectFloorTxt, view1Title, view1Text, view2Title, view2Text;
-    Spinner floorSelect;
+    private TextView selectFloorTxt, view1Title, view1Text, view2Title, view2Text;
+    private Spinner floorSelect;
     RelativeLayout view1, view2;
-    String currentFloor;
+    private String currentFloor;
     //TextView currentFloorInfo, currentFloorNum;
     private int level;
     private String[] levelNumToText = new String[]{"0", "1", "2", "3", "4-5", "6"};

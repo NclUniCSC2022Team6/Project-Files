@@ -28,9 +28,9 @@ public class Settings extends Fragment {
     private static boolean updateDB = true;
     private static boolean firstLoad = true;
 
-    TextView settings, lookAndFeel, fontSizeTxt, about, appInfo, developerInfo;
+    private TextView settings, lookAndFeel, fontSizeTxt, about, appInfo, developerInfo;
     View line1, line2;
-    Button appInfoBtn, developerInfoBtn;
+    private Button appInfoBtn, developerInfoBtn;
 
     public static float getFontSize() {
         if (firstLoad) {

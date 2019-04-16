@@ -18,7 +18,7 @@ import java.util.Locale;
 
 public class HomePage extends Fragment {
 
-    Button welcomeButton, groundFloor, firstFloor, secondFloor, thirdFloor,
+    private Button welcomeButton, groundFloor, firstFloor, secondFloor, thirdFloor,
             fourthFloor, fifthFloor, sixthFloor, findARoom;
 
     @Nullable
