@@ -116,14 +116,20 @@ public class LevelX extends Fragment {
             tutorRoomItems.add(new Tutor(0, "None", "", "no tutor rooms on this floor"));
             button.setText("");
         }
+        if (tutorRoomItems.size() <= 2) button.setText("");
+
         if (studySpaceItems.isEmpty()) {
             studySpaceItems.add(new Room("no study spaces on this floor", 0, "", "0,0", "None"));
             buttonSS.setText("");
         }
+        if (studySpaceItems.size() <= 2) buttonSS.setText("");
+
         if (otherRoomItems.isEmpty()) {
             otherRoomItems.add(new Room("no other rooms on this floor", 0, "", "0,0", "None"));
             buttonOR.setText("");
         }
+        if (otherRoomItems.size() <= 2) buttonOR.setText("");
+
         //region RecyclerViews
         //Tutor Rooms RV
         tutorRoomRV = view.findViewById(R.id.tutorRV);
@@ -161,9 +167,9 @@ public class LevelX extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 tutorRoomAdapter = new TutorRoomAdapter(getActivity(), context, tutorRoomItems,
-                        ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX),floorValue);
+                        ((tutorRoomAdapter.getMaxItems() == TutorRoomAdapter.COLAPSED_MAX) ? -1 : TutorRoomAdapter.COLAPSED_MAX), floorValue);
                 tutorRoomRV.setAdapter(tutorRoomAdapter);
-                if (tutorRoomItems.size() == 1 && tutorRoomItems.get(0).getSurname().equals("None")) {
+                if (tutorRoomItems.size() <= 2) { //== 1 && tutorRoomItems.get(0).getSurname().equals("None")
                 } else {
                     if (expanded) {
                         button.setText("Show more...");
@@ -182,7 +188,7 @@ public class LevelX extends Fragment {
                 studySpaceAdapter = new RoomAdapter(getActivity(), context, studySpaceItems,
                         ((studySpaceAdapter.getMaxItems() == RoomAdapter.COLLAPSED_MAX) ? -1 : RoomAdapter.COLLAPSED_MAX), floorValue);
                 studySpaceRV.setAdapter(studySpaceAdapter);
-                if (studySpaceItems.size() == 1 && studySpaceItems.get(0).getDescription().equals("None")) {
+                if (studySpaceItems.size() <= 2) {
                 } else {
                     if (expanded) {
                         buttonSS.setText("Show more...");
@@ -201,7 +207,7 @@ public class LevelX extends Fragment {
                 otherRoomAdapter = new RoomAdapter(getActivity(), context, otherRoomItems,
                         ((otherRoomAdapter.getMaxItems() == RoomAdapter.COLLAPSED_MAX) ? -1 : RoomAdapter.COLLAPSED_MAX), floorValue);
                 otherRoomsRV.setAdapter(otherRoomAdapter);
-                if (otherRoomItems.size() == 1 && otherRoomItems.get(0).getDescription().equals("None")) {
+                if (otherRoomItems.size() <= 2) {
                 } else {
                     if (expanded) {
                         buttonOR.setText("Show more...");
