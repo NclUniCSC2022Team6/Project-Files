@@ -1,5 +1,6 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -130,4 +131,13 @@ public class TourGuide extends Fragment implements AdapterView.OnItemSelectedLis
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+    // Sends a broadcast to the FrameworkMain Activity
+    @Override
+    public void onStart() {
+        super.onStart();
+        Intent intent = new Intent();
+        intent.setAction("drawer.listener");
+        getActivity().sendBroadcast(intent);
+    }
+
 }
