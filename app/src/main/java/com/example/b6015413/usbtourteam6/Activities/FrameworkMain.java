@@ -153,6 +153,10 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new BuildingInfo()).addToBackStack(null).commit();
                 break;
+            case R.id.nav_tour_guide:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new TourGuide()).addToBackStack(null).commit();
+                break;
             case R.id.nav_settings:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Settings()).addToBackStack(null).commit();

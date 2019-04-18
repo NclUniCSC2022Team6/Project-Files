@@ -24,14 +24,13 @@ import java.util.List;
 
 public class SearchTutor extends Fragment {
 
-    RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
-    SearchAdapter adapter;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private SearchAdapter adapter;
 
-    MaterialSearchBar materialSearchBar;
-    List<String> suggestList = new ArrayList<>();
-
-    DatabaseHelper database;
+    private MaterialSearchBar materialSearchBar;
+    private List<String> suggestList = new ArrayList<>();
+    private DatabaseHelper database;
 
     // this is from github repository: https://github.com/mancj/MaterialSearchBar
     @Nullable
