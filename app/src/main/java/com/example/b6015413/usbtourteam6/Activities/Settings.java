@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -135,12 +134,18 @@ public class Settings extends Fragment {
                 switch (position) {
                     case 0:
                         size = 15;
+                        fontSizeSpinner.getLayoutParams().height = 70;
+                        fontSizeSpinner.requestLayout();
                         break;
                     case 1:
                         size = 22;
+                        fontSizeSpinner.getLayoutParams().height = 90;
+                        fontSizeSpinner.requestLayout();
                         break;
                     case 2:
                         size = 30;
+                        fontSizeSpinner.getLayoutParams().height = 120;
+                        fontSizeSpinner.requestLayout();
                         break;
                 }
                 Settings.setFontSize(size);
