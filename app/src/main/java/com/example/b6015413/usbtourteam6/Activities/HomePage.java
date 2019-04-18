@@ -32,8 +32,6 @@ public class HomePage extends Fragment {
 
         super.onCreate(savedInstanceState);
 
-        AssetManager am = getContext().getAssets();
-        Typeface robotoBlack = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Black.ttf"));
 
 
         //region set IDs
@@ -47,37 +45,6 @@ public class HomePage extends Fragment {
         sixthFloor = view.findViewById(R.id.sixthFloor);
         findARoom = view.findViewById(R.id.findARoom);
         //endregion
-
-        //region setting Typeface
-        welcomeButton.setTypeface(robotoBlack);
-        groundFloor.setTypeface(robotoBlack);
-        firstFloor.setTypeface(robotoBlack);
-        secondFloor.setTypeface(robotoBlack);
-        thirdFloor.setTypeface(robotoBlack);
-        fourthFloor.setTypeface(robotoBlack);
-        fifthFloor.setTypeface(robotoBlack);
-        sixthFloor.setTypeface(robotoBlack);
-        findARoom.setTypeface(robotoBlack);
-        //endregion
-
-        welcomeButton.setTextSize(Settings.getFontSize());
-        groundFloor.setTextSize(Settings. getFontSize());
-        firstFloor.setTextSize(Settings.getFontSize());
-        secondFloor.setTextSize(Settings.getFontSize());
-        thirdFloor.setTextSize(Settings.getFontSize());
-        fourthFloor.setTextSize(Settings.getFontSize());
-        fifthFloor.setTextSize(Settings.getFontSize());
-        sixthFloor.setTextSize(Settings.getFontSize());
-        findARoom.setTextSize(Settings.getFontSize());
-
-
-        Configuration c = getResources().getConfiguration();
-        float scale = c.fontScale;
-        if (scale > 1) {
-            Settings.setFontSize(20);
-        }
-
-
 
         //region button clicks
 
