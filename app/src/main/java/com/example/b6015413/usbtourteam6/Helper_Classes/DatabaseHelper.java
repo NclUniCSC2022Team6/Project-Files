@@ -98,33 +98,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         insertTableData(db, "Route", "Route");
     }
 
-    // test to see if all possible routes work
-    public boolean testAllRoutes() {
-        List<String> errors = new ArrayList<>();
-        List<Room> rooms = getAllRooms();
-        for (int i = 0; i < rooms.size(); i++) {
-            for (int x = 0; x < rooms.size(); x++) {
-                String from = rooms.get(i).getName(), to = rooms.get(x).getName();
-
-                if (i != x) {
-                    try {
-                        getRoute(from, to, false);
-                    } catch (Exception e) {
-                        errors.add(e.getMessage());
-                    }
-                    try {
-                        getRoute(from, to, true);
-                    } catch (Exception e) {
-                        errors.add(e.getMessage());
-                    }
-                }
-            }
-        }
-
-        if (errors.size() == 0) return true; // pass!
-        throw new IllegalArgumentException(Arrays.toString(new ArrayList<>(new HashSet<>(errors)).toArray())); // fail so output all
-    }
-
     /**
      * @depreciated helper method that was used to generate all routes and then write to a textfile
      * now WILL NOT WORK as code no longer exists in methods to write all routes to the
@@ -171,50 +144,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // endregion
 
-    // region methods to return results from the database
-    public List<Route> getAllRoutes() {
-        Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM Route", new String[]{});
-        List<Route> routes = new ArrayList<>();
-        if (cursor.moveToFirst()) {
-            do {
-                Route route = new Route(
-                        (cursor.getString(cursor.getColumnIndex("rTo"))),
-                        (cursor.getString(cursor.getColumnIndex("rFrom"))),
-                        (cursor.getString(cursor.getColumnIndex("route"))));
-
-                routes.add(route);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return routes;
-    }
-
-    // returns list of get all tutors
-    public List<Tutor> getTutors() {
-        SQLiteDatabase db = getReadableDatabase();
-        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
-
-        String[] sqlSelect = {"tutorID", "firstName", "lastName", "rName"};
-        String tableName = "Tutor";
-
-        qb.setTables(tableName);
-        Cursor cursor = qb.query(db, sqlSelect, null, null, null, null, null);
-        List<Tutor> result = new ArrayList<>();
-        if (cursor.moveToFirst()) {
-            do {
-                Tutor tutor = new Tutor();
-                tutor.setId(cursor.getInt(cursor.getColumnIndex("tutorID")));
-                tutor.setFirstname(cursor.getString(cursor.getColumnIndex("firstName")));
-                tutor.setSurname(cursor.getString(cursor.getColumnIndex("lastName")));
-                tutor.setRoom(cursor.getString(cursor.getColumnIndex("rName")));
-                result.add(tutor);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        db.close();
-        return result;
-    }
-
     // Function get all tutor's name
     public List<String> getNames() {
         SQLiteDatabase db = getReadableDatabase();
@@ -233,35 +162,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         cursor.close();
-        db.close();
-        return result;
-    }
-
-    // Function get tutor by name or surname
-    public List<Tutor> getTutorByName(String name) {
-        SQLiteDatabase db = getReadableDatabase();
-        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
-
-        String[] sqlSelect = {"tutorID", "firstName", "lastName", "rName"};
-        String tableName = "Tutor";
-
-        qb.setTables(tableName);
-        //Query select from the tutor where Name LIKE %pattern% so not exact
-        name = removeSpace(name);
-        Cursor cursor = qb.query(db, sqlSelect, "firstName LIKE ? OR lastName LIKE ?", new String[]{"%" + name + "%", "%" + name + "%"}, null, null, null);
-        List<Tutor> result = new ArrayList<>();
-        if (cursor.moveToFirst()) {
-            do {
-                Tutor tutor = new Tutor();
-                tutor.setId(cursor.getInt(cursor.getColumnIndex("tutorID")));
-                tutor.setFirstname(cursor.getString(cursor.getColumnIndex("firstName")));
-                tutor.setSurname(cursor.getString(cursor.getColumnIndex("lastName")));
-                tutor.setRoom(cursor.getString(cursor.getColumnIndex("rName")));
-                result.add(tutor);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        result.addAll(getTutorByFullName(name, db));
         db.close();
         return result;
     }
