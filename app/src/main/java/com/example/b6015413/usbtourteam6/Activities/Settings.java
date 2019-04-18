@@ -11,8 +11,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.b6015413.usbtourteam6.R;
@@ -30,10 +33,12 @@ public class Settings extends Fragment {
 
     private TextView settings, lookAndFeel, fontSizeTxt, about, appInfo, developerInfo;
     View line1, line2;
+    private Spinner fontSizeSpinner;
     private Button appInfoBtn, developerInfoBtn;
 
     public static float getFontSize() {
         if (firstLoad) {
+            // todo create font size file and save size
             firstLoad = false;
         }
         return fontSize;
@@ -44,7 +49,7 @@ public class Settings extends Fragment {
     }
 
     public static boolean getUpdateDB() {
-        if (updateDB) { // update on first open
+        if (updateDB) { // only update on first open
             updateDB = false;
             return true;
         }
@@ -104,6 +109,7 @@ public class Settings extends Fragment {
         developerInfo = view.findViewById(R.id.developerInfo);
         appInfoBtn = view.findViewById(R.id.appInfoBtn);
         developerInfoBtn = view.findViewById(R.id.developerInfoBtn);
+        fontSizeSpinner = view.findViewById(R.id.fontSizeSlider);
         //endregion
 
         //region setting Typefaces
@@ -113,54 +119,53 @@ public class Settings extends Fragment {
         about.setTypeface(robotoBlack);
         appInfo.setTypeface(robotoLight);
         developerInfo.setTypeface(robotoLight);
-
         updateTextSize();
         //endregion
 
-        SeekBar textSizeSeek = view.findViewById(R.id.fontSizeSeekBar);
-        textSizeSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+        ArrayAdapter<CharSequence> adapter =
+                new ArrayAdapter<CharSequence>(getActivity(), android.R.layout.simple_spinner_item, new String[]{"Normal", "Large", "Extra Large"});
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        fontSizeSpinner.setAdapter(adapter);
+
+        fontSizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                float size;
-                switch (seekBar.getProgress()) {
-                    case 1:
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                float size = 15;
+                switch (position) {
+                    case 0:
                         size = 15;
                         break;
-                    case 2:
+                    case 1:
                         size = 22;
                         break;
-                    default: // can only be 3 but default to stop compiler complaining
+                    case 2:
                         size = 30;
                         break;
                 }
                 Settings.setFontSize(size);
                 updateTextSize();
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
 
-        int progress;
+        int progress = 0;
         switch (Math.round(Settings.fontSize)) {
             case 15:
-                progress = 1;
+                progress = 0;
                 break;
             case 22:
+                progress = 1;
+                break;
+            case 30: // can only be 30 but default to stop compiler complaining
                 progress = 2;
                 break;
-            default: // can only be 30 but default to stop compiler complaining
-                progress = 3;
-                break;
         }
-        textSizeSeek.setProgress(progress);
+        fontSizeSpinner.setSelection(progress);
 
         final Context context = getContext();
 
@@ -191,12 +196,13 @@ public class Settings extends Fragment {
     }
 
     private void updateTextSize() {
-        // settings.setTextSize(Settings.fontSize);
         lookAndFeel.setTextSize(Settings.fontSize + 5f);
         fontSizeTxt.setTextSize(Settings.fontSize + 5f);
         about.setTextSize(Settings.fontSize + 5f);
         appInfo.setTextSize(Settings.fontSize + 5f);
         developerInfo.setTextSize(Settings.fontSize + 5f);
+        if (fontSizeSpinner.getSelectedView() != null)
+            ((TextView) fontSizeSpinner.getSelectedView()).setTextSize(Settings.fontSize + 5f);
     }
 
     // Sends a broadcast to the FrameworkMain Activity

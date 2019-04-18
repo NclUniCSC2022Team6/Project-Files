@@ -27,9 +27,6 @@ public class TourGuide extends Fragment implements AdapterView.OnItemSelectedLis
     private Spinner floorSelect;
     RelativeLayout view1, view2;
     private String currentFloor;
-    //TextView currentFloorInfo, currentFloorNum;
-    private int level;
-    private String[] levelNumToText = new String[]{"0", "1", "2", "3", "4-5", "6"};
 
     @Nullable
     @Override
@@ -64,8 +61,6 @@ public class TourGuide extends Fragment implements AdapterView.OnItemSelectedLis
         //endregion
 
         //region spinner
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.floors,
-//                android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter =
                 new ArrayAdapter<CharSequence>(getActivity(), android.R.layout.simple_spinner_item,
                         getResources().getTextArray(R.array.floors));
@@ -131,6 +126,7 @@ public class TourGuide extends Fragment implements AdapterView.OnItemSelectedLis
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
     // Sends a broadcast to the FrameworkMain Activity
     @Override
     public void onStart() {
