@@ -87,27 +87,20 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
         public SearchViewHolder(View itemView) {
             super(itemView);
-            // todo why commented out?
-//            name = itemView.findViewById(R.id.name);
-//            description = itemView.findViewById(R.id.surname);
-//            level = itemView.findViewById(R.id.room);
             roomTxt = itemView.findViewById(R.id.roomText);
             getDirections = itemView.findViewById(R.id.getDirectionsBtn);
             showOnMap = itemView.findViewById(R.id.showOnMapBtn);
 
-//            description.setTypeface(robotoLight);
-//            name.setTypeface(robotoLight);
-//            level.setTypeface(robotoLight);
+
             roomTxt.setTypeface(robotoLight);
             getDirections.setTypeface(robotoBlack);
             showOnMap.setTypeface(robotoBlack);
 
-//            description.setTextSize(Settings.fontSize);
-//            name.setTextSize(Settings.fontSize);
-//            level.setTextSize(Settings.fontSize);
-            roomTxt.setTextSize(Settings.getFontSize());
-            getDirections.setTextSize(Settings.getFontSize() > 21f ? 21f : Settings.getFontSize()); // todo above 21 and text overlaps
-            showOnMap.setTextSize(Settings.getFontSize() > 21f ? 21f : Settings.getFontSize()); // needs to be based on device size
+            float fontSize = Settings.getFontSize(context);
+
+            roomTxt.setTextSize(fontSize);
+            getDirections.setTextSize(fontSize > 21f ? 21f : fontSize); // todo above 21 and text overlaps
+            showOnMap.setTextSize(fontSize > 21f ? 21f : fontSize); // todo needs to be based on device size
 
         }
 

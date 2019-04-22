@@ -82,15 +82,17 @@ public class BuildingInfo extends Fragment {
         tourGuide.setTypeface(robotoBlack);
         //endregion
 
+        float fontSize = Settings.getFontSize(context);
+
         //region set text sizes
-        generalInfoTxt.setTextSize(Settings.getFontSize()+2f);
-        transportTxt.setTextSize(Settings.getFontSize() +2f);
-        openingHours.setTextSize(Settings.getFontSize());
-        contactInfo.setTextSize(Settings.getFontSize());
-        metroBtn.setTextSize(Settings.getFontSize());
-        busBtn.setTextSize(Settings.getFontSize());
-        cafe.setTextSize(Settings.getFontSize());
-        tourGuide.setTextSize(Settings.getFontSize() +2f);
+        generalInfoTxt.setTextSize(fontSize + 2f);
+        transportTxt.setTextSize(fontSize + 2f);
+        openingHours.setTextSize(fontSize);
+        contactInfo.setTextSize(fontSize);
+        metroBtn.setTextSize(fontSize);
+        busBtn.setTextSize(fontSize);
+        cafe.setTextSize(fontSize);
+        tourGuide.setTextSize(fontSize + 2f);
         //endregion
 
         //region Button clicks

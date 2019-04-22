@@ -100,9 +100,11 @@ public class FindARoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             getDirectionsFARR.setTypeface(robotoBlack);
             showOnMapFARR.setTypeface(robotoBlack);
 
-            roomTextFARR.setTextSize(Settings.getFontSize() + 2f); // needs to be slightly bigger
-            getDirectionsFARR.setTextSize(Settings.getFontSize() > 20f ? 20f : Settings.getFontSize()); // above 20 and text overlaps
-            showOnMapFARR.setTextSize(Settings.getFontSize() > 20f ? 20f : Settings.getFontSize());
+            float fontSize = Settings.getFontSize(context);
+
+            roomTextFARR.setTextSize(fontSize + 2f); // needs to be slightly bigger
+            getDirectionsFARR.setTextSize(fontSize > 20f ? 20f : fontSize); // above 20 and text overlaps
+            showOnMapFARR.setTextSize(fontSize > 20f ? 20f : fontSize);
 
         }
     }

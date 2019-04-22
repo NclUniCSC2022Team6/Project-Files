@@ -93,7 +93,7 @@ public class TutorRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             //setting font for objects
             //Find A Room
             tutorInfoTxt.setTypeface(robotoLight);
-            tutorInfoTxt.setTextSize(Settings.getFontSize());
+            tutorInfoTxt.setTextSize(Settings.getFontSize(context));
 
             setTextColour(floorValue);
 
@@ -139,12 +139,12 @@ public class TutorRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             // set size of message to bigger than text in buttons
             TextView textView = dialog.findViewById(android.R.id.message);
             textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
-            textView.setTextSize(Settings.getFontSize() + 2f);
+            textView.setTextSize(Settings.getFontSize(context) + 2f);
 
             textView = dialog.findViewById(android.R.id.button1);
-            textView.setTextSize(Settings.getFontSize());
+            textView.setTextSize(Settings.getFontSize(context));
             textView = dialog.findViewById(android.R.id.button2);
-            textView.setTextSize(Settings.getFontSize());
+            textView.setTextSize(Settings.getFontSize(context));
 
         }
 

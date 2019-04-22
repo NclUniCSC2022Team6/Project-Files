@@ -94,7 +94,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             //setting font for objects
             //Find A Room
             studySpaceTxt.setTypeface(robotoLight);
-            studySpaceTxt.setTextSize(Settings.getFontSize());
+            studySpaceTxt.setTextSize(Settings.getFontSize(context));
 
             setTextColour(floorValue);
 
@@ -138,12 +138,12 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             // set size of message to bigger than text in buttons
             TextView textView = dialog.findViewById(android.R.id.message);
             textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
-            textView.setTextSize(Settings.getFontSize() + 2f);
+            textView.setTextSize(Settings.getFontSize(context) + 2f);
 
             textView = dialog.findViewById(android.R.id.button1);
-            textView.setTextSize(Settings.getFontSize());
+            textView.setTextSize(Settings.getFontSize(context));
             textView = dialog.findViewById(android.R.id.button2);
-            textView.setTextSize(Settings.getFontSize());
+            textView.setTextSize(Settings.getFontSize(context));
         }
 
         void setTextColour(String floorValue) {

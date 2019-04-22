@@ -101,9 +101,10 @@ public class LevelX extends Fragment {
         //endregion
 
         //region setting button font sizes // todo make it so when large does not break
-        button.setTextSize(Settings.getFontSize() - 5f);
-        buttonSS.setTextSize(Settings.getFontSize() - 5f);
-        buttonOR.setTextSize(Settings.getFontSize() - 5f);
+        float fontSize = Settings.getFontSize(context);
+        button.setTextSize(fontSize - 5f);
+        buttonSS.setTextSize(fontSize - 5f);
+        buttonOR.setTextSize(fontSize - 5f);
 
         // get items from database
         DatabaseHelper dbHelper = new DatabaseHelper(context);

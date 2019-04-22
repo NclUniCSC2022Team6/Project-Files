@@ -68,7 +68,7 @@ public class GetDirectionsAdapter extends RecyclerView.Adapter<RecyclerView.View
             //setting font for objects
             //Find A Room
             directionsTxt.setTypeface(robotoLight);
-            directionsTxt.setTextSize(Settings.getFontSize() + 2f);
+            directionsTxt.setTextSize(Settings.getFontSize(context) + 2f);
 
         }
     }

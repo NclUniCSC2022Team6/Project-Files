@@ -17,12 +17,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.b6015413.usbtourteam6.R;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Locale;
 
 public class Settings extends Fragment {
@@ -36,15 +40,23 @@ public class Settings extends Fragment {
     private Spinner fontSizeSpinner;
     private Button appInfoBtn, developerInfoBtn;
 
-    public static float getFontSize() {
+    public static float getFontSize(Context context) {
         if (firstLoad) {
-            // todo create font size file and save size
+            try {
+                String mLine = readFromFile(context);
+                if (mLine != null) {
+                    fontSize = Float.valueOf(mLine);
+                }
+            } catch (NumberFormatException e) {
+                fontSize = 15f; // error so set to standard value
+            }
             firstLoad = false;
         }
         return fontSize;
     }
 
-    public static void setFontSize(float fontSize) {
+    public static void setFontSize(Context context, float fontSize) {
+        writeToFile("" + fontSize, context);
         Settings.fontSize = fontSize;
     }
 
@@ -54,30 +66,6 @@ public class Settings extends Fragment {
             return true;
         }
         return false;
-    }
-
-    private void updateSizeFromFile() {
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(
-                    new InputStreamReader(getContext().getAssets().open("AppData.txt")));
-
-            // read the file
-            String mLine;
-            if ((mLine = reader.readLine()) != null) {
-                setFontSize(Float.valueOf(mLine));
-            }
-        } catch (NumberFormatException | IOException e) {
-            fontSize = 15f; // error so set to standard value
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    // fail quietly
-                }
-            }
-        }
     }
 
     @Nullable
@@ -161,7 +149,7 @@ public class Settings extends Fragment {
                         fontSizeSpinner.requestLayout();
                         break;
                 }
-                Settings.setFontSize(size);
+                Settings.setFontSize(getContext(), size);
                 updateTextSize();
             }
 
@@ -223,6 +211,46 @@ public class Settings extends Fragment {
             ((TextView) fontSizeSpinner.getSelectedView()).setTextSize(Settings.fontSize + 5f);
 
     }
+
+    private static void writeToFile(String data, Context context) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        } catch (IOException e) {
+            Toast.makeText(context, "Error saving to file. Please check permissions", Toast.LENGTH_LONG);
+        }
+    }
+
+    private static String readFromFile(Context context) {
+
+        String ret = "";
+
+        try {
+            InputStream inputStream = context.openFileInput("config.txt");
+
+            if (inputStream != null) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ((receiveString = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        } catch (FileNotFoundException e) {
+            Toast.makeText(context, "Error reading file. Please check permissions", Toast.LENGTH_LONG);
+        } catch (IOException e) {
+            Toast.makeText(context, "Error reading file. Please check permissions", Toast.LENGTH_LONG);
+        }
+
+        return ret;
+    }
+
 
     // Sends a broadcast to the FrameworkMain Activity
     @Override
