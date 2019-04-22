@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -92,7 +93,7 @@ public class Settings extends Fragment {
 
         //region Add fonts
         AssetManager am = getContext().getAssets();
-        Typeface robotoLight = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Light.ttf"));
+        final Typeface robotoLight = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Light.ttf"));
         Typeface robotoBlack = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Black.ttf"));
         //endregion
 
@@ -121,9 +122,21 @@ public class Settings extends Fragment {
         updateTextSize();
         //endregion
 
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(getActivity(), android.R.layout.simple_spinner_item, new String[]{"Normal", "Large", "Extra Large"}) {
 
-        ArrayAdapter<CharSequence> adapter =
-                new ArrayAdapter<CharSequence>(getActivity(), android.R.layout.simple_spinner_item, new String[]{"Normal", "Large", "Extra Large"});
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View v = super.getView(position, convertView, parent);
+                ((TextView) v).setTypeface(robotoLight);//Typeface for normal view
+
+                return v;
+            }
+
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View v = super.getDropDownView(position, convertView, parent);
+                ((TextView) v).setTypeface(robotoLight);//Typeface for dropdown view
+                return v;
+            }
+        };
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fontSizeSpinner.setAdapter(adapter);
 
@@ -208,6 +221,7 @@ public class Settings extends Fragment {
         developerInfo.setTextSize(Settings.fontSize + 5f);
         if (fontSizeSpinner.getSelectedView() != null)
             ((TextView) fontSizeSpinner.getSelectedView()).setTextSize(Settings.fontSize + 5f);
+
     }
 
     // Sends a broadcast to the FrameworkMain Activity
