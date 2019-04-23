@@ -161,4 +161,11 @@ public class GetDirections extends Fragment {
             Toast.makeText(getActivity(), "Check the start and end are valid rooms!\n" + e, Toast.LENGTH_LONG).show();
         }
     }
+
+    // Runs garbage collection when fragment is destroyed.
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().gc();
+    }
 }

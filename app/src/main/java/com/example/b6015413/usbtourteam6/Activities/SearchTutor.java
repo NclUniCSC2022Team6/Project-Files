@@ -130,4 +130,11 @@ public class SearchTutor extends Fragment {
         intent.setAction("drawer.listener");
         getActivity().sendBroadcast(intent);
     }
+
+    // Runs garbage collection when fragment is destroyed.
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().gc();
+    }
 }

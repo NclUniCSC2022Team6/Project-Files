@@ -93,4 +93,6 @@ public class ShowImage implements OnTouchListener {
         float y = event.getY(0) + event.getY(1);
         point.set(x / 2, y / 2);
     }
+
+
 }

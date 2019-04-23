@@ -94,6 +94,7 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new HomePage()).addToBackStack(null).commit();
+                Runtime.getRuntime().gc();
                 break;
             // Intents are used to access the correct floor
             // putExtra is how additional info is passed through into the levelX class
@@ -103,6 +104,7 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
                 groundF.putExtra("level", 0);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new LevelX()).addToBackStack(null).commit();
+                Runtime.getRuntime().gc();
                 break;
             case R.id.nav_first_floor:
                 Intent firstF = this.getIntent();
@@ -110,6 +112,7 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
                 firstF.putExtra("level", 1);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new LevelX()).addToBackStack(null).commit();
+                Runtime.getRuntime().gc();
                 break;
             case R.id.nav_second_floor:
                 Intent secondF = this.getIntent();
@@ -117,6 +120,7 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
                 secondF.putExtra("level", 2);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new LevelX()).addToBackStack(null).commit();
+                Runtime.getRuntime().gc();
                 break;
             case R.id.nav_third_floor:
                 Intent thirdF = this.getIntent();
@@ -124,6 +128,7 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
                 thirdF.putExtra("level", 3);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new LevelX()).addToBackStack(null).commit();
+                Runtime.getRuntime().gc();
                 break;
             case R.id.nav_fourth_floor:
                 Intent fourthF = this.getIntent();
@@ -131,6 +136,7 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
                 fourthF.putExtra("level", 4);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new LevelX()).addToBackStack(null).commit();
+                Runtime.getRuntime().gc();
                 break;
             case R.id.nav_fifth_floor:
                 Intent fifthF = this.getIntent();
@@ -138,6 +144,7 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
                 fifthF.putExtra("level", 5);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new LevelX()).addToBackStack(null).commit();
+                Runtime.getRuntime().gc();
                 break;
             case R.id.nav_sixth_floor:
                 Intent sixthF = this.getIntent();
@@ -145,22 +152,27 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
                 sixthF.putExtra("level", 6);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new LevelX()).addToBackStack(null).commit();
+                Runtime.getRuntime().gc();
                 break;
             case R.id.nav_find_room:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new SearchTutor()).addToBackStack(null).commit();
+                Runtime.getRuntime().gc();
                 break;
             case R.id.nav_building_info:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new BuildingInfo()).addToBackStack(null).commit();
+                Runtime.getRuntime().gc();
                 break;
             case R.id.nav_tour_guide:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new TourGuide()).addToBackStack(null).commit();
+                Runtime.getRuntime().gc();
                 break;
             case R.id.nav_settings:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Settings()).addToBackStack(null).commit();
+                Runtime.getRuntime().gc();
                 break;
         }
         return true;

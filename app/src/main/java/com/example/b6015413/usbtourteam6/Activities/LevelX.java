@@ -224,8 +224,10 @@ public class LevelX extends Fragment {
             @Override
             public void onClick(View v) {
                 openFloorPlan();
+                //Runtime.getRuntime().gc();
             }
         });
+
         return view;
     }
 
@@ -244,21 +246,27 @@ public class LevelX extends Fragment {
                 return;
             case 1:
                 id = R.drawable.floor_1_room_numbers;
+                Runtime.getRuntime().gc();
                 break;
             case 2:
                 id = R.drawable.floor_2_room_numbers;
+                Runtime.getRuntime().gc();
                 break;
             case 3:
                 id = R.drawable.floor_3_room_numbers;
+                Runtime.getRuntime().gc();
                 break;
             case 4:
                 id = R.drawable.floor_4_room_numbers;
+                Runtime.getRuntime().gc();
                 break;
             case 5:
                 id = R.drawable.floor_5_room_numbers;
+                Runtime.getRuntime().gc();
                 break;
             case 6:
                 id = R.drawable.floor_6_room_numbers;
+                Runtime.getRuntime().gc();
                 break;
 
         }
