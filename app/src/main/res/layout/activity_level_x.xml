@@ -106,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="Tutor Rooms"
+                    android:text="@string/tutor_rooms"
                     android:textSize="24sp" />
 
                 <android.support.v7.widget.RecyclerView
@@ -124,7 +124,7 @@
                     android:layout_below="@+id/tutorRV"
                     android:background="@android:color/transparent"
                     android:padding="0dp"
-                    android:text="Show more&#8230;"
+                    android:text="@string/show_more"
                     android:textAllCaps="false"
                     android:textColor="@color/darkGrey"
                     android:textSize="10sp" />
@@ -145,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="@string/Study_Spaces"
+                    android:text="@string/study_spaces"
                     android:textSize="24sp" />
 
                 <android.support.v7.widget.RecyclerView
@@ -162,7 +162,7 @@
                     android:layout_height="20dp"
                     android:layout_below="@+id/studySpaceRV"
                     android:background="@android:color/transparent"
-                    android:text="Show more&#8230;"
+                    android:text="@string/show_more"
                     android:textAllCaps="false"
                     android:textColor="@color/darkGrey"
                     android:textSize="10sp" />
@@ -183,7 +183,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="@string/Other_Rooms"
+                    android:text="@string/other_rooms"
                     android:textSize="24sp" />
 
                 <android.support.v7.widget.RecyclerView
@@ -200,7 +200,7 @@
                     android:layout_height="20dp"
                     android:layout_below="@+id/otherRoomsRV"
                     android:background="@android:color/transparent"
-                    android:text="Show more&#8230;"
+                    android:text="@string/show_more"
                     android:textAllCaps="false"
                     android:textColor="@color/darkGrey"
                     android:textSize="10sp" />

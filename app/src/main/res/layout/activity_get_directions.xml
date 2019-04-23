@@ -57,7 +57,7 @@
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/not_clicked_button"
-                android:text="Stairs"
+                android:text="@string/stairs"
                 android:textColor="@color/darkGrey" />
 
             <Button

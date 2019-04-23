@@ -86,7 +86,7 @@
                     android:background="@android:color/transparent"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
-                    android:text="Opening Hours"
+                    android:text="@string/opening_hours_button"
                     android:textAlignment="viewStart"
                     android:textAllCaps="false"
                     android:textColor="@color/darkGrey" />
@@ -109,7 +109,7 @@
                     android:background="@android:color/transparent"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
-                    android:text="Contact Information"
+                    android:text="@string/contact_info_button"
                     android:textAlignment="viewStart"
                     android:textAllCaps="false"
                     android:textColor="@color/darkGrey" />
@@ -153,7 +153,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="Nearby Transport Links"
+                    android:text="@string/nearby_transport_links"
                     android:textSize="24sp" />
 
                 <Button
@@ -166,7 +166,7 @@
                     android:background="@android:color/transparent"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
-                    android:text="By Metro: St James Park"
+                    android:text="@string/metro_info"
                     android:textAlignment="viewStart"
                     android:textAllCaps="false"
                     android:textColor="@color/darkGrey" />
@@ -189,7 +189,7 @@
                     android:background="@android:color/transparent"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
-                    android:text="By Bus: Barrack Road, St James Park"
+                    android:text="@string/bus_info"
                     android:textAlignment="viewStart"
                     android:textAllCaps="false"
                     android:textColor="@color/darkGrey" />
@@ -208,7 +208,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:text="Tour Guide"
+                    android:text="@string/tour_guide"
                     android:textSize="24sp"
                     android:textAllCaps="false"
                     android:textColor="@color/darkGrey" />

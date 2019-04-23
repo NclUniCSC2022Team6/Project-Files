@@ -5,10 +5,12 @@
     <string name="search_title">Search&#8230;</string>
     <string name="search_hint">Search&#8230;</string>
 
+
+
     <!--Fixing warnings-->
     <string name="Find_Room_USB">Find A Room in the USB</string>
-    <string name="Other_Rooms">Other rooms</string>
-    <string name="Study_Spaces">Study Spaces</string>
+
+
 
     <!--Needed for nav drawer etc-->
     <string name="title_activity_nav_bar">NavBar</string>
@@ -16,6 +18,35 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="title_activity_maps">Map</string>
+
+
+    <!--building info Strings | Remaining strings start-->
+    <string name="tour_guide">Tour Guide</string>
+    <string name="bus_info">By Bus: Barrack Road, St James Park</string>
+    <string name="metro_info">By Metro: St James Park</string>
+    <string name="nearby_transport_links">Nearby Transport Links</string>
+    <string name="cafe">Eat@Urban - Cafe</string>
+    <string name="contact_info_button">Contact Information</string>
+    <string name="opening_hours_button">Opening Hours</string>
+    <string name="general_info">General Information</string>
+    <!--End-->
+
+    <!--get directions Strings | Remaining strings start-->
+    <string name="stairs">Stairs</string>
+    <string name="elevator">Elevator</string>
+    <!--End-->
+
+    <!--level x Strings | Remaining strings start-->
+    <string name="tutor_rooms">Tutor Rooms</string>
+    <string name="show_more">Show more&#8230;</string>
+    <string name="study_spaces">Study Spaces</string>
+    <string name="other_rooms">Other rooms</string>
+    <!--End-->
+
+    <!--level x Strings | Remaining strings start-->
+    <string name="tutor_rooms">Tutor Rooms</string>
+    
+    <!--End-->
 
     <!--Opening hours-->
     <string name="opening_hours">
