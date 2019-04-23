@@ -10,7 +10,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -261,6 +260,7 @@ public class LevelX extends Fragment {
             case 6:
                 id = R.drawable.floor_6_room_numbers;
                 break;
+
         }
         // endregion
 
@@ -348,4 +348,12 @@ public class LevelX extends Fragment {
         intent.setAction("drawer.listener");
         getActivity().sendBroadcast(intent);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().gc();
+    }
+
 }
+
