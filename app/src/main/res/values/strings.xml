@@ -5,8 +5,6 @@
     <string name="search_title">Search&#8230;</string>
     <string name="search_hint">Search&#8230;</string>
 
-
-
     <!--Fixing warnings-->
     <string name="Find_Room_USB">Find A Room in the USB</string>
 
@@ -40,6 +38,39 @@
     <string name="study_spaces">Study Spaces</string>
     <string name="other_rooms">Other rooms</string>
     <!--End-->
+
+    <!--search results Strings | Remaining strings start-->
+    <string name="show_search_results">Showing results for (search string)</string>
+    <!--End-->
+
+    <!--settings Strings | Remaining strings start-->
+    <string name="look_design">Look and Design</string>
+    <string name="font_size">Font Size</string>
+    <string name="about">About</string>
+    <string name="app_info_button">Application Information</string>
+    <string name="developers">About The Developers</string>
+    <!--End-->
+
+    <!--tour guide Strings | Remaining strings start-->
+    <string name="select_floor">Select A Floor</string>
+    <!--End-->
+
+    <!--find a room row Strings | Remaining strings start-->
+    <string name="room_info_here">Tutor room info should go here</string>
+    <!--End-->
+
+    <!--get directions row Strings | Remaining strings start-->
+    <string name="directions_loc">Directions go here</string>
+    <!--End-->
+
+    <!--level x row Strings | Remaining strings start-->
+    <string name="search_results_go_here">Search result goes here</string>
+    <!--End-->
+
+    <!--nav header Strings | Remaining strings start-->
+    <string name="nav_header">Urban Sciences Building</string>
+    <!--End-->
+
 
     <!--Opening hours-->
     <string name="opening_hours">
