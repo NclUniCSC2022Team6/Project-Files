@@ -349,6 +349,7 @@ public class LevelX extends Fragment {
         getActivity().sendBroadcast(intent);
     }
 
+    // Runs garbage collection when fragment is destroyed.
     @Override
     public void onDestroy() {
         super.onDestroy();

@@ -78,7 +78,7 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
     public void onDestroy() {
         super.onDestroy();
         this.unregisterReceiver(mBroadcastReceiver);
-        Runtime.getRuntime().gc();
+        Runtime.getRuntime().gc(); // Runs garbage collection
     }
 
     // Sets the correct toolbar title
