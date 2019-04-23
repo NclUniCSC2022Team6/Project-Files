@@ -10,8 +10,6 @@
     <!--Fixing warnings-->
     <string name="Find_Room_USB">Find A Room in the USB</string>
 
-
-
     <!--Needed for nav drawer etc-->
     <string name="title_activity_nav_bar">NavBar</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -41,11 +39,6 @@
     <string name="show_more">Show more&#8230;</string>
     <string name="study_spaces">Study Spaces</string>
     <string name="other_rooms">Other rooms</string>
-    <!--End-->
-
-    <!--level x Strings | Remaining strings start-->
-    <string name="tutor_rooms">Tutor Rooms</string>
-    
     <!--End-->
 
     <!--Opening hours-->
