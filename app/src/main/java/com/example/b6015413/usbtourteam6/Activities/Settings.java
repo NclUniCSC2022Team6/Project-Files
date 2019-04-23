@@ -128,6 +128,7 @@ public class Settings extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fontSizeSpinner.setAdapter(adapter);
 
+
         fontSizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -160,7 +161,7 @@ public class Settings extends Fragment {
         });
 
         int progress = 0;
-        switch (Math.round(Settings.fontSize)) {
+        switch (Math.round(Settings.getFontSize(getContext()))) {
             case 15:
                 progress = 0;
                 break;
