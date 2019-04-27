@@ -118,7 +118,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
 
-        exportTableData("Route", new ArrayList<Route>(new HashSet<Route>(routeList)));
+        exportTableData("Route", new ArrayList<>(new HashSet<>(routeList)));
         throw new IllegalArgumentException("done");
     }
 
@@ -425,7 +425,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // return all rooms matching inputted name
     public List<Room> getAllRoomsMatching(String input) {
         Room room;
-        List<Room> result = new ArrayList<Room>();
+        List<Room> result = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
         input = removeSpace(input);
         Cursor cursor = db.rawQuery("SELECT * FROM Room WHERE rName LIKE ? OR description LIKE ?", new String[]{"%" + input + "%", "%" + input + "%"});
@@ -474,7 +474,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // private helper method to return the list of previous rooms for a given room
     private List<Room> backtrack(Room from, SQLiteDatabase db) {
-        List<Room> btc = new ArrayList<Room>();
+        List<Room> btc = new ArrayList<>();
         btc.add(from);
         Room prevRoom;
         while (!from.getPrevRoom().equals("")) {
@@ -523,7 +523,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             pointer = backtrack.size() - 1;
             change = -1;
         }
-        List<Route> routes = new ArrayList<Route>();
+        List<Route> routes = new ArrayList<>();
         try {
             while (validNav(pointer, backtrack, direction, ecnFound)) {
                 backtrack.remove(null);

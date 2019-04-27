@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -62,7 +61,7 @@ public class TourGuide extends Fragment implements AdapterView.OnItemSelectedLis
 
         //region spinner
         ArrayAdapter<CharSequence> adapter =
-                new ArrayAdapter<CharSequence>(getActivity(), android.R.layout.simple_spinner_item,
+                new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item,
                         getResources().getTextArray(R.array.floors));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         floorSelect.setAdapter(adapter);

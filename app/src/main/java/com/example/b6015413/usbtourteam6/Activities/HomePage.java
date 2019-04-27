@@ -1,9 +1,6 @@
 package com.example.b6015413.usbtourteam6.Activities;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
-import android.content.res.Configuration;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,7 +11,6 @@ import android.widget.Button;
 
 import com.example.b6015413.usbtourteam6.R;
 
-import java.util.Locale;
 
 public class HomePage extends Fragment {
 

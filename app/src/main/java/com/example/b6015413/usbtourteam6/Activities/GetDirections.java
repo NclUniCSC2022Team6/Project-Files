@@ -73,7 +73,7 @@ public class GetDirections extends Fragment {
         directionsRV.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         //populate the recycler view with this class as context and list of routes as data
-        getDirectionsItems = new ArrayList<Route>();
+        getDirectionsItems = new ArrayList<>();
         directionsRV.setAdapter(new GetDirectionsAdapter(getActivity(), getDirectionsItems));
 
         //region button presses
