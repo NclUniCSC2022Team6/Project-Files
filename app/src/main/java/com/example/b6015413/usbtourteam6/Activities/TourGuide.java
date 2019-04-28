@@ -71,6 +71,8 @@ public class TourGuide extends Fragment implements AdapterView.OnItemSelectedLis
         return view;
     }
 
+    // Cases to switch between what information is shown. E.g. user clicks on ground floor, it will display
+    // the ground floor information.
     private void setFloorText(String floor) {
         switch (floor) {
             case "Ground Floor":

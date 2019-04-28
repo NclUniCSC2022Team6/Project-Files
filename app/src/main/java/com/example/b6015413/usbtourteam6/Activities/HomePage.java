@@ -55,7 +55,8 @@ public class HomePage extends Fragment {
                         .commit();
             }
         });
-
+        // Intents are used to access the correct floor
+        // putExtra is how additional info is passed through into the levelX class
         groundFloor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

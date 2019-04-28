@@ -117,6 +117,7 @@ public class SearchTutor extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
+    // Private method which uses the provided repository to show the suggested list
     private void loadSuggestList() {
         suggestList = database.getNames();
         materialSearchBar.setLastSuggestions(suggestList);

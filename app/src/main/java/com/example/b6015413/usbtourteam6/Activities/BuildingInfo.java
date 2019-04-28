@@ -113,6 +113,7 @@ public class BuildingInfo extends Fragment {
                 AlertDialog dialog = new AlertDialog.Builder(context)
                         .setTitle("Contact Information:")
                         .setMessage(R.string.contact_info)
+                        // If button clicked, open google maps with location of the USB
                         .setPositiveButton("Show on map", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -123,6 +124,7 @@ public class BuildingInfo extends Fragment {
                                 startActivity(intent);
                             }
                         })
+                        // If button clicked, open dialer and rings given number
                         .setNegativeButton("Call", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -146,11 +148,14 @@ public class BuildingInfo extends Fragment {
             }
         });
 
-        //Metro stop button
+        // Intent put extra is used to push the correct location depending on what has been pressed.
+        // the maps activity uses get intent to retrieve this information.
+        // Metro stop button
         metroBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MapsActivity.class);
+                // Correct long/lat for the metro station
                 intent.putExtra("locationLat", 54.974178);
                 intent.putExtra("locationLng", -1.620940);
                 intent.putExtra("locationTitle", "Metro St James");
@@ -158,10 +163,12 @@ public class BuildingInfo extends Fragment {
             }
         });
 
+        // Bus stop button
         busBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MapsActivity.class);
+                // Correct long/lat for the bus stop
                 intent.putExtra("locationLat", 54.9745148);
                 intent.putExtra("locationLng", -1.6227728);
                 intent.putExtra("locationTitle", "Bus station");
@@ -210,6 +217,7 @@ public class BuildingInfo extends Fragment {
             }
         });
 
+        // Open the tour guide fragment, replaces current fragment
         tourGuide.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {

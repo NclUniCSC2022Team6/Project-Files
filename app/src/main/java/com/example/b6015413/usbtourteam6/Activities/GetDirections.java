@@ -42,23 +42,28 @@ public class GetDirections extends Fragment {
         View inputFragmentView = inflater.inflate(R.layout.activity_get_directions, container, false);
         super.onCreate(savedInstanceState);
 
-        //TODO This class has been converted to a fragment. The buttons which open the directions need to inflate this layout.
-
+        // toolbar title
         ((FrameworkMain) getActivity())
                 .setActionBarTitle("Directions");
 
         View view = inputFragmentView;
 
+        //region Add fonts
         AssetManager am = getActivity().getApplicationContext().getAssets();
         Typeface robotoLight = Typeface.createFromAsset(am, String.format(Locale.UK, "fonts/%s", "Roboto-Light.ttf"));
+        //endregion
 
+        //region findViewById's
         stairsBtn = view.findViewById(R.id.stairsBtn);
         elevatorBtn = view.findViewById(R.id.elevatorBtn);
         firstLocationSpinner = view.findViewById(R.id.firstLocationSpinner);
         secondLocationSpinner = view.findViewById(R.id.secondLocationSpinner);
+        //endregion
 
+        //region set Typefaces
         stairsBtn.setTypeface(robotoLight);
         elevatorBtn.setTypeface(robotoLight);
+        //endregion
 
         float fontSize = Settings.getFontSize(getContext());
 

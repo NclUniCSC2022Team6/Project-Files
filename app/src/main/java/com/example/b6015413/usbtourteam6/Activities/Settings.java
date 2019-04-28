@@ -39,6 +39,7 @@ public class Settings extends Fragment {
     private Spinner fontSizeSpinner;
     private Button appInfoBtn, developerInfoBtn;
 
+    // Reads a file to check what font size to load, if none exists it loads the default size of 15f
     public static float getFontSize(Context context) {
         if (firstLoad) {
             try {
@@ -54,6 +55,7 @@ public class Settings extends Fragment {
         return fontSize;
     }
 
+    // Writes the current font size to a file
     public static void setFontSize(Context context, float fontSize) {
         writeToFile("" + fontSize, context);
         Settings.fontSize = fontSize;
@@ -127,7 +129,8 @@ public class Settings extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fontSizeSpinner.setAdapter(adapter);
 
-
+        // Three different cases, three different font sizes, case 0 being default.
+        // Case 1 is large, case 2 is extra large.
         fontSizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -212,6 +215,7 @@ public class Settings extends Fragment {
 
     }
 
+    // Method which is used to write to a file, used to store the current font size for the application.
     private static void writeToFile(String data, Context context) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));

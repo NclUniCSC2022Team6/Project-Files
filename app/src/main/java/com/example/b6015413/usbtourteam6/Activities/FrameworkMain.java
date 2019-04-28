@@ -74,6 +74,7 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
         this.registerReceiver(mBroadcastReceiver, filter);
     }
 
+    // When class is destroyed runs the code below
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -91,10 +92,10 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_home:
+            case R.id.nav_home: // Case when the nav_home menu is pressed
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new HomePage()).addToBackStack(null).commit();
-                Runtime.getRuntime().gc();
+                Runtime.getRuntime().gc(); // Runs garbage collection when a new fragment is opened to help reduce memory usage
                 break;
             // Intents are used to access the correct floor
             // putExtra is how additional info is passed through into the levelX class
@@ -182,7 +183,6 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
-
         return true;
     }
 
@@ -192,9 +192,7 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
             case R.id.search_btn:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new SearchTutor()).addToBackStack(null).commit();
-
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -205,8 +203,6 @@ public class FrameworkMain extends AppCompatActivity implements NavigationView.O
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-
         }
     }
-
 }
