@@ -29,7 +29,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="10dp">
 
-            <!--todo is this still relevant? Need to change background to give element a border-->
             <Spinner
                 android:id="@+id/firstLocationSpinner"
                 android:layout_width="match_parent"
@@ -46,8 +45,6 @@
                 android:background="@drawable/not_clicked_button"
                 android:textAlignment="center" />
 
-
-            <!--todo Need to swap these colour schemes on select-->
             <Button
                 android:id="@+id/stairsBtn"
                 android:layout_width="wrap_content"
