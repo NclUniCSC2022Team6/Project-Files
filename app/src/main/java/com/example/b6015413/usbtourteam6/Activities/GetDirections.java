@@ -162,8 +162,8 @@ public class GetDirections extends Fragment {
             getDirectionsItems = databaseHelper.getRoute(firstRoomCode,
                     secondRoomCode, sfa);
             directionsRV.setAdapter(new GetDirectionsAdapter(getActivity(), getDirectionsItems));
-        } catch (IllegalArgumentException e) {// error will be thrown by DatabaseHelper TODO REMOVE TOAST OF ERROR BEFORE RELEASE
-            Toast.makeText(getActivity(), "Check the start and end are valid rooms!\n" + e, Toast.LENGTH_LONG).show();
+        } catch (IllegalArgumentException e) {// error will be thrown by DatabaseHelper
+            Toast.makeText(getActivity(), "Check the start and end are valid rooms!", Toast.LENGTH_LONG).show();
         }
     }
 

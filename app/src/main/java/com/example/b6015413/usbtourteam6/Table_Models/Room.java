@@ -9,10 +9,10 @@ public class Room {
     private String description;
 
     /**
-     * @param name The name
-     * @param level The level
-     * @param prevRoom The prevRoom
-     * @param coords The coords
+     * @param name        The name
+     * @param level       The level
+     * @param prevRoom    The prevRoom
+     * @param coords      The coords
      * @param description The description
      */
     public Room(String name, int level, String prevRoom, String coords, String description) {
@@ -93,7 +93,7 @@ public class Room {
 
     @Override
     public String toString() {
-        return "'" + getName()+"','"+getLevel()+"','"+getPrevRoom()+"','" +"'"+getDescription()+"'";
+        return "'" + getName() + "','" + getLevel() + "','" + getPrevRoom() + "','" + getCoords() + "','" + getDescription() + "'";
     }
-    //TODO add coordinates to toString method once data exists
 }
+

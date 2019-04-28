@@ -61,8 +61,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS `Tutor`;");
         db.execSQL("DROP TABLE IF EXISTS `Room`;");
         db.execSQL("DROP TABLE IF EXISTS `Route`;");
-        // TODO this next line needs to be deleted when everyone has updated
-        db.execSQL("DROP TABLE IF EXISTS `Staff`;");
         onCreate(db);
     }
 

@@ -183,7 +183,7 @@ public class BuildingInfo extends Fragment {
             public void onClick(View view) {
                 AlertDialog dialog = new AlertDialog.Builder(context)
                         .setTitle("Eat@Urban Cafe")
-                        .setMessage(R.string.cafe_info) // todo this is some random menu i found on the internet
+                        .setMessage(R.string.cafe_info)
                         .setPositiveButton("View menu", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

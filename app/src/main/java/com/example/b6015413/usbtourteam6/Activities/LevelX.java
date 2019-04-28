@@ -99,7 +99,7 @@ public class LevelX extends Fragment {
         expandBtnOR.setTypeface(robotoLight);
         //endregion
 
-        //region setting button font sizes // todo make it so when large does not break
+        //region setting button font sizes
         float fontSize = Settings.getFontSize(context);
         button.setTextSize(fontSize - 5f);
         buttonSS.setTextSize(fontSize - 5f);
