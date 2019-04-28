@@ -59,6 +59,12 @@ public class TourGuide extends Fragment implements AdapterView.OnItemSelectedLis
         view2Text.setTypeface(robotoLight);
         //endregion
 
+        selectFloorTxt.setTextSize(Settings.getFontSize(getContext()));
+        view1Title.setTextSize(Settings.getFontSize(getContext()));
+        view1Text.setTextSize(Settings.getFontSize(getContext()));
+        view2Title.setTextSize(Settings.getFontSize(getContext()));
+        view2Text.setTextSize(Settings.getFontSize(getContext()));
+
         //region spinner
         ArrayAdapter<CharSequence> adapter =
                 new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item,
