@@ -43,9 +43,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     @Override
     public void onBindViewHolder(SearchViewHolder holder, int position) {
         final int j = position;
-//        holder.description.setText(rooms.get(position).getDescription());
-//        holder.name.setText(rooms.get(position).getName());
-//        holder.level.setText("Level" + rooms.get(position).getLevel());
         holder.roomTxt.setText(rooms.get(position).getDescription() + ": " + rooms.get(position).getName());
         holder.getDirections.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,9 +95,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
             float fontSize = Settings.getFontSize(context);
 
+            final float maxSize;
+            final int screenWidth = activity.getWindow().getDecorView().getWidth();
+
+            if (screenWidth >= 1080) maxSize = 21f;
+            else maxSize = 18f;
+
             roomTxt.setTextSize(fontSize);
-            getDirections.setTextSize(fontSize > 21f ? 21f : fontSize); // todo above 21 and text overlaps
-            showOnMap.setTextSize(fontSize > 21f ? 21f : fontSize); // todo needs to be based on device size
+            getDirections.setTextSize(fontSize > maxSize ? maxSize : fontSize);
+            showOnMap.setTextSize(fontSize > maxSize ? maxSize : fontSize);
 
         }
 
